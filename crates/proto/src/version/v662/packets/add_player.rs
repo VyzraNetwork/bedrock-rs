@@ -1,7 +1,7 @@
+use crate::version::proto_version::ProtoVersion;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use uuid::Uuid;
 use vek::{Vec2, Vec3};
-use crate::version::proto_version::ProtoVersion;
 
 #[gamepacket(id = 12)]
 #[derive(ProtoCodec, Clone, Debug)]

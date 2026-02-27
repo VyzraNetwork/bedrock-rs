@@ -36,4 +36,3 @@ pub struct SerializedLayer {
     #[endianness(le)]
     pub walk_speed: f32,
 }
-

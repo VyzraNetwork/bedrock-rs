@@ -82,10 +82,10 @@ impl ProtoCodec for CommandOutputPacket {
             + self.success_count.get_size_prediction()
             + size_of::<u32>()
             + self
-            .output_messages
-            .iter()
-            .map(|i| i.get_size_prediction())
-            .sum::<usize>()
+                .output_messages
+                .iter()
+                .map(|i| i.get_size_prediction())
+                .sum::<usize>()
     }
 }
 

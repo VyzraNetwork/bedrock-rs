@@ -1,6 +1,6 @@
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use crate::v662::types::ActorRuntimeID;
 use crate::v748::enums::MovementEffectType;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 318)]
 #[derive(ProtoCodec, Clone, Debug)]

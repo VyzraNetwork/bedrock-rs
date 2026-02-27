@@ -1,6 +1,6 @@
-use bedrockrs_macros::ProtoCodec;
 use super::super::enums::ItemDescriptorType;
 use super::super::types::ItemStackRequestSlotInfo;
+use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]
 #[enum_repr(i8)]
@@ -66,7 +66,7 @@ pub enum ItemStackRequestActionType {
         number_of_requested_crafts: i8,
         times_crafted: i8,
         #[vec_repr(u8)]
-        ingredients: Vec<ItemDescriptorType>
+        ingredients: Vec<ItemDescriptorType>,
     } = 13,
     CraftCreative {
         #[endianness(var)]
@@ -90,9 +90,11 @@ pub enum ItemStackRequestActionType {
         pattern_id: String,
         number_of_requested_crafts: i8,
     } = 17,
-    #[deprecated = "Ask Tylaing"] CraftNonImplemented = 18,
-    #[deprecated = "Ask Tylaing"] CraftResults {
-        // TODO: 
+    #[deprecated = "Ask Tylaing"]
+    CraftNonImplemented = 18,
+    #[deprecated = "Ask Tylaing"]
+    CraftResults {
+        // TODO:
         // #[vec_repr(i32)]
         // #[vec_endianness(var)]
         // result_items: Vec<Item>

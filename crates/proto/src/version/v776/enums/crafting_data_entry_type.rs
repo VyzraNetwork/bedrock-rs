@@ -1,4 +1,7 @@
-use super::super::types::{NetworkItemInstanceDescriptor, ShapedChemistryRecipe, ShapedRecipe, ShapelessRecipe, ShulkerBoxRecipe, SmithingTransformRecipe, SmithingTrimRecipe};
+use super::super::types::{
+    NetworkItemInstanceDescriptor, ShapedChemistryRecipe, ShapedRecipe, ShapelessRecipe,
+    ShulkerBoxRecipe, SmithingTransformRecipe, SmithingTrimRecipe,
+};
 use bedrockrs_macros::ProtoCodec;
 use uuid::Uuid;
 

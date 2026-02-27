@@ -1,5 +1,5 @@
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use crate::version::proto_version::ProtoVersion;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 51)]
 #[derive(ProtoCodec, Clone, Debug)]

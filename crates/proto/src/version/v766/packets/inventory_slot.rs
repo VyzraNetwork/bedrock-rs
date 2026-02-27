@@ -1,5 +1,5 @@
 use super::super::enums::ContainerID;
-use super::super::types::{NetworkItemStackDescriptor, FullContainerName};
+use super::super::types::{FullContainerName, NetworkItemStackDescriptor};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::ProtoCodec;
 

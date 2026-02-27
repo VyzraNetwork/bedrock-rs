@@ -11,9 +11,9 @@ mod helper;
 pub use gamepackets::*;
 pub use helper::*;
 
+use crate::v662::enums::*;
 use crate::v662::packets::*;
 use crate::v662::types::*;
-use crate::v662::enums::*;
 use crate::version::proto_version::*;
 
 pub struct V662;

@@ -1,6 +1,6 @@
-use vek::Vec2;
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use super::super::enums::AimAssistAction;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec2;
 
 #[gamepacket(id = 316)]
 #[derive(ProtoCodec, Clone, Debug)]

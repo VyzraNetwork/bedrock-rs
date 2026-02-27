@@ -1,6 +1,6 @@
-use vek::Vec3;
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use super::super::types::ActorRuntimeID;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
+use vek::Vec3;
 
 #[gamepacket(id = 322)]
 #[derive(ProtoCodec, Clone, Debug)]

@@ -1,7 +1,7 @@
 use super::super::enums::EasingType;
+use super::super::types::ActorUniqueID;
 use bedrockrs_macros::ProtoCodec;
 use vek::{Vec2, Vec3};
-use super::super::types::ActorUniqueID;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct CameraInstruction {
@@ -9,7 +9,7 @@ pub struct CameraInstruction {
     pub clear: Option<bool>,
     pub fade: Option<FadeInstruction>,
     pub target: Option<TargetInstruction>,
-}    
+}
 
 // VERIFY: SetInstruction & FadeInstruction
 
@@ -68,4 +68,3 @@ pub struct TargetInstruction {
     pub target_center_offset: Option<Vec3<f32>>,
     pub actor_unique_id: ActorUniqueID,
 }
-

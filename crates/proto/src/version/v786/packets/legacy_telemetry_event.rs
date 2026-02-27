@@ -1,5 +1,5 @@
 use super::super::enums::{ActorDamageCause, ActorType, InteractionType, POIBlockInteractionType};
-use super::super::types::{ActorUniqueID, ActorRuntimeID};
+use super::super::types::{ActorRuntimeID, ActorUniqueID};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::ProtoCodec;

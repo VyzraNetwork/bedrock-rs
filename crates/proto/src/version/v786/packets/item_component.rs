@@ -1,5 +1,5 @@
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use super::super::enums::ItemVersion;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 162)]
 #[derive(ProtoCodec, Clone, Debug)]
@@ -17,5 +17,5 @@ pub struct ItemsEntry {
     pub is_component_based: bool,
     pub version: ItemVersion,
     #[nbt]
-    pub component_data: nbtx::Value
+    pub component_data: nbtx::Value,
 }

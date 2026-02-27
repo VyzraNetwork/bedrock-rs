@@ -1,5 +1,5 @@
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use super::super::enums::AuthoritativeMovementMode;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 319)]
 #[derive(ProtoCodec, Clone, Debug)]

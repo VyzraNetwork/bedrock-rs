@@ -1,5 +1,5 @@
-use bedrockrs_macros::ProtoCodec;
 use super::super::types::CameraAimAssistItemSettings;
+use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct CameraAimAssistPresetDefinition {

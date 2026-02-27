@@ -1,9 +1,9 @@
-use bedrockrs_macros::ProtoCodec;
 use super::super::types::RecipeIngredient;
+use bedrockrs_macros::ProtoCodec;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct RecipeUnlockingRequirement {
-    context: UnlockingContext
+    context: UnlockingContext,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
@@ -13,7 +13,7 @@ pub enum UnlockingContext {
     None {
         #[vec_repr(i32)]
         #[vec_endianness(var)]
-        unlocking_ingredients: Vec<RecipeIngredient>
+        unlocking_ingredients: Vec<RecipeIngredient>,
     } = 0,
     AlwaysUnlocked = 1,
     PlayerInWater = 2,

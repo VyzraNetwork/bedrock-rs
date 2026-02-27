@@ -1,16 +1,13 @@
-use super::super::enums::{
-    ClientPlayMode, InputMode, NewInteractionModel,
-};
-use super::super::types::{
-    PackedItemUseLegacyInventoryTransaction,
-    PlayerBlockActions,
+use super::super::enums::{ClientPlayMode, InputMode, NewInteractionModel};
+use super::super::types::{PackedItemUseLegacyInventoryTransaction, PlayerBlockActions};
+use super::player_auth_input_packet::{
+    ClientPredictedVehicleData, PerformItemStackRequestData, PlayerAuthInputFlags,
 };
 use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
 use std::io::Cursor;
 use vek::{Vec2, Vec3};
-use super::player_auth_input_packet::{PerformItemStackRequestData, ClientPredictedVehicleData, PlayerAuthInputFlags};
 
 #[gamepacket(id = 144)]
 #[derive(Clone, Debug)]
@@ -39,7 +36,7 @@ pub mod player_auth_input_packet {
     use super::super::super::types::{ActorUniqueID, ItemStackRequestSlotInfo};
     use bedrockrs_macros::ProtoCodec;
     use vek::Vec2;
-    
+
     #[repr(u64)]
     pub enum PlayerAuthInputFlags {
         Ascend = 1 << 0,
@@ -142,7 +139,7 @@ impl ProtoCodec for PlayerAuthInputPacket {
         <InputMode as ProtoCodec>::proto_serialize(&self.input_mode, stream)?;
         <ClientPlayMode as ProtoCodec>::proto_serialize(&self.play_mode, stream)?;
         <NewInteractionModel as ProtoCodec>::proto_serialize(&self.new_interaction_model, stream)?;
-        <Vec3<f32> as ProtoCodecLE>::proto_serialize(&self.interact_rotation, stream, )?;
+        <Vec3<f32> as ProtoCodecLE>::proto_serialize(&self.interact_rotation, stream)?;
         <u64 as ProtoCodecVAR>::proto_serialize(&self.client_tick, stream)?;
         <Vec3<f32> as ProtoCodecLE>::proto_serialize(&self.velocity, stream)?;
         if &self.input_data & PlayerAuthInputFlags::PerformItemInteraction as u64 != 0 {
@@ -251,29 +248,30 @@ impl ProtoCodec for PlayerAuthInputPacket {
             + self.play_mode.get_size_prediction()
             + self.new_interaction_model.get_size_prediction()
             + match self.play_mode {
-            ClientPlayMode::Reality => ProtoCodecLE::get_size_prediction(&self.interact_rotation),
-            _ => 0,
-        }
+                ClientPlayMode::Reality => {
+                    ProtoCodecLE::get_size_prediction(&self.interact_rotation)
+                }
+                _ => 0,
+            }
             + ProtoCodecVAR::get_size_prediction(&self.client_tick)
             + ProtoCodecLE::get_size_prediction(&self.velocity)
             + match &self.input_data & PlayerAuthInputFlags::PerformItemInteraction as u64 != 0 {
-            true => self.item_use_transaction.get_size_prediction(),
-            false => 0,
-        }
+                true => self.item_use_transaction.get_size_prediction(),
+                false => 0,
+            }
             + match &self.input_data & PlayerAuthInputFlags::PerformItemStackRequest as u64 != 0 {
-            true => self.item_stack_request.get_size_prediction(),
-            false => 0,
-        }
+                true => self.item_stack_request.get_size_prediction(),
+                false => 0,
+            }
             + match &self.input_data & PlayerAuthInputFlags::PerformBlockActions as u64 != 0 {
-            true => self.player_block_actions.get_size_prediction(),
-            false => 0,
-        }
-            + match &self.input_data & PlayerAuthInputFlags::IsInClientPredictedVehicle as u64
-            != 0
-        {
-            true => self.client_predicted_vehicle.get_size_prediction(),
-            false => 0,
-        }
+                true => self.player_block_actions.get_size_prediction(),
+                false => 0,
+            }
+            + match &self.input_data & PlayerAuthInputFlags::IsInClientPredictedVehicle as u64 != 0
+            {
+                true => self.client_predicted_vehicle.get_size_prediction(),
+                false => 0,
+            }
             + ProtoCodecLE::get_size_prediction(&self.analog_move_vector)
     }
 }

@@ -22,10 +22,7 @@ pub struct LevelSoundEventPacketV2 {
 impl ProtoCodec for LevelSoundEventPacketV2 {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         let mut event_id_stream: Vec<u8> = Vec::new();
-        LevelSoundEventType::proto_serialize(
-            &self.event_id,
-            &mut event_id_stream,
-        )?;
+        LevelSoundEventType::proto_serialize(&self.event_id, &mut event_id_stream)?;
         let mut event_id_cursor = Cursor::new(event_id_stream.as_slice());
 
         stream.write_i8(event_id_cursor.read_u32_varint()? as i8)?;
@@ -43,8 +40,7 @@ impl ProtoCodec for LevelSoundEventPacketV2 {
         event_id_stream.write_u32_varint(stream.read_i8()? as u32)?;
         let mut event_id_cursor = Cursor::new(event_id_stream.as_slice());
 
-        let event_id =
-            LevelSoundEventType::proto_deserialize(&mut event_id_cursor)?;
+        let event_id = LevelSoundEventType::proto_deserialize(&mut event_id_cursor)?;
         let position = <Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?;
         let data = <i32 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let actor_identifier = <String as ProtoCodec>::proto_deserialize(stream)?;

@@ -1,6 +1,6 @@
-use vek::{Vec2, Vec3};
-use bedrockrs_macros::ProtoCodec;
 use super::super::types::CameraAimAssistPreset;
+use bedrockrs_macros::ProtoCodec;
+use vek::{Vec2, Vec3};
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct CameraPreset {
@@ -39,7 +39,7 @@ pub struct CameraPreset {
     pub listener: Option<AudioListener>,
     pub player_effects: Option<bool>,
     pub align_target_and_camera_forwards: Option<bool>,
-    pub aim_assist_preset: Option<CameraAimAssistPreset>
+    pub aim_assist_preset: Option<CameraAimAssistPreset>,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]

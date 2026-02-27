@@ -1,9 +1,9 @@
+use crate::version::proto_version::ProtoVersion;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::ProtoCodec;
 use std::io::{Cursor, Read};
 use varint_rs::{VarintReader, VarintWriter};
-use crate::version::proto_version::ProtoVersion;
 
 #[gamepacket(id = 67)]
 #[derive(Clone, Debug)]
@@ -55,7 +55,7 @@ pub enum Type<V: ProtoVersion> {
     } = 0x8,
 }
 
-impl <V: ProtoVersion> ProtoCodec for ClientBoundMapItemDataPacket<V> {
+impl<V: ProtoVersion> ProtoCodec for ClientBoundMapItemDataPacket<V> {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         let mut type_flags_stream: Vec<u8> = Vec::new();
         <Type<V> as ProtoCodec>::proto_serialize(&self.type_flags, &mut type_flags_stream)?;

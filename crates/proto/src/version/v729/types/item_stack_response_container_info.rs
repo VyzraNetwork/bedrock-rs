@@ -1,6 +1,6 @@
+use super::super::types::FullContainerName;
 use super::super::types::ItemStackResponseSlotInfo;
 use bedrockrs_macros::ProtoCodec;
-use super::super::types::FullContainerName;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ItemStackResponseContainerInfo {

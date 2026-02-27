@@ -1,6 +1,6 @@
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use super::super::enums::CameraAimAssistOperation;
 use super::super::types::{CameraAimAssistCategories, CameraAimAssistPresetDefinition};
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 320)]
 #[derive(ProtoCodec, Clone, Debug)]

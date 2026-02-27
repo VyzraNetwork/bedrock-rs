@@ -173,10 +173,10 @@ impl ProtoCodec for CommandsEntry {
             + self.chained_sub_command_indices.len() * size_of::<u16>()
             + size_of::<u32>()
             + self
-            .overloads
-            .iter()
-            .map(|i| i.get_size_prediction())
-            .sum::<usize>()
+                .overloads
+                .iter()
+                .map(|i| i.get_size_prediction())
+                .sum::<usize>()
     }
 }
 

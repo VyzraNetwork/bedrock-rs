@@ -1,4 +1,6 @@
-use super::super::types::{ContainerMixDataEntry, CraftingDataEntry, MaterialReducerDataEntry, PotionMixDataEntry};
+use super::super::types::{
+    ContainerMixDataEntry, CraftingDataEntry, MaterialReducerDataEntry, PotionMixDataEntry,
+};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 52)]

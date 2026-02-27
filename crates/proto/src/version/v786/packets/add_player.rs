@@ -1,5 +1,8 @@
 use super::super::enums::{BuildPlatform, GameType};
-use super::super::types::{ActorLink, ActorRuntimeID, DataItem, NetworkItemStackDescriptor, PropertySyncData, SerializedAbilitiesData};
+use super::super::types::{
+    ActorLink, ActorRuntimeID, DataItem, NetworkItemStackDescriptor, PropertySyncData,
+    SerializedAbilitiesData,
+};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use uuid::Uuid;
 use vek::{Vec2, Vec3};

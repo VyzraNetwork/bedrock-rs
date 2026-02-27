@@ -12,5 +12,5 @@ pub struct PositionTrackingDBClientRequestPacket {
 #[enum_repr(i8)]
 #[repr(i8)]
 pub enum Action {
-    Query = 0
+    Query = 0,
 }

@@ -1,7 +1,5 @@
 use super::super::enums::ItemUseInventoryTransactionType;
-use super::super::types::{
-    InventoryTransaction, NetworkBlockPosition, NetworkItemStackDescriptor,
-};
+use super::super::types::{InventoryTransaction, NetworkBlockPosition, NetworkItemStackDescriptor};
 use bedrockrs_macros::ProtoCodec;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
@@ -101,12 +99,12 @@ impl ProtoCodec for PackedItemUseLegacyInventoryTransaction {
     fn get_size_prediction(&self) -> usize {
         ProtoCodecVAR::get_size_prediction(&self.id)
             + match &self.id {
-            0 => 0,
-            _ => {
-                let vec = self.container_slots.as_ref().unwrap();
-                vec.len() + vec.iter().map(|i| i.get_size_prediction()).sum::<usize>()
+                0 => 0,
+                _ => {
+                    let vec = self.container_slots.as_ref().unwrap();
+                    vec.len() + vec.iter().map(|i| i.get_size_prediction()).sum::<usize>()
+                }
             }
-        }
             + self.action.get_size_prediction()
             + self.action_type.get_size_prediction()
             + self.position.get_size_prediction()

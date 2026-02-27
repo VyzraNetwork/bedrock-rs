@@ -1,5 +1,5 @@
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use super::super::enums::AimAssistAction;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 321)]
 #[derive(ProtoCodec, Clone, Debug)]

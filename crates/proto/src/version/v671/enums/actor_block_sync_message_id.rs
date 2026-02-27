@@ -9,4 +9,3 @@ pub enum ActorBlockSyncMessageID {
     CREATE = 1,
     DESTROY = 2,
 }
-

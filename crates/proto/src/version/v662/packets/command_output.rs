@@ -1,10 +1,10 @@
+use crate::version::proto_version::ProtoVersion;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
 use byteorder::{ReadBytesExt, WriteBytesExt};
 use std::io::{Cursor, Read};
 use std::mem::size_of;
-use crate::version::proto_version::ProtoVersion;
 
 #[gamepacket(id = 79)]
 #[derive(Clone, Debug)]
@@ -24,7 +24,7 @@ pub struct OutputMessagesEntry {
     pub parameters: Vec<String>,
 }
 
-impl <V: ProtoVersion> ProtoCodec for CommandOutputPacket<V> {
+impl<V: ProtoVersion> ProtoCodec for CommandOutputPacket<V> {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         let mut output_type_stream: Vec<u8> = Vec::new();
         <V::CommandOutputType as ProtoCodec>::proto_serialize(
@@ -81,10 +81,10 @@ impl <V: ProtoVersion> ProtoCodec for CommandOutputPacket<V> {
             + self.success_count.get_size_prediction()
             + size_of::<u32>()
             + self
-            .output_messages
-            .iter()
-            .map(|i| i.get_size_prediction())
-            .sum::<usize>()
+                .output_messages
+                .iter()
+                .map(|i| i.get_size_prediction())
+                .sum::<usize>()
     }
 }
 

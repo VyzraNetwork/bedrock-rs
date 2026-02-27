@@ -23,10 +23,7 @@ pub struct MovePlayerPacket {
 impl ProtoCodec for MovePlayerPacket {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         let mut position_mode_stream: Vec<u8> = Vec::new();
-        PlayerPositionMode::proto_serialize(
-            &self.position_mode,
-            &mut position_mode_stream,
-        )?;
+        PlayerPositionMode::proto_serialize(&self.position_mode, &mut position_mode_stream)?;
         let mut position_mode_cursor = Cursor::new(position_mode_stream.as_slice());
 
         <ActorRuntimeID as ProtoCodec>::proto_serialize(&self.player_runtime_id, stream)?;
@@ -55,10 +52,7 @@ impl ProtoCodec for MovePlayerPacket {
         stream.read_to_end(&mut sub_stream)?;
 
         let mut sub_cursor = Cursor::new(sub_stream.as_slice());
-        let position_mode =
-            PlayerPositionMode::proto_deserialize(
-                &mut sub_cursor,
-            )?;
+        let position_mode = PlayerPositionMode::proto_deserialize(&mut sub_cursor)?;
         let tick = <u64 as ProtoCodecVAR>::proto_deserialize(&mut sub_cursor)?;
 
         Ok(Self {

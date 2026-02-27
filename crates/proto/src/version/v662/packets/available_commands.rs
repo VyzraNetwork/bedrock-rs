@@ -1,9 +1,9 @@
+use crate::version::proto_version::ProtoVersion;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
 use std::io::Cursor;
 use std::mem::size_of;
-use crate::version::proto_version::ProtoVersion;
 
 #[gamepacket(id = 76)]
 #[derive(ProtoCodec, Clone, Debug)]
@@ -107,7 +107,7 @@ pub struct CommandsEntry<V: ProtoVersion> {
     pub overloads: Vec<OverloadsEntry>,
 }
 
-impl <V: ProtoVersion> ProtoCodec for CommandsEntry<V> {
+impl<V: ProtoVersion> ProtoCodec for CommandsEntry<V> {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         <String as ProtoCodec>::proto_serialize(&self.name, stream)?;
         <String as ProtoCodec>::proto_serialize(&self.description, stream)?;
@@ -136,7 +136,8 @@ impl <V: ProtoVersion> ProtoCodec for CommandsEntry<V> {
         let name = <String as ProtoCodec>::proto_deserialize(stream)?;
         let description = <String as ProtoCodec>::proto_deserialize(stream)?;
         let flags = <u16 as ProtoCodecLE>::proto_deserialize(stream)?;
-        let permission_level = <V::CommandPermissionLevel as ProtoCodec>::proto_deserialize(stream)?;
+        let permission_level =
+            <V::CommandPermissionLevel as ProtoCodec>::proto_deserialize(stream)?;
         let alias_enum = <i32 as ProtoCodecLE>::proto_deserialize(stream)?;
         let chained_sub_command_indices = {
             let len = <u32 as ProtoCodecVAR>::proto_deserialize(stream)?;
@@ -173,10 +174,10 @@ impl <V: ProtoVersion> ProtoCodec for CommandsEntry<V> {
             + self.chained_sub_command_indices.len() * size_of::<u16>()
             + size_of::<u32>()
             + self
-            .overloads
-            .iter()
-            .map(|i| i.get_size_prediction())
-            .sum::<usize>()
+                .overloads
+                .iter()
+                .map(|i| i.get_size_prediction())
+                .sum::<usize>()
     }
 }
 

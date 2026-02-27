@@ -1,9 +1,9 @@
+use crate::version::proto_version::ProtoVersion;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::ProtoCodec;
 use std::io::{Cursor, Read};
 use varint_rs::{VarintReader, VarintWriter};
-use crate::version::proto_version::ProtoVersion;
 
 #[gamepacket(id = 44)]
 #[derive(Clone, Debug)]
@@ -32,7 +32,7 @@ pub enum Action {
     } = 129,
 }
 
-impl <V: ProtoVersion> ProtoCodec for AnimatePacket<V> {
+impl<V: ProtoVersion> ProtoCodec for AnimatePacket<V> {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         let mut action_stream: Vec<u8> = Vec::new();
         <Action as ProtoCodec>::proto_serialize(&self.action, &mut action_stream)?;

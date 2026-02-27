@@ -119,22 +119,22 @@ impl ProtoCodec for CommandBlockUpdatePacket {
     fn get_size_prediction(&self) -> usize {
         size_of::<bool>()
             + match &self.is_block {
-            true => self
-                .target_runtime_id
-                .as_ref()
-                .unwrap()
-                .get_size_prediction(),
-            false => {
-                self.block_position.as_ref().unwrap().get_size_prediction()
-                    + self
-                    .command_block_mode
+                true => self
+                    .target_runtime_id
                     .as_ref()
                     .unwrap()
-                    .get_size_prediction()
-                    + size_of::<bool>()
-                    + size_of::<bool>()
+                    .get_size_prediction(),
+                false => {
+                    self.block_position.as_ref().unwrap().get_size_prediction()
+                        + self
+                            .command_block_mode
+                            .as_ref()
+                            .unwrap()
+                            .get_size_prediction()
+                        + size_of::<bool>()
+                        + size_of::<bool>()
+                }
             }
-        }
             + &self.command.get_size_prediction()
             + &self.last_output.get_size_prediction()
             + &self.name.get_size_prediction()

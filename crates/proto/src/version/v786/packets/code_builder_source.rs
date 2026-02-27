@@ -1,4 +1,6 @@
-use super::super::enums::{CodeBuilderStorageCategory, CodeBuilderStorageOperation, CodeBuilderCodeStatus};
+use super::super::enums::{
+    CodeBuilderCodeStatus, CodeBuilderStorageCategory, CodeBuilderStorageOperation,
+};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 178)]

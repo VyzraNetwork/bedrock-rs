@@ -16,7 +16,7 @@ pub enum PlayerListPacketType {
     Remove {
         #[vec_repr(u32)]
         #[vec_endianness(var)]
-        remove_player_list: Vec<Uuid>
+        remove_player_list: Vec<Uuid>,
     } = 1,
 }
 

@@ -1,5 +1,5 @@
-use bedrockrs_macros::{gamepacket, ProtoCodec};
 use crate::v671::types::ActorUniqueID;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 325)]
 #[derive(ProtoCodec, Clone, Debug)]
@@ -8,7 +8,6 @@ pub struct PlayerUpdateEntityOverridesPacket {
     #[endianness(var)]
     pub property_index: u32,
     pub update_type: UpdateType,
-    
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
@@ -19,10 +18,10 @@ pub enum UpdateType {
     RemoveOverride = 1,
     SetIntOverride {
         #[endianness(le)]
-        value: i32
+        value: i32,
     } = 2,
     SetFloatOverride {
         #[endianness(le)]
-        value: f32
+        value: f32,
     } = 3,
 }

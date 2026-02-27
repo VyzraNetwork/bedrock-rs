@@ -10,5 +10,5 @@ pub struct ChangeDimensionPacket {
     pub position: Vec3<f32>,
     pub respawn: bool,
     #[endianness(le)]
-    pub loading_screen_id: Option<i32>
+    pub loading_screen_id: Option<i32>,
 }

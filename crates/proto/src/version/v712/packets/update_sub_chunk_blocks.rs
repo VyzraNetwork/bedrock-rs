@@ -36,7 +36,8 @@ impl ProtoCodec for BlocksChangedEntry {
         <u64 as ProtoCodecVAR>::proto_serialize(&self.sync_message_entity_unique_id, stream)?;
 
         let mut sync_message_stream: Vec<u8> = Vec::new();
-        self.sync_message.proto_serialize(&mut sync_message_stream)?;
+        self.sync_message
+            .proto_serialize(&mut sync_message_stream)?;
         let mut sync_message_cursor = Cursor::new(sync_message_stream.as_slice());
 
         stream.write_u32_varint(sync_message_cursor.read_i64_varint()? as u32)?;

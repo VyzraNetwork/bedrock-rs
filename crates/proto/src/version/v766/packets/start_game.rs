@@ -1,5 +1,8 @@
 use super::super::enums::GameType;
-use super::super::types::{ActorRuntimeID, ActorUniqueID, ItemData, LevelSettings, NetworkPermissions, SyncedPlayerMovementSettings};
+use super::super::types::{
+    ActorRuntimeID, ActorUniqueID, ItemData, LevelSettings, NetworkPermissions,
+    SyncedPlayerMovementSettings,
+};
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 use uuid::Uuid;
 use vek::{Vec2, Vec3};

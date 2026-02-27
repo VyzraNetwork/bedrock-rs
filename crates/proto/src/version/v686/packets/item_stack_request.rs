@@ -10,9 +10,9 @@ pub struct ItemStackRequestPacket {
 }
 
 pub mod item_stack_request_packet {
-    use bedrockrs_macros::ProtoCodec;
     use super::super::super::enums::{ItemStackRequestActionType, TextProcessingEventOrigin};
     use super::super::super::types::ItemStackRequestSlotInfo;
+    use bedrockrs_macros::ProtoCodec;
 
     #[derive(ProtoCodec, Clone, Debug)]
     pub struct RequestsEntry {
@@ -27,5 +27,3 @@ pub mod item_stack_request_packet {
         pub strings_to_filter_origin: TextProcessingEventOrigin,
     }
 }
-
-

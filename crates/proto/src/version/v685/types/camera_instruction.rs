@@ -7,7 +7,7 @@ pub struct CameraInstruction {
     pub set: Option<SetInstruction>,
     pub clear: Option<bool>,
     pub fade: Option<FadeInstruction>,
-}    
+}
 
 // VERIFY: SetInstruction & FadeInstruction
 
@@ -57,4 +57,3 @@ pub struct FadeInstruction {
     pub time_data: Option<TimeData>,
     pub color: Option<Color>,
 }
-

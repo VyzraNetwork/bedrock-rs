@@ -1,7 +1,7 @@
+use super::super::types::RecipeUnlockingRequirement;
 use super::super::types::{NetworkItemInstanceDescriptor, RecipeIngredient};
 use bedrockrs_macros::ProtoCodec;
 use uuid::Uuid;
-use super::super::types::RecipeUnlockingRequirement;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ShulkerBoxRecipe {
@@ -16,5 +16,5 @@ pub struct ShulkerBoxRecipe {
     pub recipe_tag: String,
     #[endianness(var)]
     pub priority: i32,
-    pub unlocking_requirement: RecipeUnlockingRequirement
+    pub unlocking_requirement: RecipeUnlockingRequirement,
 }
