@@ -120,8 +120,8 @@ pub trait ProtoVersion {
     type PlayerSkinPacket;
     type PlayerStartItemCooldownPacket;
     type PlayerToggleCrafterSlotRequestPacket;
-    type PositionTrackingDbClientRequestPacket;
-    type PositionTrackingDbServerBroadcastPacket;
+    type PositionTrackingDBClientRequestPacket;
+    type PositionTrackingDBServerBroadcastPacket;
     type PurchaseReceiptPacket;
     type RefreshEntitlementsPacket;
     type RemoveActorPacket;
@@ -201,8 +201,8 @@ pub trait ProtoVersion {
     // endregion
     // region Types
     type ActorLink;
-    type ActorRuntimeId;
-    type ActorUniqueId;
+    type ActorRuntimeID;
+    type ActorUniqueID;
     type AdventureSettings;
     type BaseDescription;
     type BaseGameVersion;
@@ -218,7 +218,7 @@ pub trait ProtoVersion {
     type DimensionDefinitionGroup;
     type EduSharedUriResource;
     type EducationLevelSettings;
-    type EntityNetId;
+    type EntityNetID;
     type Experiments;
     type GameRulesChangedPacketData;
     type InventoryAction;
@@ -233,7 +233,7 @@ pub trait ProtoVersion {
     type ItemStackResponseSlotInfo;
     type LevelSettings;
     type MapDecoration;
-    type MapItemTrackedActorUniqueId;
+    type MapItemTrackedActorUniqueID;
     type MaterialReducerDataEntry;
     type MolangVariableMap;
     type MoveActorAbsoluteData;
@@ -269,14 +269,16 @@ pub trait ProtoVersion {
     // endregion
     // region Enums
     type AbilitiesIndex;
-    type ActorBlockSyncMessageId;
+    type ActorBlockSyncMessageID;
     type ActorDamageCause;
-    type ActorDataIds;
+    type ActorDataIDs;
     type ActorEvent;
     type ActorFlags;
     type ActorLinkType;
     type ActorType;
     type AgentActionType;
+    type AnimatedTextureType;
+    type AnimationExpression;
     type AnimationMode;
     type AttributeModifierOperation;
     type AttributeOperands;
@@ -287,7 +289,8 @@ pub trait ProtoVersion {
     type CameraShakeType;
     type ChatRestrictionLevel;
     type ClientPlayMode;
-    type CodeBuilderStorage;
+    type CodeBuilderStorageCategory;
+    type CodeBuilderStorageOperation;
     type CommandBlockMode;
     type CommandOriginType;
     type CommandOutputType;
@@ -296,7 +299,7 @@ pub trait ProtoVersion {
     type ComplexInventoryTransactionType;
     type ConnectionFailReason;
     type ContainerEnumName;
-    type ContainerId;
+    type ContainerID;
     type ContainerType;
     type CraftingDataEntryType;
     type CraftingType;
@@ -313,6 +316,7 @@ pub trait ProtoVersion {
     type HudVisibility;
     type IdentityDefinitionType;
     type InputMode;
+    type InteractionType;
     type InventoryLayout;
     type InventoryLeftTabIndex;
     type InventoryRightTabIndex;
@@ -329,7 +333,6 @@ pub trait ProtoVersion {
     type LessonAction;
     type LevelEvent;
     type LevelSoundEventType;
-    type MinecraftEventing;
     type MinecraftPacketIds;
     type Mirror;
     type ModalFormCancelReason;
@@ -337,12 +340,12 @@ pub trait ProtoVersion {
     type MultiplayerSettingsPacketType;
     type NewInteractionModel;
     type ObjectiveSortOrder;
+    type POIBlockInteractionType;
     type PackType;
     type PacketCompressionAlgorithm;
     type PacketViolationSeverity;
     type PacketViolationType;
     type ParticleType;
-    type Persona;
     type PhotoType;
     type PlayStatus;
     type PlayerActionType;
@@ -365,8 +368,9 @@ pub trait ProtoVersion {
     type StructureRedstoneSaveMode;
     type StructureTemplateRequestOperation;
     type StructureTemplateResponseType;
+    type TeleportationCause;
     type TextPacketType;
     type TextProcessingEventOrigin;
-    type UiProfile;
+    type UIProfile;
     // endregion
 }
