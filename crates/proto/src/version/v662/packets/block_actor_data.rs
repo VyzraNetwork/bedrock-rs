@@ -1,10 +1,10 @@
-use super::super::types::NetworkBlockPosition;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
+use crate::version::proto_version::ProtoVersion;
 
 #[gamepacket(id = 56)]
 #[derive(ProtoCodec, Clone, Debug)]
-pub struct BlockActorDataPacket {
-    pub block_position: NetworkBlockPosition,
+pub struct BlockActorDataPacket<V: ProtoVersion> {
+    pub block_position: V::NetworkBlockPosition,
     #[nbt]
     pub actor_data_tags: nbtx::Value, // TODO: NBT Structure
 }

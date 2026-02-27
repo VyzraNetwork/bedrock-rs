@@ -133,10 +133,13 @@ pub fn gamepacket(
 
     let item = proc_macro2::TokenStream::from(item);
 
+    let generics = derive.generics;
+    let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
+
     let expanded = quote! {
         #item
 
-        impl ::bedrockrs_proto_core::GamePacket for #name {
+        impl #impl_generics ::bedrockrs_proto_core::GamePacket for #name #ty_generics #where_clause {
             const ID: u16 = #id;
             const COMPRESS: bool = #compress;
             const ENCRYPT: bool = #encrypt;

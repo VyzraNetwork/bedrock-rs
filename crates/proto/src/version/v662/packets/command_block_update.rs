@@ -1,18 +1,17 @@
-use super::super::enums::CommandBlockMode;
-use super::super::types::{ActorRuntimeID, NetworkBlockPosition};
 use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE};
 use std::io::Cursor;
 use std::mem::size_of;
+use crate::version::proto_version::ProtoVersion;
 
 #[gamepacket(id = 78)]
 #[derive(Clone, Debug)]
-pub struct CommandBlockUpdatePacket {
+pub struct CommandBlockUpdatePacket<V: ProtoVersion> {
     pub is_block: bool,
-    pub target_runtime_id: Option<ActorRuntimeID>, // Only if is_block is false
-    pub block_position: Option<NetworkBlockPosition>, // Only if is_block is true
-    pub command_block_mode: Option<CommandBlockMode>, // Only if is_block is true
+    pub target_runtime_id: Option<V::ActorRuntimeID>, // Only if is_block is false
+    pub block_position: Option<V::NetworkBlockPosition>, // Only if is_block is true
+    pub command_block_mode: Option<V::CommandBlockMode>, // Only if is_block is true
     pub redstone_mode: Option<bool>,               // Only if is_block is true
     pub is_conditional: Option<bool>,              // Only if is_block is true
     pub command: String,
@@ -23,22 +22,22 @@ pub struct CommandBlockUpdatePacket {
     pub should_execute_on_first_tick: bool,
 }
 
-impl ProtoCodec for CommandBlockUpdatePacket {
+impl <V: ProtoVersion> ProtoCodec for CommandBlockUpdatePacket<V> {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         <bool as ProtoCodec>::proto_serialize(&self.is_block, stream)?;
         match &self.is_block {
             false => {
-                <ActorRuntimeID as ProtoCodec>::proto_serialize(
+                <V::ActorRuntimeID as ProtoCodec>::proto_serialize(
                     &self.target_runtime_id.as_ref().unwrap(),
                     stream,
                 )?;
             }
             true => {
-                <NetworkBlockPosition as ProtoCodec>::proto_serialize(
+                <V::NetworkBlockPosition as ProtoCodec>::proto_serialize(
                     &self.block_position.as_ref().unwrap(),
                     stream,
                 )?;
-                <CommandBlockMode as ProtoCodec>::proto_serialize(
+                <V::CommandBlockMode as ProtoCodec>::proto_serialize(
                     &self.command_block_mode.as_ref().unwrap(),
                     stream,
                 )?;
@@ -68,15 +67,15 @@ impl ProtoCodec for CommandBlockUpdatePacket {
             match &is_block {
                 false => {
                     let target_runtime_id =
-                        Some(<ActorRuntimeID as ProtoCodec>::proto_deserialize(stream)?);
+                        Some(<V::ActorRuntimeID as ProtoCodec>::proto_deserialize(stream)?);
                     (target_runtime_id, None, None, None, None)
                 }
                 true => {
                     let block_position = Some(
-                        <NetworkBlockPosition as ProtoCodec>::proto_deserialize(stream)?,
+                        <V::NetworkBlockPosition as ProtoCodec>::proto_deserialize(stream)?,
                     );
                     let command_block_mode =
-                        Some(<CommandBlockMode as ProtoCodec>::proto_deserialize(stream)?);
+                        Some(<V::CommandBlockMode as ProtoCodec>::proto_deserialize(stream)?);
                     let redstone_mode = Some(<bool as ProtoCodec>::proto_deserialize(stream)?);
                     let is_conditional = Some(<bool as ProtoCodec>::proto_deserialize(stream)?);
                     (
@@ -140,4 +139,4 @@ impl ProtoCodec for CommandBlockUpdatePacket {
     }
 }
 
-// VERIFY: ProtoCodec impl
+// TODO: verify ProtoCodec impl
