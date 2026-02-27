@@ -65,7 +65,7 @@ async fn handle_login(mut conn: Connection) {
     println!("Login");
 
     conn.send::<ProtoHelperV662>(&[
-        GamePackets::PlaySatus(PlayStatusPacket {
+        GamePackets::PlayStatus(PlayStatusPacket {
             status: PlayStatus::LoginSuccess,
         }),
         GamePackets::ResourcePacksInfo(ResourcePacksInfoPacket {

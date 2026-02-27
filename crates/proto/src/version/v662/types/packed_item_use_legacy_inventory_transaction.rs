@@ -1,5 +1,4 @@
-use super::super::enums::ItemUseInventoryTransactionType;
-use super::super::types::{InventoryTransaction, NetworkBlockPosition, NetworkItemStackDescriptor};
+use crate::version::proto_version::ProtoVersion;
 use bedrockrs_macros::ProtoCodec;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
@@ -7,15 +6,15 @@ use std::io::Cursor;
 use vek::Vec3;
 
 #[derive(Clone, Debug)]
-pub struct PackedItemUseLegacyInventoryTransaction {
+pub struct PackedItemUseLegacyInventoryTransaction<V: ProtoVersion> {
     id: i32,
     container_slots: Option<Vec<ContainerSlotEntry>>,
-    action: InventoryTransaction,
-    action_type: ItemUseInventoryTransactionType,
-    position: NetworkBlockPosition,
+    action: V::InventoryTransaction,
+    action_type: V::ItemUseInventoryTransactionType,
+    position: V::NetworkBlockPosition,
     face: i32,
     slot: i32,
-    item: NetworkItemStackDescriptor,
+    item: V::NetworkItemStackDescriptor,
     from_position: Vec3<f32>,
     click_position: Vec3<f32>,
     target_block_id: u32,
@@ -29,7 +28,7 @@ pub struct ContainerSlotEntry {
     pub slots: Vec<i8>,
 }
 
-impl ProtoCodec for PackedItemUseLegacyInventoryTransaction {
+impl<V: ProtoVersion> ProtoCodec for PackedItemUseLegacyInventoryTransaction<V> {
     fn proto_serialize(&self, stream: &mut Vec<u8>) -> Result<(), ProtoCodecError> {
         ProtoCodecVAR::proto_serialize(&self.id, stream)?;
 
@@ -71,12 +70,12 @@ impl ProtoCodec for PackedItemUseLegacyInventoryTransaction {
                 Some(vec)
             }
         };
-        let action = InventoryTransaction::proto_deserialize(stream)?;
-        let action_type = ItemUseInventoryTransactionType::proto_deserialize(stream)?;
-        let position = NetworkBlockPosition::proto_deserialize(stream)?;
+        let action = V::InventoryTransaction::proto_deserialize(stream)?;
+        let action_type = V::ItemUseInventoryTransactionType::proto_deserialize(stream)?;
+        let position = V::NetworkBlockPosition::proto_deserialize(stream)?;
         let face = <i32 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let slot = <i32 as ProtoCodecVAR>::proto_deserialize(stream)?;
-        let item = NetworkItemStackDescriptor::proto_deserialize(stream)?;
+        let item = V::NetworkItemStackDescriptor::proto_deserialize(stream)?;
         let from_position = <Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?;
         let click_position = <Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?;
         let target_block_id = <u32 as ProtoCodecVAR>::proto_deserialize(stream)?;
