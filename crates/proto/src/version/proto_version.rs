@@ -1,7 +1,4 @@
-pub trait ProtoVersion {
-    const PROTOCOL_VERSION: i32;
-
-    // region Packets
+pub trait ProtoVersionPackets {
     type ActorEventPacket;
     type ActorPickRequestPacket;
     type AddActorPacket;
@@ -198,8 +195,9 @@ pub trait ProtoVersion {
     type UpdateSoftEnumPacket;
     type UpdateSubChunkBlocksPacket;
     type UpdateTradePacket;
-    // endregion
-    // region Types
+}
+
+pub trait ProtoVersionTypes {
     type ActorLink;
     type ActorRuntimeID;
     type ActorUniqueID;
@@ -266,8 +264,9 @@ pub trait ProtoVersion {
     type SubChunkPosOffset;
     type SyncedPlayerMovementSettings;
     type WebSocketPacketData;
-    // endregion
-    // region Enums
+}
+
+pub trait ProtoVersionEnums {
     type AbilitiesIndex;
     type ActorBlockSyncMessageID;
     type ActorDamageCause;
@@ -372,5 +371,8 @@ pub trait ProtoVersion {
     type TextPacketType;
     type TextProcessingEventOrigin;
     type UIProfile;
-    // endregion
+}
+
+pub trait ProtoVersion: ProtoVersionPackets + ProtoVersionTypes + ProtoVersionEnums {
+    const PROTOCOL_VERSION: i32;
 }

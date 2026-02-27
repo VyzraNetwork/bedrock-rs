@@ -11,14 +11,11 @@ mod helper;
 pub use gamepackets::*;
 pub use helper::*;
 
-use crate::version::proto_version::ProtoVersion;
+use crate::version::proto_version::*;
 
 pub struct V662;
 
-impl ProtoVersion for V662 {
-    const PROTOCOL_VERSION: i32 = 622;
-    
-    // region Packets
+impl ProtoVersionPackets for V662 {
     type ActorEventPacket = packets::ActorEventPacket;
     type ActorPickRequestPacket = packets::ActorPickRequestPacket;
     type AddActorPacket = packets::AddActorPacket;
@@ -215,8 +212,9 @@ impl ProtoVersion for V662 {
     type UpdateSoftEnumPacket = packets::UpdateSoftEnumPacket;
     type UpdateSubChunkBlocksPacket = packets::UpdateSubChunkBlocksPacket;
     type UpdateTradePacket = packets::UpdateTradePacket;
-    // endregion
-    // region Types
+}
+
+impl ProtoVersionTypes for V662 {
     type ActorLink = types::ActorLink;
     type ActorRuntimeID = types::ActorRuntimeID;
     type ActorUniqueID = types::ActorUniqueID;
@@ -283,8 +281,9 @@ impl ProtoVersion for V662 {
     type SubChunkPosOffset = types::SubChunkPosOffset;
     type SyncedPlayerMovementSettings = types::SyncedPlayerMovementSettings;
     type WebSocketPacketData = types::WebSocketPacketData;
-    // endregion
-    // region Enums
+}
+
+impl ProtoVersionEnums for V662 {
     type AbilitiesIndex = enums::AbilitiesIndex;
     type ActorBlockSyncMessageID = enums::ActorBlockSyncMessageID;
     type ActorDamageCause = enums::ActorDamageCause;
@@ -389,5 +388,8 @@ impl ProtoVersion for V662 {
     type TextPacketType = enums::TextPacketType;
     type TextProcessingEventOrigin = enums::TextProcessingEventOrigin;
     type UIProfile = enums::UIProfile;
-    // endregion
+}
+
+impl ProtoVersion for V662 {
+    const PROTOCOL_VERSION: i32 = 622;
 }
