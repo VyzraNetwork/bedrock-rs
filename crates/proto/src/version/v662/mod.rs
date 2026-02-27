@@ -16,6 +16,7 @@ use crate::v662::packets::*;
 use crate::v662::types::*;
 use crate::version::proto_version::*;
 
+#[derive(Clone, Debug)]
 pub struct V662;
 
 impl ProtoVersionPackets for V662 {

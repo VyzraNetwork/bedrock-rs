@@ -150,7 +150,7 @@ pub fn gamepacket(
 }
 
 struct GamepacketsInput {
-    packets: Vec<(proc_macro2::Ident, Option<proc_macro2::Ident>)>,
+    packets: Vec<(proc_macro2::Ident, Option<syn::Type>)>,
 }
 
 impl Parse for GamepacketsInput {
@@ -169,7 +169,7 @@ impl Parse for GamepacketsInput {
                 input.parse::<Token![_]>()?;
                 None
             } else {
-                Some(input.parse::<syn::Ident>()?)
+                Some(input.parse::<syn::Type>()?)
             };
 
             vec.push((param_name, param_value));
