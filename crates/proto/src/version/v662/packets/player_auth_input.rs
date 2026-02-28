@@ -1,10 +1,10 @@
 use crate::version::proto_version::ProtoVersion;
-use super::player_auth_input_packet::{
-    ClientPredictedVehicleData, PerformItemStackRequestData, PlayerAuthInputFlags,
-};
 use bedrockrs_macros::gamepacket;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
+use player_auth_input_packet::{
+    ClientPredictedVehicleData, PerformItemStackRequestData, PlayerAuthInputFlags,
+};
 use std::io::Cursor;
 use vek::{Vec2, Vec3};
 
@@ -125,7 +125,10 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
         <u64 as ProtoCodecVAR>::proto_serialize(&self.input_data, stream)?;
         <V::InputMode as ProtoCodec>::proto_serialize(&self.input_mode, stream)?;
         <V::ClientPlayMode as ProtoCodec>::proto_serialize(&self.play_mode, stream)?;
-        <V::NewInteractionModel as ProtoCodec>::proto_serialize(&self.new_interaction_model, stream)?;
+        <V::NewInteractionModel as ProtoCodec>::proto_serialize(
+            &self.new_interaction_model,
+            stream,
+        )?;
         if client_play_mode_is_reality::<V>(&self.play_mode)? {
             <Vec3<f32> as ProtoCodecLE>::proto_serialize(
                 &self.vr_gaze_direction.as_ref().unwrap(),
@@ -171,7 +174,8 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
         let input_data = <u64 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let input_mode = <V::InputMode as ProtoCodec>::proto_deserialize(stream)?;
         let play_mode = <V::ClientPlayMode as ProtoCodec>::proto_deserialize(stream)?;
-        let new_interaction_model = <V::NewInteractionModel as ProtoCodec>::proto_deserialize(stream)?;
+        let new_interaction_model =
+            <V::NewInteractionModel as ProtoCodec>::proto_deserialize(stream)?;
         let vr_gaze_direction = if client_play_mode_is_reality::<V>(&play_mode)? {
             Some(<Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?)
         } else {
@@ -179,22 +183,22 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
         };
         let client_tick = <u64 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let velocity = <Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?;
-        let item_use_transaction = match &input_data
-            & PlayerAuthInputFlags::PerformItemInteraction as u64
-            != 0
-        {
-            true => Some(
-                <V::PackedItemUseLegacyInventoryTransaction as ProtoCodec>::proto_deserialize(stream)?,
-            ),
-            false => None,
-        };
-        let item_stack_request = match &input_data
-            & PlayerAuthInputFlags::PerformItemStackRequest as u64
-            != 0
-        {
-            true => Some(<PerformItemStackRequestData<V> as ProtoCodec>::proto_deserialize(stream)?),
-            false => None,
-        };
+        let item_use_transaction =
+            match &input_data & PlayerAuthInputFlags::PerformItemInteraction as u64 != 0 {
+                true => Some(
+                    <V::PackedItemUseLegacyInventoryTransaction as ProtoCodec>::proto_deserialize(
+                        stream,
+                    )?,
+                ),
+                false => None,
+            };
+        let item_stack_request =
+            match &input_data & PlayerAuthInputFlags::PerformItemStackRequest as u64 != 0 {
+                true => {
+                    Some(<PerformItemStackRequestData<V> as ProtoCodec>::proto_deserialize(stream)?)
+                }
+                false => None,
+            };
         let player_block_actions =
             match &input_data & PlayerAuthInputFlags::PerformBlockActions as u64 != 0 {
                 true => Some(<V::PlayerBlockActions as ProtoCodec>::proto_deserialize(

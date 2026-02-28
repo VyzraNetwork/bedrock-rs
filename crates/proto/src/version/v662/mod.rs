@@ -303,7 +303,7 @@ impl ProtoVersionEnums for V662 {
     type AttributeModifierOperation = AttributeModifierOperation;
     type AttributeOperands = AttributeOperands;
     type BookEditAction = BookEditAction;
-    type BossEventUpdateType = BossEventUpdateType;
+    type BossEventUpdateType = BossEventUpdateType<Self>;
     type BuildPlatform = BuildPlatform;
     type CameraShakeAction = CameraShakeAction;
     type CameraShakeType = CameraShakeType;
@@ -323,7 +323,7 @@ impl ProtoVersionEnums for V662 {
     type ContainerType = ContainerType;
     type CraftingDataEntryType = CraftingDataEntryType<Self>;
     type CraftingType = CraftingType;
-    type DataItemType = DataItemType;
+    type DataItemType = DataItemType<Self>;
     type Difficulty = Difficulty;
     type EasingType = EasingType;
     type EditorWorldType = EditorWorldType;
@@ -334,14 +334,14 @@ impl ProtoVersionEnums for V662 {
     type GeneratorType = GeneratorType;
     type HudElement = HudElement;
     type HudVisibility = HudVisibility;
-    type IdentityDefinitionType = IdentityDefinitionType;
+    type IdentityDefinitionType = IdentityDefinitionType<Self>;
     type InputMode = InputMode;
     type InteractionType = InteractionType;
     type InventoryLayout = InventoryLayout;
     type InventoryLeftTabIndex = InventoryLeftTabIndex;
     type InventoryRightTabIndex = InventoryRightTabIndex;
     type InventorySourceFlags = InventorySourceFlags;
-    type InventorySourceType = InventorySourceType;
+    type InventorySourceType = InventorySourceType<Self>;
     type ItemDescriptorType = ItemDescriptorType;
     type ItemReleaseInventoryTransactionType = ItemReleaseInventoryTransactionType;
     type ItemStackNetResult = ItemStackNetResult<Self>;
@@ -368,7 +368,7 @@ impl ProtoVersionEnums for V662 {
     type ParticleType = ParticleType;
     type PhotoType = PhotoType;
     type PlayStatus = PlayStatus;
-    type PlayerActionType = PlayerActionType;
+    type PlayerActionType = PlayerActionType<Self>;
     type PlayerListPacketType = PlayerListPacketType<Self>;
     type PlayerPermissionLevel = PlayerPermissionLevel;
     type PlayerPositionMode = PlayerPositionMode;
@@ -376,8 +376,8 @@ impl ProtoVersionEnums for V662 {
     type PredictionType = PredictionType;
     type ResourcePackResponse = ResourcePackResponse;
     type Rotation = Rotation;
-    type ScorePacketType = ScorePacketType;
-    type ScoreboardIdentityPacketType = ScoreboardIdentityPacketType;
+    type ScorePacketType = ScorePacketType<Self>;
+    type ScoreboardIdentityPacketType = ScoreboardIdentityPacketType<Self>;
     type ServerAuthMovementMode = ServerAuthMovementMode;
     type ShowStoreOfferRedirectType = ShowStoreOfferRedirectType;
     type SimulationType = SimulationType;
