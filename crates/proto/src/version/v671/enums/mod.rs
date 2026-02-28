@@ -8,3 +8,4 @@ macro_rules! export {
 export!(actor_flags);
 export!(particle_type);
 export!(prediction_type);
+export!(level_sound_event_type);

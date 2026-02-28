@@ -37,6 +37,7 @@ impl ProtoVersionPackets for V671 {
     type AutomationClientConnectPacket = v662::packets::AutomationClientConnectPacket<Self>;
     type AvailableActorIdentifiersPacket = v662::packets::AvailableActorIdentifiersPacket;
     type AvailableCommandsPacket = v662::packets::AvailableCommandsPacket<Self>;
+    type AwardAchievementPacket = ();
     type BiomeDefinitionListPacket = v662::packets::BiomeDefinitionListPacket;
     type BlockActorDataPacket = v662::packets::BlockActorDataPacket<Self>;
     type BlockEventPacket = v662::packets::BlockEventPacket<Self>;
@@ -272,6 +273,7 @@ impl ProtoVersionTypes for V671 {
     type PotionMixDataEntry = v662::types::PotionMixDataEntry;
     type PropertySyncData = v662::types::PropertySyncData;
     type RecipeIngredient = v662::types::RecipeIngredient<Self>;
+    type RecipeUnlockingRequirement = ();
     type ScoreboardId = v662::types::ScoreboardId;
     type SerializedAbilitiesData = v662::types::SerializedAbilitiesData<Self>;
     type SerializedSkin = v662::types::SerializedSkin<Self>;
@@ -313,6 +315,7 @@ impl ProtoVersionEnums for V671 {
     type CameraShakeType = v662::enums::CameraShakeType;
     type ChatRestrictionLevel = v662::enums::ChatRestrictionLevel;
     type ClientPlayMode = v662::enums::ClientPlayMode;
+    type CodeBuilderCodeStatus = ();
     type CodeBuilderStorageCategory = v662::enums::CodeBuilderStorageCategory;
     type CodeBuilderStorageOperation = v662::enums::CodeBuilderStorageOperation;
     type CommandBlockMode = v662::enums::CommandBlockMode;
@@ -357,7 +360,7 @@ impl ProtoVersionEnums for V671 {
     type LabTableReactionType = v662::enums::LabTableReactionType;
     type LessonAction = v662::enums::LessonAction;
     type LevelEvent = v662::enums::LevelEvent;
-    type LevelSoundEventType = v662::enums::LevelSoundEventType;
+    type LevelSoundEventType = LevelSoundEventType;
     type MinecraftPacketIds = v662::enums::MinecraftPacketIds;
     type Mirror = v662::enums::Mirror;
     type ModalFormCancelReason = v662::enums::ModalFormCancelReason;

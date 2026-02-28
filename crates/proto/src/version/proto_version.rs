@@ -18,6 +18,7 @@ pub trait ProtoVersionPackets {
     type AutomationClientConnectPacket: ProtoCodec + Clone + Debug;
     type AvailableActorIdentifiersPacket: ProtoCodec + Clone + Debug;
     type AvailableCommandsPacket: ProtoCodec + Clone + Debug;
+    type AwardAchievementPacket: ProtoCodec + Clone + Debug;
     type BiomeDefinitionListPacket: ProtoCodec + Clone + Debug;
     type BlockActorDataPacket: ProtoCodec + Clone + Debug;
     type BlockEventPacket: ProtoCodec + Clone + Debug;
@@ -250,6 +251,7 @@ pub trait ProtoVersionTypes {
     type PotionMixDataEntry: ProtoCodec + Clone + Debug;
     type PropertySyncData: ProtoCodec + Clone + Debug;
     type RecipeIngredient: ProtoCodec + Clone + Debug;
+    type RecipeUnlockingRequirement: ProtoCodec + Clone + Debug;
     type ScoreboardId: ProtoCodec + Clone + Debug;
     type SerializedAbilitiesData: ProtoCodec + Clone + Debug;
     type SerializedSkin: ProtoCodec + Clone + Debug;
@@ -291,6 +293,7 @@ pub trait ProtoVersionEnums {
     type CameraShakeType: ProtoCodec + Clone + Debug;
     type ChatRestrictionLevel: ProtoCodec + Clone + Debug;
     type ClientPlayMode: ProtoCodec + Clone + Debug;
+    type CodeBuilderCodeStatus: ProtoCodec + Clone + Debug;
     type CodeBuilderStorageCategory: ProtoCodec + Clone + Debug;
     type CodeBuilderStorageOperation: ProtoCodec + Clone + Debug;
     type CommandBlockMode: ProtoCodec + Clone + Debug;

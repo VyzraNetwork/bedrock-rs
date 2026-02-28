@@ -36,6 +36,7 @@ impl ProtoVersionPackets for V662 {
     type AutomationClientConnectPacket = AutomationClientConnectPacket<Self>;
     type AvailableActorIdentifiersPacket = AvailableActorIdentifiersPacket;
     type AvailableCommandsPacket = AvailableCommandsPacket<Self>;
+    type AwardAchievementPacket = ();
     type BiomeDefinitionListPacket = BiomeDefinitionListPacket;
     type BlockActorDataPacket = BlockActorDataPacket<Self>;
     type BlockEventPacket = BlockEventPacket<Self>;
@@ -268,6 +269,7 @@ impl ProtoVersionTypes for V662 {
     type PotionMixDataEntry = PotionMixDataEntry;
     type PropertySyncData = PropertySyncData;
     type RecipeIngredient = RecipeIngredient<Self>;
+    type RecipeUnlockingRequirement = ();
     type ScoreboardId = ScoreboardId;
     type SerializedAbilitiesData = SerializedAbilitiesData<Self>;
     type SerializedSkin = SerializedSkin<Self>;
@@ -309,6 +311,7 @@ impl ProtoVersionEnums for V662 {
     type CameraShakeType = CameraShakeType;
     type ChatRestrictionLevel = ChatRestrictionLevel;
     type ClientPlayMode = ClientPlayMode;
+    type CodeBuilderCodeStatus = ();
     type CodeBuilderStorageCategory = CodeBuilderStorageCategory;
     type CodeBuilderStorageOperation = CodeBuilderStorageOperation;
     type CommandBlockMode = CommandBlockMode;
