@@ -1,4 +1,4 @@
-use crate::v671::types::ActorUniqueID;
+use crate::v786::types::ActorUniqueID;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 325)]

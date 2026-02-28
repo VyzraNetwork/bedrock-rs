@@ -13,6 +13,7 @@ pub struct ShapedRecipe<V: ProtoVersion> {
     pub recipe_id: Uuid,
     pub recipe_tag: String,
     pub priority: i32,
+    pub network_id: u32,
 }
 
 impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
@@ -37,6 +38,7 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
         self.recipe_id.proto_serialize(stream)?;
         self.recipe_tag.proto_serialize(stream)?;
         <i32 as ProtoCodecVAR>::proto_serialize(&self.priority, stream)?;
+        <u32 as ProtoCodecVAR>::proto_serialize(&self.network_id, stream)?;
 
         Ok(())
     }
@@ -70,6 +72,7 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
         let recipe_id = Uuid::proto_deserialize(stream)?;
         let recipe_tag = String::proto_deserialize(stream)?;
         let priority = <i32 as ProtoCodecVAR>::proto_deserialize(stream)?;
+        let network_id = <u32 as ProtoCodecVAR>::proto_deserialize(stream)?;
 
         Ok(Self {
             recipe_unique_id,
@@ -78,6 +81,7 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
             recipe_id,
             recipe_tag,
             priority,
+            network_id,
         })
     }
 
@@ -99,7 +103,8 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
             + self.recipe_id.get_size_prediction()
             + self.recipe_tag.get_size_prediction()
             + self.priority.get_size_prediction()
+            + self.network_id.get_size_prediction()
     }
 }
 
-// VERIFY: ProtoCodec impl
+// TODO: verify ProtoCodec impl
