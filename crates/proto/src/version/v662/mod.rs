@@ -71,6 +71,7 @@ impl ProtoVersionPackets for V662 {
     type CraftingDataPacket = CraftingDataPacket<Self>;
     type CreatePhotoPacket = CreatePhotoPacket;
     type CreativeContentPacket = CreativeContentPacket<Self>;
+    type CurrentStructureFeaturePacket = ();
     type DeathInfoPacket = DeathInfoPacket;
     type DebugInfoPacket = DebugInfoPacket<Self>;
     type DimensionDataPacket = DimensionDataPacket<Self>;
@@ -94,6 +95,7 @@ impl ProtoVersionPackets for V662 {
     type ItemComponentPacket = ItemComponentPacket;
     type ItemStackRequestPacket = ItemStackRequestPacket<Self>;
     type ItemStackResponsePacket = ItemStackResponsePacket<Self>;
+    type JigsawStructureDataPacket = ();
     type LabTablePacket = LabTablePacket<Self>;
     type LecternUpdatePacket = LecternUpdatePacket<Self>;
     type LegacyTelemetryEventPacket = LegacyTelemetryEventPacket<Self>;
@@ -159,6 +161,8 @@ impl ProtoVersionPackets for V662 {
     type ResourcePacksInfoPacket = ResourcePacksInfoPacket;
     type RespawnPacket = RespawnPacket<Self>;
     type ScriptMessagePacket = ScriptMessagePacket;
+    type ServerBoundDiagnosticsPacket = ();
+    type ServerBoundLoadingScreenPacket = ();
     type ServerPlayerPostMovePositionPacket = ServerPlayerPostMovePositionPacket;
     type ServerSettingsRequestPacket = ServerSettingsRequestPacket;
     type ServerSettingsResponsePacket = ServerSettingsResponsePacket;
@@ -241,6 +245,7 @@ impl ProtoVersionTypes for V662 {
     type EducationLevelSettings = EducationLevelSettings;
     type EntityNetID = EntityNetID;
     type Experiments = Experiments;
+    type FullContainerName = ();
     type GameRulesChangedPacketData = GameRulesChangedPacketData;
     type InventoryAction = InventoryAction<Self>;
     type InventorySource = InventorySource<Self>;
@@ -311,7 +316,6 @@ impl ProtoVersionEnums for V662 {
     type CameraShakeAction = CameraShakeAction;
     type CameraShakeType = CameraShakeType;
     type ChatRestrictionLevel = ChatRestrictionLevel;
-    type ClientPlayMode = ClientPlayMode;
     type CodeBuilderCodeStatus = ();
     type CodeBuilderStorageCategory = CodeBuilderStorageCategory;
     type CodeBuilderStorageOperation = CodeBuilderStorageOperation;

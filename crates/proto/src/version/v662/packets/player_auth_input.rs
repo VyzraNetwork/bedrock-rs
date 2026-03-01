@@ -1,5 +1,5 @@
 use crate::version::proto_version::ProtoVersion;
-use bedrockrs_macros::gamepacket;
+use bedrockrs_macros::{gamepacket, ProtoCodec};
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::{ProtoCodec, ProtoCodecLE, ProtoCodecVAR};
 use player_auth_input_packet::{
@@ -17,7 +17,7 @@ pub struct PlayerAuthInputPacket<V: ProtoVersion> {
     pub player_head_rotation: f32,
     pub input_data: u64,
     pub input_mode: V::InputMode,
-    pub play_mode: V::ClientPlayMode,
+    pub play_mode: ClientPlayMode,
     pub new_interaction_model: V::NewInteractionModel,
     pub vr_gaze_direction: Option<Vec3<f32>>, // If play_mode == V::ClientPlayMode::Reality
     pub client_tick: u64,
@@ -124,16 +124,19 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
         <f32 as ProtoCodecLE>::proto_serialize(&self.player_head_rotation, stream)?;
         <u64 as ProtoCodecVAR>::proto_serialize(&self.input_data, stream)?;
         <V::InputMode as ProtoCodec>::proto_serialize(&self.input_mode, stream)?;
-        <V::ClientPlayMode as ProtoCodec>::proto_serialize(&self.play_mode, stream)?;
+        <ClientPlayMode as ProtoCodec>::proto_serialize(&self.play_mode, stream)?;
         <V::NewInteractionModel as ProtoCodec>::proto_serialize(
             &self.new_interaction_model,
             stream,
         )?;
-        if client_play_mode_is_reality::<V>(&self.play_mode)? {
-            <Vec3<f32> as ProtoCodecLE>::proto_serialize(
-                &self.vr_gaze_direction.as_ref().unwrap(),
-                stream,
-            )?;
+        match &self.play_mode {
+            ClientPlayMode::Reality => {
+                <Vec3<f32> as ProtoCodecLE>::proto_serialize(
+                    &self.vr_gaze_direction.as_ref().unwrap(),
+                    stream,
+                )?;
+            }
+            _ => {}
         }
         <u64 as ProtoCodecVAR>::proto_serialize(&self.client_tick, stream)?;
         <Vec3<f32> as ProtoCodecLE>::proto_serialize(&self.velocity, stream)?;
@@ -173,13 +176,14 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
         let player_head_rotation = <f32 as ProtoCodecLE>::proto_deserialize(stream)?;
         let input_data = <u64 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let input_mode = <V::InputMode as ProtoCodec>::proto_deserialize(stream)?;
-        let play_mode = <V::ClientPlayMode as ProtoCodec>::proto_deserialize(stream)?;
+        let play_mode = <ClientPlayMode as ProtoCodec>::proto_deserialize(stream)?;
         let new_interaction_model =
             <V::NewInteractionModel as ProtoCodec>::proto_deserialize(stream)?;
-        let vr_gaze_direction = if client_play_mode_is_reality::<V>(&play_mode)? {
-            Some(<Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?)
-        } else {
-            None
+        let vr_gaze_direction = match (&play_mode) {
+            ClientPlayMode::Reality => {
+                Some(<Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?)
+            }
+            _ => None,
         };
         let client_tick = <u64 as ProtoCodecVAR>::proto_deserialize(stream)?;
         let velocity = <Vec3<f32> as ProtoCodecLE>::proto_deserialize(stream)?;
@@ -244,10 +248,11 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
             + self.input_mode.get_size_prediction()
             + self.play_mode.get_size_prediction()
             + self.new_interaction_model.get_size_prediction()
-            + if client_play_mode_is_reality_value::<V>(&self.play_mode) {
-                ProtoCodecLE::get_size_prediction(&self.vr_gaze_direction)
-            } else {
-                0
+            + match (&self.play_mode) {
+                ClientPlayMode::Reality => {
+                    ProtoCodecLE::get_size_prediction(&self.vr_gaze_direction)
+                }
+                _ => 0,
             }
             + ProtoCodecVAR::get_size_prediction(&self.client_tick)
             + ProtoCodecLE::get_size_prediction(&self.velocity)
@@ -272,18 +277,21 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
     }
 }
 
-fn client_play_mode_is_reality<V: ProtoVersion>(
-    play_mode: &V::ClientPlayMode,
-) -> Result<bool, ProtoCodecError> {
-    let mut mode_stream = Vec::new();
-    <V::ClientPlayMode as ProtoCodec>::proto_serialize(play_mode, &mut mode_stream)?;
-    let mut cursor = Cursor::new(mode_stream.as_slice());
-    let mode = <u32 as ProtoCodecVAR>::proto_deserialize(&mut cursor)?;
-    Ok(mode == 4)
-}
-
-fn client_play_mode_is_reality_value<V: ProtoVersion>(play_mode: &V::ClientPlayMode) -> bool {
-    client_play_mode_is_reality::<V>(play_mode).unwrap_or(false)
+#[derive(ProtoCodec, Clone, Debug)]
+#[enum_repr(u32)]
+#[enum_endianness(var)]
+#[repr(u32)]
+pub enum ClientPlayMode {
+    Normal = 0,
+    Teaser = 1,
+    Screen = 2,
+    Viewer = 3,
+    Reality = 4,
+    Placement = 5,
+    LivingRoom = 6,
+    ExitLevel = 7,
+    ExitLevelLivingRoom = 8,
+    NumModes = 9,
 }
 
 // VERIFY: ProtoCodec impl

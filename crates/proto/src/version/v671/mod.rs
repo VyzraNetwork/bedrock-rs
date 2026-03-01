@@ -72,6 +72,7 @@ impl ProtoVersionPackets for V671 {
     type CraftingDataPacket = v662::packets::CraftingDataPacket<Self>;
     type CreatePhotoPacket = v662::packets::CreatePhotoPacket;
     type CreativeContentPacket = v662::packets::CreativeContentPacket<Self>;
+    type CurrentStructureFeaturePacket = ();
     type DeathInfoPacket = v662::packets::DeathInfoPacket;
     type DebugInfoPacket = v662::packets::DebugInfoPacket<Self>;
     type DimensionDataPacket = v662::packets::DimensionDataPacket<Self>;
@@ -95,6 +96,7 @@ impl ProtoVersionPackets for V671 {
     type ItemComponentPacket = v662::packets::ItemComponentPacket;
     type ItemStackRequestPacket = v662::packets::ItemStackRequestPacket<Self>;
     type ItemStackResponsePacket = v662::packets::ItemStackResponsePacket<Self>;
+    type JigsawStructureDataPacket = ();
     type LabTablePacket = v662::packets::LabTablePacket<Self>;
     type LecternUpdatePacket = v662::packets::LecternUpdatePacket<Self>;
     type LegacyTelemetryEventPacket = LegacyTelemetryEventPacket<Self>;
@@ -162,6 +164,8 @@ impl ProtoVersionPackets for V671 {
     type ResourcePacksInfoPacket = v662::packets::ResourcePacksInfoPacket;
     type RespawnPacket = v662::packets::RespawnPacket<Self>;
     type ScriptMessagePacket = v662::packets::ScriptMessagePacket;
+    type ServerBoundDiagnosticsPacket = ();
+    type ServerBoundLoadingScreenPacket = ();
     type ServerPlayerPostMovePositionPacket = v662::packets::ServerPlayerPostMovePositionPacket;
     type ServerSettingsRequestPacket = v662::packets::ServerSettingsRequestPacket;
     type ServerSettingsResponsePacket = v662::packets::ServerSettingsResponsePacket;
@@ -244,6 +248,7 @@ impl ProtoVersionTypes for V671 {
     type EducationLevelSettings = v662::types::EducationLevelSettings;
     type EntityNetID = v662::types::EntityNetID;
     type Experiments = v662::types::Experiments;
+    type FullContainerName = ();
     type GameRulesChangedPacketData = v662::types::GameRulesChangedPacketData;
     type InventoryAction = v662::types::InventoryAction<Self>;
     type InventorySource = v662::types::InventorySource<Self>;
@@ -315,7 +320,6 @@ impl ProtoVersionEnums for V671 {
     type CameraShakeAction = v662::enums::CameraShakeAction;
     type CameraShakeType = v662::enums::CameraShakeType;
     type ChatRestrictionLevel = v662::enums::ChatRestrictionLevel;
-    type ClientPlayMode = v662::enums::ClientPlayMode;
     type CodeBuilderCodeStatus = ();
     type CodeBuilderStorageCategory = v662::enums::CodeBuilderStorageCategory;
     type CodeBuilderStorageOperation = v662::enums::CodeBuilderStorageOperation;

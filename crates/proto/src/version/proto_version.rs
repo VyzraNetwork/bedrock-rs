@@ -53,6 +53,7 @@ pub trait ProtoVersionPackets {
     type CraftingDataPacket: ProtoCodec + Clone + Debug;
     type CreatePhotoPacket: ProtoCodec + Clone + Debug;
     type CreativeContentPacket: ProtoCodec + Clone + Debug;
+    type CurrentStructureFeaturePacket;
     type DeathInfoPacket: ProtoCodec + Clone + Debug;
     type DebugInfoPacket: ProtoCodec + Clone + Debug;
     type DimensionDataPacket: ProtoCodec + Clone + Debug;
@@ -76,6 +77,7 @@ pub trait ProtoVersionPackets {
     type ItemComponentPacket: ProtoCodec + Clone + Debug;
     type ItemStackRequestPacket: ProtoCodec + Clone + Debug;
     type ItemStackResponsePacket: ProtoCodec + Clone + Debug;
+    type JigsawStructureDataPacket;
     type LabTablePacket: ProtoCodec + Clone + Debug;
     type LecternUpdatePacket: ProtoCodec + Clone + Debug;
     type LegacyTelemetryEventPacket: ProtoCodec + Clone + Debug;
@@ -141,6 +143,8 @@ pub trait ProtoVersionPackets {
     type ResourcePacksInfoPacket: ProtoCodec + Clone + Debug;
     type RespawnPacket: ProtoCodec + Clone + Debug;
     type ScriptMessagePacket: ProtoCodec + Clone + Debug;
+    type ServerBoundDiagnosticsPacket;
+    type ServerBoundLoadingScreenPacket;
     type ServerPlayerPostMovePositionPacket: ProtoCodec + Clone + Debug;
     type ServerSettingsRequestPacket: ProtoCodec + Clone + Debug;
     type ServerSettingsResponsePacket: ProtoCodec + Clone + Debug;
@@ -223,6 +227,7 @@ pub trait ProtoVersionTypes {
     type EducationLevelSettings: ProtoCodec + Clone + Debug;
     type EntityNetID: ProtoCodec + Clone + Debug;
     type Experiments: ProtoCodec + Clone + Debug;
+    type FullContainerName: ProtoCodec + Clone + Debug;
     type GameRulesChangedPacketData: ProtoCodec + Clone + Debug;
     type InventoryAction: ProtoCodec + Clone + Debug;
     type InventorySource: ProtoCodec + Clone + Debug;
@@ -293,7 +298,6 @@ pub trait ProtoVersionEnums {
     type CameraShakeAction: ProtoCodec + Clone + Debug;
     type CameraShakeType: ProtoCodec + Clone + Debug;
     type ChatRestrictionLevel: ProtoCodec + Clone + Debug;
-    type ClientPlayMode: ProtoCodec + Clone + Debug;
     type CodeBuilderCodeStatus: ProtoCodec + Clone + Debug;
     type CodeBuilderStorageCategory: ProtoCodec + Clone + Debug;
     type CodeBuilderStorageOperation: ProtoCodec + Clone + Debug;

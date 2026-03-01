@@ -7,17 +7,17 @@ use vek::Vec3;
 
 #[derive(Clone, Debug)]
 pub struct PackedItemUseLegacyInventoryTransaction<V: ProtoVersion> {
-    id: i32,
-    container_slots: Option<Vec<ContainerSlotEntry>>,
-    action: V::InventoryTransaction,
-    action_type: V::ItemUseInventoryTransactionType,
-    position: V::NetworkBlockPosition,
-    face: i32,
-    slot: i32,
-    item: V::NetworkItemStackDescriptor,
-    from_position: Vec3<f32>,
-    click_position: Vec3<f32>,
-    target_block_id: u32,
+    pub id: i32,
+    pub container_slots: Option<Vec<ContainerSlotEntry>>,
+    pub action: V::InventoryTransaction,
+    pub action_type: V::ItemUseInventoryTransactionType,
+    pub position: V::NetworkBlockPosition,
+    pub face: i32,
+    pub slot: i32,
+    pub item: V::NetworkItemStackDescriptor,
+    pub from_position: Vec3<f32>,
+    pub click_position: Vec3<f32>,
+    pub target_block_id: u32,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]
