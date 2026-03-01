@@ -330,7 +330,6 @@ impl ProtoVersionEnums for V662 {
     type ContainerID = ContainerID;
     type ContainerType = ContainerType;
     type CraftingDataEntryType = CraftingDataEntryType<Self>;
-    type CraftingType = CraftingType;
     type DataItemType = DataItemType<Self>;
     type Difficulty = Difficulty;
     type EasingType = EasingType;

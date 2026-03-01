@@ -332,7 +332,6 @@ impl ProtoVersionEnums for V686 {
     type ContainerID = v662::enums::ContainerID;
     type ContainerType = v662::enums::ContainerType;
     type CraftingDataEntryType = v662::enums::CraftingDataEntryType<Self>;
-    type CraftingType = v662::enums::CraftingType;
     type DataItemType = v662::enums::DataItemType<Self>;
     type Difficulty = v662::enums::Difficulty;
     type EasingType = v662::enums::EasingType;

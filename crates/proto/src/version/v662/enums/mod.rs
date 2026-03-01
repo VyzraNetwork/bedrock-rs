@@ -35,7 +35,6 @@ export!(container_enum_name);
 export!(container_id);
 export!(container_type);
 export!(crafting_data_entry_type);
-export!(crafting_type);
 export!(data_item_type);
 export!(difficulty);
 export!(easing_type);

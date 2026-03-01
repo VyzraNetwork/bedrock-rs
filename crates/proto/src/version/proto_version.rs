@@ -312,7 +312,6 @@ pub trait ProtoVersionEnums {
     type ContainerID: ProtoCodec + Clone + Debug;
     type ContainerType: ProtoCodec + Clone + Debug;
     type CraftingDataEntryType: ProtoCodec + Clone + Debug;
-    type CraftingType: ProtoCodec + Clone + Debug;
     type DataItemType: ProtoCodec + Clone + Debug;
     type Difficulty: ProtoCodec + Clone + Debug;
     type EasingType: ProtoCodec + Clone + Debug;
