@@ -52,6 +52,7 @@ impl ProtoVersionPackets for V685 {
     type ChangeDimensionPacket = v662::packets::ChangeDimensionPacket;
     type ChangeMobPropertyPacket = v662::packets::ChangeMobPropertyPacket<Self>;
     type ChunkRadiusUpdatedPacket = v662::packets::ChunkRadiusUpdatedPacket;
+    type ClientBoundCloseForm = ();
     type ClientBoundDebugRendererPacket = v671::packets::ClientBoundDebugRendererPacket;
     type ClientBoundMapItemDataPacket = v662::packets::ClientBoundMapItemDataPacket<Self>;
     type ClientCacheBlobStatusPacket = v662::packets::ClientCacheBlobStatusPacket;

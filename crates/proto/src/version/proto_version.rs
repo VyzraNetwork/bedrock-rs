@@ -32,6 +32,7 @@ pub trait ProtoVersionPackets {
     type ChangeDimensionPacket: ProtoCodec + Clone + Debug;
     type ChangeMobPropertyPacket: ProtoCodec + Clone + Debug;
     type ChunkRadiusUpdatedPacket: ProtoCodec + Clone + Debug;
+    type ClientBoundCloseForm: ProtoCodec + Clone + Debug;
     type ClientBoundDebugRendererPacket: ProtoCodec + Clone + Debug;
     type ClientBoundMapItemDataPacket: ProtoCodec + Clone + Debug;
     type ClientCacheBlobStatusPacket: ProtoCodec + Clone + Debug;
