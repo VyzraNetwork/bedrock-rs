@@ -354,32 +354,10 @@ pub fn gamepackets(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
         }
     };
 
-    proc_macro::TokenStream::from(expanded)
-}
-
-#[proc_macro]
-pub fn define_packets(input: TokenStream) -> TokenStream {
-    proto::define_packets_internal(input)
+    TokenStream::from(expanded)
 }
 
 #[proc_macro]
 pub fn define_versions(input: TokenStream) -> TokenStream {
     proto::define_versions_internal(input)
-}
-
-#[proc_macro]
-pub fn impl_version(input: TokenStream) -> TokenStream {
-    proto::impl_version_internal(input)
-}
-
-#[doc(hidden)]
-#[proc_macro]
-pub fn impl_version_inner(input: TokenStream) -> TokenStream {
-    proto::impl_version_inner_internal(input)
-}
-
-#[doc(hidden)]
-#[proc_macro]
-pub fn fetch_versions(input: TokenStream) -> TokenStream {
-    proto::fetch_versions_internal(input)
 }

@@ -10,4 +10,3 @@ proc-macro = true
 proc-macro2 = "1.0"
 syn = { version = "2.0", features = ["full"] }
 quote = { version = "1.0" }
-const-random = "0.1.18"
