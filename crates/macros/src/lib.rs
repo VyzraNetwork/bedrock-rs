@@ -1,12 +1,15 @@
 use crate::de::{build_de_enum, build_de_struct};
 use crate::ser::{build_ser_enum, build_ser_struct};
+use proc_macro::TokenStream;
 use quote::quote;
 use std::collections::HashMap;
 use syn::parse::{Parse, ParseStream};
+use syn::token::Token;
 use syn::{parse_macro_input, Data, DeriveInput, Lit, Token};
 
 mod attr;
 mod de;
+mod proto;
 mod ser;
 mod size;
 
@@ -352,4 +355,31 @@ pub fn gamepackets(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     };
 
     proc_macro::TokenStream::from(expanded)
+}
+
+#[proc_macro]
+pub fn define_packets(input: TokenStream) -> TokenStream {
+    proto::define_packets_internal(input)
+}
+
+#[proc_macro]
+pub fn define_versions(input: TokenStream) -> TokenStream {
+    proto::define_versions_internal(input)
+}
+
+#[proc_macro]
+pub fn impl_version(input: TokenStream) -> TokenStream {
+    proto::impl_version_internal(input)
+}
+
+#[doc(hidden)]
+#[proc_macro]
+pub fn impl_version_inner(input: TokenStream) -> TokenStream {
+    proto::impl_version_inner_internal(input)
+}
+
+#[doc(hidden)]
+#[proc_macro]
+pub fn fetch_versions(input: TokenStream) -> TokenStream {
+    proto::fetch_versions_internal(input)
 }

@@ -1,3 +1,4 @@
+use bedrockrs_macros::{define_packets, define_versions, impl_version};
 use bedrockrs_proto_core::ProtoCodec;
 use std::fmt::Debug;
 
@@ -53,7 +54,7 @@ pub trait ProtoVersionPackets {
     type CraftingDataPacket: ProtoCodec + Clone + Debug;
     type CreatePhotoPacket: ProtoCodec + Clone + Debug;
     type CreativeContentPacket: ProtoCodec + Clone + Debug;
-    type CurrentStructureFeaturePacket;
+    type CurrentStructureFeaturePacket: ProtoCodec + Clone + Debug;
     type DeathInfoPacket: ProtoCodec + Clone + Debug;
     type DebugInfoPacket: ProtoCodec + Clone + Debug;
     type DimensionDataPacket: ProtoCodec + Clone + Debug;
@@ -77,7 +78,7 @@ pub trait ProtoVersionPackets {
     type ItemComponentPacket: ProtoCodec + Clone + Debug;
     type ItemStackRequestPacket: ProtoCodec + Clone + Debug;
     type ItemStackResponsePacket: ProtoCodec + Clone + Debug;
-    type JigsawStructureDataPacket;
+    type JigsawStructureDataPacket: ProtoCodec + Clone + Debug;
     type LabTablePacket: ProtoCodec + Clone + Debug;
     type LecternUpdatePacket: ProtoCodec + Clone + Debug;
     type LegacyTelemetryEventPacket: ProtoCodec + Clone + Debug;
@@ -143,8 +144,8 @@ pub trait ProtoVersionPackets {
     type ResourcePacksInfoPacket: ProtoCodec + Clone + Debug;
     type RespawnPacket: ProtoCodec + Clone + Debug;
     type ScriptMessagePacket: ProtoCodec + Clone + Debug;
-    type ServerBoundDiagnosticsPacket;
-    type ServerBoundLoadingScreenPacket;
+    type ServerBoundDiagnosticsPacket: ProtoCodec + Clone + Debug;
+    type ServerBoundLoadingScreenPacket: ProtoCodec + Clone + Debug;
     type ServerPlayerPostMovePositionPacket: ProtoCodec + Clone + Debug;
     type ServerSettingsRequestPacket: ProtoCodec + Clone + Debug;
     type ServerSettingsResponsePacket: ProtoCodec + Clone + Debug;
@@ -386,3 +387,224 @@ pub trait ProtoVersionEnums {
 pub trait ProtoVersion: ProtoVersionPackets + ProtoVersionTypes + ProtoVersionEnums {
     const PROTOCOL_VERSION: i32;
 }
+
+define_packets![
+    ActorEventPacket,
+    ActorPickRequestPacket,
+    AddActorPacket,
+    AddBehaviourTreePacket,
+    AddItemActorPacket,
+    AddPaintingPacket,
+    AddPlayerPacket,
+    AddVolumeEntityPacket,
+    AgentActionEventPacket,
+    AgentAnimationPacket,
+    AnimateEntityPacket,
+    AnimatePacket,
+    AnvilDamagePacket,
+    AutomationClientConnectPacket,
+    AvailableActorIdentifiersPacket,
+    AvailableCommandsPacket,
+    AwardAchievementPacket,
+    BiomeDefinitionListPacket,
+    BlockActorDataPacket,
+    BlockEventPacket,
+    BlockPickRequestPacket,
+    BookEditPacket,
+    BossEventPacket,
+    CameraInstructionPacket,
+    CameraPacket,
+    CameraPresetsPacket,
+    CameraShakePacket,
+    ChangeDimensionPacket,
+    ChangeMobPropertyPacket,
+    ChunkRadiusUpdatedPacket,
+    ClientBoundCloseForm,
+    ClientBoundDebugRendererPacket,
+    ClientBoundMapItemDataPacket,
+    ClientCacheBlobStatusPacket,
+    ClientCacheMissResponsePacket,
+    ClientCacheStatusPacket,
+    ClientToServerHandshakePacket,
+    CodeBuilderPacket,
+    CodeBuilderSourcePacket,
+    CommandBlockUpdatePacket,
+    CommandOutputPacket,
+    CommandRequestPacket,
+    CompletedUsingItemPacket,
+    CompressedBiomeDefinitionListPacket,
+    ContainerClosePacket,
+    ContainerOpenPacket,
+    ContainerSetDataPacket,
+    CorrectPlayerMovePredictionPacket,
+    CraftingDataPacket,
+    CreatePhotoPacket,
+    CreativeContentPacket,
+    CurrentStructureFeaturePacket,
+    DeathInfoPacket,
+    DebugInfoPacket,
+    DimensionDataPacket,
+    DisconnectPacket,
+    EditorNetworkPacket,
+    EduUriResourcePacket,
+    EducationSettingsPacket,
+    EmoteListPacket,
+    EmotePacket,
+    FeatureRegistryPacket,
+    FilterTextPacket,
+    GameRulesChangedPacket,
+    GameTestRequestPacket,
+    GameTestResultsPacket,
+    GuiDataPickItemPacket,
+    HurtArmorPacket,
+    InteractPacket,
+    InventoryContentPacket,
+    InventorySlotPacket,
+    InventoryTransactionPacket,
+    ItemComponentPacket,
+    ItemStackRequestPacket,
+    ItemStackResponsePacket,
+    JigsawStructureDataPacket,
+    LabTablePacket,
+    LecternUpdatePacket,
+    LegacyTelemetryEventPacket,
+    LessonProgressPacket,
+    LevelChunkPacket,
+    LevelEventGenericPacket,
+    LevelEventPacket,
+    LevelSoundEventPacket,
+    LevelSoundEventV1Packet,
+    LevelSoundEventV2Packet,
+    LoginPacket,
+    MapCreateLockedCopyPacket,
+    MapInfoRequestPacket,
+    MobArmorEquipmentPacket,
+    MobEffectPacket,
+    MobEquipmentPacket,
+    ModalFormRequestPacket,
+    ModalFormResponsePacket,
+    MotionPredictionHintsPacket,
+    MoveActorAbsolutePacket,
+    MoveActorDeltaPacket,
+    MovePlayerPacket,
+    MultiplayerSettingsPacket,
+    NetworkChunkPublisherUpdatePacket,
+    NetworkSettingsPacket,
+    NetworkStackLatencyPacket,
+    NpcDialoguePacket,
+    NpcRequestPacket,
+    OnScreenTextureAnimationPacket,
+    OpenSignPacket,
+    PacketViolationWarningPacket,
+    PassengerJumpPacket,
+    PhotoTransferPacket,
+    PlaySoundPacket,
+    PlayStatusPacket,
+    PlayerActionPacket,
+    PlayerArmorDamagePacket,
+    PlayerAuthInputPacket,
+    PlayerEnchantOptionsPacket,
+    PlayerFogPacket,
+    PlayerHotbarPacket,
+    PlayerInputPacket,
+    PlayerListPacket,
+    PlayerSkinPacket,
+    PlayerStartItemCooldownPacket,
+    PlayerToggleCrafterSlotRequestPacket,
+    PositionTrackingDBClientRequestPacket,
+    PositionTrackingDBServerBroadcastPacket,
+    PurchaseReceiptPacket,
+    RefreshEntitlementsPacket,
+    RemoveActorPacket,
+    RemoveObjectivePacket,
+    RemoveVolumeEntityPacket,
+    RequestAbilityPacket,
+    RequestChunkRadiusPacket,
+    RequestNetworkSettingsPacket,
+    RequestPermissionsPacket,
+    ResourcePackChunkDataPacket,
+    ResourcePackChunkRequestPacket,
+    ResourcePackClientResponsePacket,
+    ResourcePackDataInfoPacket,
+    ResourcePackStackPacket,
+    ResourcePacksInfoPacket,
+    RespawnPacket,
+    ScriptMessagePacket,
+    ServerBoundDiagnosticsPacket,
+    ServerBoundLoadingScreenPacket,
+    ServerPlayerPostMovePositionPacket,
+    ServerSettingsRequestPacket,
+    ServerSettingsResponsePacket,
+    ServerStatsPacket,
+    ServerToClientHandshakePacket,
+    SetActorDataPacket,
+    SetActorLinkPacket,
+    SetActorMotionPacket,
+    SetCommandsEnabledPacket,
+    SetDefaultGameTypePacket,
+    SetDifficultyPacket,
+    SetDisplayObjectivePacket,
+    SetHealthPacket,
+    SetHudPacket,
+    SetLastHurtByPacket,
+    SetLocalPlayerAsInitializedPacket,
+    SetPlayerGameTypePacket,
+    SetPlayerInventoryOptionsPacket,
+    SetScorePacket,
+    SetScoreboardIdentityPacket,
+    SetSpawnPositionPacket,
+    SetTimePacket,
+    SetTitlePacket,
+    SettingsCommandPacket,
+    ShowCreditsPacket,
+    ShowProfilePacket,
+    ShowStoreOfferPacket,
+    SimpleEventPacket,
+    SimulationTypePacket,
+    SpawnExperienceOrbPacket,
+    SpawnParticleEffectPacket,
+    StartGamePacket,
+    StopSoundPacket,
+    StructureBlockUpdatePacket,
+    StructureDataRequestPacket,
+    StructureDataResponsePacket,
+    SubChunkPacket,
+    SubChunkRequestPacket,
+    SubClientLoginPacket,
+    SyncActorPropertyPacket,
+    TakeItemActorPacket,
+    TextPacket,
+    TickSyncPacket,
+    TickingAreaLoadStatusPacket,
+    ToastRequestPacket,
+    TransferPlayerPacket,
+    TrimDataPacket,
+    UnlockedRecipesPacket,
+    UpdateAbilitiesPacket,
+    UpdateAdventureSettingsPacket,
+    UpdateAttributesPacket,
+    UpdateBlockPacket,
+    UpdateBlockSyncedPacket,
+    UpdateClientInputLocksPacket,
+    UpdateEquipPacket,
+    UpdatePlayerGameTypePacket,
+    UpdateSoftEnumPacket,
+    UpdateSubChunkBlocksPacket,
+    UpdateTradePacket,
+];
+
+define_versions![662, 671, 685, 686, 712, 729, 748, 766, 776, 786];
+
+impl_version!(662: {
+    Example: ExampleImpl,
+    SomethingElse: SomethingElseImpl,
+    Hello: World,
+});
+
+impl_version!(671: {
+    Other: Something,
+});
+
+impl_version!(685: {
+    Nothing: _,
+});
