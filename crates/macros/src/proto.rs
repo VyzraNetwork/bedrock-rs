@@ -25,6 +25,7 @@ struct DefineVersionsInput {
 struct DefineVersionsEntry {
     version: u32,
     branch: LitStr,
+    game_version: LitStr,
     packets: Option<DefineVersionsDiffList>,
     types: Option<DefineVersionsDiffList>,
     enums: Option<DefineVersionsDiffList>,
@@ -68,6 +69,8 @@ impl Parse for DefineVersionsEntry {
         let version = paren.parse::<LitInt>()?.base10_parse()?;
         paren.parse::<Token![,]>()?;
         let branch = paren.parse::<LitStr>()?;
+        paren.parse::<Token![,]>()?;
+        let game_version = paren.parse::<LitStr>()?;
 
         input.parse::<Token![:]>()?;
         braced!(brace in input);
@@ -107,6 +110,7 @@ impl Parse for DefineVersionsEntry {
         Ok(Self {
             version,
             branch,
+            game_version,
             packets,
             types,
             enums,
@@ -281,6 +285,7 @@ pub fn define_versions_internal(input: TokenStream) -> TokenStream {
         pub trait ProtoVersion: ProtoVersionPackets + ProtoVersionTypes + ProtoVersionEnums {
             const PROTOCOL_VERSION: u32;
             const PROTOCOL_BRANCH: &str;
+            const GAME_VERSION: &str;
         }
     };
 
@@ -335,6 +340,7 @@ pub fn define_versions_internal(input: TokenStream) -> TokenStream {
 
         let version = entry.version;
         let branch = entry.branch.clone();
+        let game_version = entry.game_version.clone();
 
         let struct_ident = Ident::new(format!("V{}", version).as_str(), Span::call_site());
 
@@ -357,6 +363,7 @@ pub fn define_versions_internal(input: TokenStream) -> TokenStream {
             impl ProtoVersion for #struct_ident {
                 const PROTOCOL_VERSION: u32 = #version;
                 const PROTOCOL_BRANCH: &str = #branch;
+                const GAME_VERSION: &str = #game_version;
             }
         })
     }

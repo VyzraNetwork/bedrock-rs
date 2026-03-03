@@ -1,7 +1,7 @@
 use bedrockrs_macros::define_versions;
 
 define_versions![
-    (662, "r/20_u7"): {
+    (662, "r/20_u7", "1.20.70"): {
         packets: [
             + ActorEventPacket: ActorEventPacket^,
             + ActorPickRequestPacket: ActorPickRequestPacket,
@@ -373,7 +373,7 @@ define_versions![
             + UIProfile: UIProfile,
         ] in crate::version::v662::enums,
     },
-    (671, "r/20_u8"): {
+    (671, "r/20_u8", "1.20.80"): {
         packets: [
             % ClientBoundDebugRendererPacket: ClientBoundDebugRendererPacket,
             % CorrectPlayerMovePredictionPacket: CorrectPlayerMovePredictionPacket^,
@@ -393,7 +393,7 @@ define_versions![
             % PredictionType: PredictionType,
         ] in crate::version::v671::enums,
     },
-    (685, "r/21_u0"): {
+    (685, "r/21_u0", "1.21.0"): {
         packets: [
             + AwardAchievementPacket: AwardAchievementPacket,
             % CodeBuilderSourcePacket: CodeBuilderSourcePacket^,
@@ -417,12 +417,12 @@ define_versions![
             % ParticleType: ParticleType,
         ] in crate::version::v685::enums,
     },
-    (686, "r/21_u1"): {
+    (686, "r/21_u1", "1.21.2"): {
         packets: [
             + ClientBoundCloseFormPacket: ClientBoundCloseFormPacket,
         ] in crate::version::v686::packets,
     },
-    (712, "r/21_u2"): {
+    (712, "r/21_u2", "1.21.20"): {
         packets: [
             + CurrentStructureFeaturePacket: CurrentStructureFeaturePacket,
             + JigsawStructureDataPacket: JigsawStructureDataPacket,
