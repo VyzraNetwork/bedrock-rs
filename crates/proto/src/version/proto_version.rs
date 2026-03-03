@@ -474,5 +474,25 @@ define_versions![
             + AimAssistAction: AimAssistAction,
             % LevelSoundEventType: LevelSoundEventType,
         ] in crate::version::v729::enums,
+    },
+    (748, "r/21_u4", "1.21.40"): {
+        packets: [
+            + MovementEffectPacket: MovementEffectPacket^,
+            + SetMovementAuthorityPacket: SetMovementAuthorityPacket^,
+            % InventoryContentPacket: InventoryContentPacket^,
+            % InventorySlotPacket: InventorySlotPacket^,
+            % MobEffectPacket: MobEffectPacket^,
+            % PlayerAuthInputPacket: PlayerAuthInputPacket^,
+            % ResourcePacksInfoPacket: ResourcePacksInfoPacket,
+        ] in crate::version::v748::packets,
+        types: [
+            % CameraInstruction: CameraInstruction^,
+            % CameraPreset: CameraPreset,
+            % ShulkerBoxRecipe: ShulkerBoxRecipe^,
+        ] in crate::version::v748::types,
+        enums: [
+            + AuthoritativeMovementMode: AuthoritativeMovementMode,
+            + MovementEffectType: MovementEffectType,
+        ] in crate::version::v748::enums,
     }
 ];

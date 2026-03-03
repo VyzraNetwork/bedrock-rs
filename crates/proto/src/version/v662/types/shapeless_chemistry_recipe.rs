@@ -15,4 +15,6 @@ pub struct ShapelessChemistryRecipe<V: ProtoVersion> {
     pub tag: String,
     #[endianness(var)]
     pub priority: i32,
+    #[endianness(var)]
+    pub network_id: i32,
 }

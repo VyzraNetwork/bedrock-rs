@@ -15,4 +15,6 @@ pub struct ShulkerBoxRecipe<V: ProtoVersion> {
     pub recipe_tag: String,
     #[endianness(var)]
     pub priority: i32,
+    #[endianness(var)]
+    pub network_id: i32,
 }
