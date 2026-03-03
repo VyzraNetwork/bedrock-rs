@@ -454,5 +454,25 @@ define_versions![
             % LevelSoundEventType: LevelSoundEventType,
             % PredictionType: PredictionType,
         ] in crate::version::v712::enums,
+    },
+    (729, "r/21_u3", "1.21.30"): {
+        packets: [
+            + CameraAimAssistPacket: CameraAimAssistPacket^,
+            + ContainerRegistryCleanupPacket: ContainerRegistryCleanupPacket^,
+            % EmotePacket: EmotePacket^,
+            % InventoryContentPacket: InventoryContentPacket^,
+            % InventorySlotPacket: InventorySlotPacket^,
+            % ResourcePacksInfoPacket: ResourcePacksInfoPacket,
+            % TransferPlayerPacket: TransferPlayerPacket,
+            % UpdateAttributesPacket: UpdateAttributesPacket^,
+        ] in crate::version::v729::packets,
+        types: [
+            % CameraPreset: CameraPreset,
+            % FullContainerName: FullContainerName^,
+        ] in crate::version::v729::types,
+        enums: [
+            + AimAssistAction: AimAssistAction,
+            % LevelSoundEventType: LevelSoundEventType,
+        ] in crate::version::v729::enums,
     }
 ];
