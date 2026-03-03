@@ -1,409 +1,458 @@
 use bedrockrs_macros::define_versions;
-use bedrockrs_proto_core::ProtoCodec;
-use std::fmt::Debug;
 
-pub trait ProtoVersionPackets {
-    type ActorEventPacket: ProtoCodec + Clone + Debug;
-    type ActorPickRequestPacket: ProtoCodec + Clone + Debug;
-    type AddActorPacket: ProtoCodec + Clone + Debug;
-    type AddBehaviourTreePacket: ProtoCodec + Clone + Debug;
-    type AddItemActorPacket: ProtoCodec + Clone + Debug;
-    type AddPaintingPacket: ProtoCodec + Clone + Debug;
-    type AddPlayerPacket: ProtoCodec + Clone + Debug;
-    type AddVolumeEntityPacket: ProtoCodec + Clone + Debug;
-    type AgentActionEventPacket: ProtoCodec + Clone + Debug;
-    type AgentAnimationPacket: ProtoCodec + Clone + Debug;
-    type AnimateEntityPacket: ProtoCodec + Clone + Debug;
-    type AnimatePacket: ProtoCodec + Clone + Debug;
-    type AnvilDamagePacket: ProtoCodec + Clone + Debug;
-    type AutomationClientConnectPacket: ProtoCodec + Clone + Debug;
-    type AvailableActorIdentifiersPacket: ProtoCodec + Clone + Debug;
-    type AvailableCommandsPacket: ProtoCodec + Clone + Debug;
-    type AwardAchievementPacket: ProtoCodec + Clone + Debug;
-    type BiomeDefinitionListPacket: ProtoCodec + Clone + Debug;
-    type BlockActorDataPacket: ProtoCodec + Clone + Debug;
-    type BlockEventPacket: ProtoCodec + Clone + Debug;
-    type BlockPickRequestPacket: ProtoCodec + Clone + Debug;
-    type BookEditPacket: ProtoCodec + Clone + Debug;
-    type BossEventPacket: ProtoCodec + Clone + Debug;
-    type CameraInstructionPacket: ProtoCodec + Clone + Debug;
-    type CameraPacket: ProtoCodec + Clone + Debug;
-    type CameraPresetsPacket: ProtoCodec + Clone + Debug;
-    type CameraShakePacket: ProtoCodec + Clone + Debug;
-    type ChangeDimensionPacket: ProtoCodec + Clone + Debug;
-    type ChangeMobPropertyPacket: ProtoCodec + Clone + Debug;
-    type ChunkRadiusUpdatedPacket: ProtoCodec + Clone + Debug;
-    type ClientBoundCloseForm: ProtoCodec + Clone + Debug;
-    type ClientBoundDebugRendererPacket: ProtoCodec + Clone + Debug;
-    type ClientBoundMapItemDataPacket: ProtoCodec + Clone + Debug;
-    type ClientCacheBlobStatusPacket: ProtoCodec + Clone + Debug;
-    type ClientCacheMissResponsePacket: ProtoCodec + Clone + Debug;
-    type ClientCacheStatusPacket: ProtoCodec + Clone + Debug;
-    type ClientToServerHandshakePacket: ProtoCodec + Clone + Debug;
-    type CodeBuilderPacket: ProtoCodec + Clone + Debug;
-    type CodeBuilderSourcePacket: ProtoCodec + Clone + Debug;
-    type CommandBlockUpdatePacket: ProtoCodec + Clone + Debug;
-    type CommandOutputPacket: ProtoCodec + Clone + Debug;
-    type CommandRequestPacket: ProtoCodec + Clone + Debug;
-    type CompletedUsingItemPacket: ProtoCodec + Clone + Debug;
-    type CompressedBiomeDefinitionListPacket: ProtoCodec + Clone + Debug;
-    type ContainerClosePacket: ProtoCodec + Clone + Debug;
-    type ContainerOpenPacket: ProtoCodec + Clone + Debug;
-    type ContainerSetDataPacket: ProtoCodec + Clone + Debug;
-    type CorrectPlayerMovePredictionPacket: ProtoCodec + Clone + Debug;
-    type CraftingDataPacket: ProtoCodec + Clone + Debug;
-    type CreatePhotoPacket: ProtoCodec + Clone + Debug;
-    type CreativeContentPacket: ProtoCodec + Clone + Debug;
-    type CurrentStructureFeaturePacket: ProtoCodec + Clone + Debug;
-    type DeathInfoPacket: ProtoCodec + Clone + Debug;
-    type DebugInfoPacket: ProtoCodec + Clone + Debug;
-    type DimensionDataPacket: ProtoCodec + Clone + Debug;
-    type DisconnectPacket: ProtoCodec + Clone + Debug;
-    type EditorNetworkPacket: ProtoCodec + Clone + Debug;
-    type EduUriResourcePacket: ProtoCodec + Clone + Debug;
-    type EducationSettingsPacket: ProtoCodec + Clone + Debug;
-    type EmoteListPacket: ProtoCodec + Clone + Debug;
-    type EmotePacket: ProtoCodec + Clone + Debug;
-    type FeatureRegistryPacket: ProtoCodec + Clone + Debug;
-    type FilterTextPacket: ProtoCodec + Clone + Debug;
-    type GameRulesChangedPacket: ProtoCodec + Clone + Debug;
-    type GameTestRequestPacket: ProtoCodec + Clone + Debug;
-    type GameTestResultsPacket: ProtoCodec + Clone + Debug;
-    type GuiDataPickItemPacket: ProtoCodec + Clone + Debug;
-    type HurtArmorPacket: ProtoCodec + Clone + Debug;
-    type InteractPacket: ProtoCodec + Clone + Debug;
-    type InventoryContentPacket: ProtoCodec + Clone + Debug;
-    type InventorySlotPacket: ProtoCodec + Clone + Debug;
-    type InventoryTransactionPacket: ProtoCodec + Clone + Debug;
-    type ItemComponentPacket: ProtoCodec + Clone + Debug;
-    type ItemStackRequestPacket: ProtoCodec + Clone + Debug;
-    type ItemStackResponsePacket: ProtoCodec + Clone + Debug;
-    type JigsawStructureDataPacket: ProtoCodec + Clone + Debug;
-    type LabTablePacket: ProtoCodec + Clone + Debug;
-    type LecternUpdatePacket: ProtoCodec + Clone + Debug;
-    type LegacyTelemetryEventPacket: ProtoCodec + Clone + Debug;
-    type LessonProgressPacket: ProtoCodec + Clone + Debug;
-    type LevelChunkPacket: ProtoCodec + Clone + Debug;
-    type LevelEventGenericPacket: ProtoCodec + Clone + Debug;
-    type LevelEventPacket: ProtoCodec + Clone + Debug;
-    type LevelSoundEventPacket: ProtoCodec + Clone + Debug;
-    type LevelSoundEventV1Packet: ProtoCodec + Clone + Debug;
-    type LevelSoundEventV2Packet: ProtoCodec + Clone + Debug;
-    type LoginPacket: ProtoCodec + Clone + Debug;
-    type MapCreateLockedCopyPacket: ProtoCodec + Clone + Debug;
-    type MapInfoRequestPacket: ProtoCodec + Clone + Debug;
-    type MobArmorEquipmentPacket: ProtoCodec + Clone + Debug;
-    type MobEffectPacket: ProtoCodec + Clone + Debug;
-    type MobEquipmentPacket: ProtoCodec + Clone + Debug;
-    type ModalFormRequestPacket: ProtoCodec + Clone + Debug;
-    type ModalFormResponsePacket: ProtoCodec + Clone + Debug;
-    type MotionPredictionHintsPacket: ProtoCodec + Clone + Debug;
-    type MoveActorAbsolutePacket: ProtoCodec + Clone + Debug;
-    type MoveActorDeltaPacket: ProtoCodec + Clone + Debug;
-    type MovePlayerPacket: ProtoCodec + Clone + Debug;
-    type MultiplayerSettingsPacket: ProtoCodec + Clone + Debug;
-    type NetworkChunkPublisherUpdatePacket: ProtoCodec + Clone + Debug;
-    type NetworkSettingsPacket: ProtoCodec + Clone + Debug;
-    type NetworkStackLatencyPacket: ProtoCodec + Clone + Debug;
-    type NpcDialoguePacket: ProtoCodec + Clone + Debug;
-    type NpcRequestPacket: ProtoCodec + Clone + Debug;
-    type OnScreenTextureAnimationPacket: ProtoCodec + Clone + Debug;
-    type OpenSignPacket: ProtoCodec + Clone + Debug;
-    type PacketViolationWarningPacket: ProtoCodec + Clone + Debug;
-    type PassengerJumpPacket: ProtoCodec + Clone + Debug;
-    type PhotoTransferPacket: ProtoCodec + Clone + Debug;
-    type PlaySoundPacket: ProtoCodec + Clone + Debug;
-    type PlayStatusPacket: ProtoCodec + Clone + Debug;
-    type PlayerActionPacket: ProtoCodec + Clone + Debug;
-    type PlayerArmorDamagePacket: ProtoCodec + Clone + Debug;
-    type PlayerAuthInputPacket: ProtoCodec + Clone + Debug;
-    type PlayerEnchantOptionsPacket: ProtoCodec + Clone + Debug;
-    type PlayerFogPacket: ProtoCodec + Clone + Debug;
-    type PlayerHotbarPacket: ProtoCodec + Clone + Debug;
-    type PlayerInputPacket: ProtoCodec + Clone + Debug;
-    type PlayerListPacket: ProtoCodec + Clone + Debug;
-    type PlayerSkinPacket: ProtoCodec + Clone + Debug;
-    type PlayerStartItemCooldownPacket: ProtoCodec + Clone + Debug;
-    type PlayerToggleCrafterSlotRequestPacket: ProtoCodec + Clone + Debug;
-    type PositionTrackingDBClientRequestPacket: ProtoCodec + Clone + Debug;
-    type PositionTrackingDBServerBroadcastPacket: ProtoCodec + Clone + Debug;
-    type PurchaseReceiptPacket: ProtoCodec + Clone + Debug;
-    type RefreshEntitlementsPacket: ProtoCodec + Clone + Debug;
-    type RemoveActorPacket: ProtoCodec + Clone + Debug;
-    type RemoveObjectivePacket: ProtoCodec + Clone + Debug;
-    type RemoveVolumeEntityPacket: ProtoCodec + Clone + Debug;
-    type RequestAbilityPacket: ProtoCodec + Clone + Debug;
-    type RequestChunkRadiusPacket: ProtoCodec + Clone + Debug;
-    type RequestNetworkSettingsPacket: ProtoCodec + Clone + Debug;
-    type RequestPermissionsPacket: ProtoCodec + Clone + Debug;
-    type ResourcePackChunkDataPacket: ProtoCodec + Clone + Debug;
-    type ResourcePackChunkRequestPacket: ProtoCodec + Clone + Debug;
-    type ResourcePackClientResponsePacket: ProtoCodec + Clone + Debug;
-    type ResourcePackDataInfoPacket: ProtoCodec + Clone + Debug;
-    type ResourcePackStackPacket: ProtoCodec + Clone + Debug;
-    type ResourcePacksInfoPacket: ProtoCodec + Clone + Debug;
-    type RespawnPacket: ProtoCodec + Clone + Debug;
-    type ScriptMessagePacket: ProtoCodec + Clone + Debug;
-    type ServerBoundDiagnosticsPacket: ProtoCodec + Clone + Debug;
-    type ServerBoundLoadingScreenPacket: ProtoCodec + Clone + Debug;
-    type ServerPlayerPostMovePositionPacket: ProtoCodec + Clone + Debug;
-    type ServerSettingsRequestPacket: ProtoCodec + Clone + Debug;
-    type ServerSettingsResponsePacket: ProtoCodec + Clone + Debug;
-    type ServerStatsPacket: ProtoCodec + Clone + Debug;
-    type ServerToClientHandshakePacket: ProtoCodec + Clone + Debug;
-    type SetActorDataPacket: ProtoCodec + Clone + Debug;
-    type SetActorLinkPacket: ProtoCodec + Clone + Debug;
-    type SetActorMotionPacket: ProtoCodec + Clone + Debug;
-    type SetCommandsEnabledPacket: ProtoCodec + Clone + Debug;
-    type SetDefaultGameTypePacket: ProtoCodec + Clone + Debug;
-    type SetDifficultyPacket: ProtoCodec + Clone + Debug;
-    type SetDisplayObjectivePacket: ProtoCodec + Clone + Debug;
-    type SetHealthPacket: ProtoCodec + Clone + Debug;
-    type SetHudPacket: ProtoCodec + Clone + Debug;
-    type SetLastHurtByPacket: ProtoCodec + Clone + Debug;
-    type SetLocalPlayerAsInitializedPacket: ProtoCodec + Clone + Debug;
-    type SetPlayerGameTypePacket: ProtoCodec + Clone + Debug;
-    type SetPlayerInventoryOptionsPacket: ProtoCodec + Clone + Debug;
-    type SetScorePacket: ProtoCodec + Clone + Debug;
-    type SetScoreboardIdentityPacket: ProtoCodec + Clone + Debug;
-    type SetSpawnPositionPacket: ProtoCodec + Clone + Debug;
-    type SetTimePacket: ProtoCodec + Clone + Debug;
-    type SetTitlePacket: ProtoCodec + Clone + Debug;
-    type SettingsCommandPacket: ProtoCodec + Clone + Debug;
-    type ShowCreditsPacket: ProtoCodec + Clone + Debug;
-    type ShowProfilePacket: ProtoCodec + Clone + Debug;
-    type ShowStoreOfferPacket: ProtoCodec + Clone + Debug;
-    type SimpleEventPacket: ProtoCodec + Clone + Debug;
-    type SimulationTypePacket: ProtoCodec + Clone + Debug;
-    type SpawnExperienceOrbPacket: ProtoCodec + Clone + Debug;
-    type SpawnParticleEffectPacket: ProtoCodec + Clone + Debug;
-    type StartGamePacket: ProtoCodec + Clone + Debug;
-    type StopSoundPacket: ProtoCodec + Clone + Debug;
-    type StructureBlockUpdatePacket: ProtoCodec + Clone + Debug;
-    type StructureDataRequestPacket: ProtoCodec + Clone + Debug;
-    type StructureDataResponsePacket: ProtoCodec + Clone + Debug;
-    type SubChunkPacket: ProtoCodec + Clone + Debug;
-    type SubChunkRequestPacket: ProtoCodec + Clone + Debug;
-    type SubClientLoginPacket: ProtoCodec + Clone + Debug;
-    type SyncActorPropertyPacket: ProtoCodec + Clone + Debug;
-    type TakeItemActorPacket: ProtoCodec + Clone + Debug;
-    type TextPacket: ProtoCodec + Clone + Debug;
-    type TickSyncPacket: ProtoCodec + Clone + Debug;
-    type TickingAreaLoadStatusPacket: ProtoCodec + Clone + Debug;
-    type ToastRequestPacket: ProtoCodec + Clone + Debug;
-    type TransferPlayerPacket: ProtoCodec + Clone + Debug;
-    type TrimDataPacket: ProtoCodec + Clone + Debug;
-    type UnlockedRecipesPacket: ProtoCodec + Clone + Debug;
-    type UpdateAbilitiesPacket: ProtoCodec + Clone + Debug;
-    type UpdateAdventureSettingsPacket: ProtoCodec + Clone + Debug;
-    type UpdateAttributesPacket: ProtoCodec + Clone + Debug;
-    type UpdateBlockPacket: ProtoCodec + Clone + Debug;
-    type UpdateBlockSyncedPacket: ProtoCodec + Clone + Debug;
-    type UpdateClientInputLocksPacket: ProtoCodec + Clone + Debug;
-    type UpdateEquipPacket: ProtoCodec + Clone + Debug;
-    type UpdatePlayerGameTypePacket: ProtoCodec + Clone + Debug;
-    type UpdateSoftEnumPacket: ProtoCodec + Clone + Debug;
-    type UpdateSubChunkBlocksPacket: ProtoCodec + Clone + Debug;
-    type UpdateTradePacket: ProtoCodec + Clone + Debug;
-}
-
-pub trait ProtoVersionTypes {
-    type ActorLink: ProtoCodec + Clone + Debug;
-    type ActorRuntimeID: ProtoCodec + Clone + Debug;
-    type ActorUniqueID: ProtoCodec + Clone + Debug;
-    type AdventureSettings: ProtoCodec + Clone + Debug;
-    type BaseDescription: ProtoCodec + Clone + Debug;
-    type BaseGameVersion: ProtoCodec + Clone + Debug;
-    type BlockPos: ProtoCodec + Clone + Debug;
-    type CameraInstruction: ProtoCodec + Clone + Debug;
-    type CameraPreset: ProtoCodec + Clone + Debug;
-    type CameraPresets: ProtoCodec + Clone + Debug;
-    type ChunkPos: ProtoCodec + Clone + Debug;
-    type CommandOriginData: ProtoCodec + Clone + Debug;
-    type ContainerMixDataEntry: ProtoCodec + Clone + Debug;
-    type CraftingDataEntry: ProtoCodec + Clone + Debug;
-    type DataItem: ProtoCodec + Clone + Debug;
-    type DimensionDefinitionGroup: ProtoCodec + Clone + Debug;
-    type EduSharedUriResource: ProtoCodec + Clone + Debug;
-    type EducationLevelSettings: ProtoCodec + Clone + Debug;
-    type EntityNetID: ProtoCodec + Clone + Debug;
-    type Experiments: ProtoCodec + Clone + Debug;
-    type FullContainerName: ProtoCodec + Clone + Debug;
-    type GameRulesChangedPacketData: ProtoCodec + Clone + Debug;
-    type InventoryAction: ProtoCodec + Clone + Debug;
-    type InventorySource: ProtoCodec + Clone + Debug;
-    type InventoryTransaction: ProtoCodec + Clone + Debug;
-    type ItemData: ProtoCodec + Clone + Debug;
-    type ItemEnchants: ProtoCodec + Clone + Debug;
-    type ItemInstanceUserData: ProtoCodec + Clone + Debug;
-    type ItemStackRequestSlotInfo: ProtoCodec + Clone + Debug;
-    type ItemStackResponseContainerInfo: ProtoCodec + Clone + Debug;
-    type ItemStackResponseInfo: ProtoCodec + Clone + Debug;
-    type ItemStackResponseSlotInfo: ProtoCodec + Clone + Debug;
-    type LevelSettings: ProtoCodec + Clone + Debug;
-    type MapDecoration: ProtoCodec + Clone + Debug;
-    type MapItemTrackedActorUniqueID: ProtoCodec + Clone + Debug;
-    type MaterialReducerDataEntry: ProtoCodec + Clone + Debug;
-    type MolangVariableMap: ProtoCodec + Clone + Debug;
-    type MoveActorAbsoluteData: ProtoCodec + Clone + Debug;
-    type MoveActorDeltaData: ProtoCodec + Clone + Debug;
-    type NetworkBlockPosition: ProtoCodec + Clone + Debug;
-    type NetworkItemInstanceDescriptor: ProtoCodec + Clone + Debug;
-    type NetworkItemStackDescriptor: ProtoCodec + Clone + Debug;
-    type NetworkPermissions: ProtoCodec + Clone + Debug;
-    type PackedItemUseLegacyInventoryTransaction: ProtoCodec + Clone + Debug;
-    type PlayerBlockActionData: ProtoCodec + Clone + Debug;
-    type PlayerBlockActions: ProtoCodec + Clone + Debug;
-    type PositionTrackingId: ProtoCodec + Clone + Debug;
-    type PotionMixDataEntry: ProtoCodec + Clone + Debug;
-    type PropertySyncData: ProtoCodec + Clone + Debug;
-    type RecipeIngredient: ProtoCodec + Clone + Debug;
-    type RecipeUnlockingRequirement: ProtoCodec + Clone + Debug;
-    type ScoreboardId: ProtoCodec + Clone + Debug;
-    type SerializedAbilitiesData: ProtoCodec + Clone + Debug;
-    type SerializedSkin: ProtoCodec + Clone + Debug;
-    type ShapedChemistryRecipe: ProtoCodec + Clone + Debug;
-    type ShapedRecipe: ProtoCodec + Clone + Debug;
-    type ShapelessChemistryRecipe: ProtoCodec + Clone + Debug;
-    type ShapelessRecipe: ProtoCodec + Clone + Debug;
-    type ShulkerBoxRecipe: ProtoCodec + Clone + Debug;
-    type SmithingTransformRecipe: ProtoCodec + Clone + Debug;
-    type SmithingTrimRecipe: ProtoCodec + Clone + Debug;
-    type SpawnSettings: ProtoCodec + Clone + Debug;
-    type StructureEditorData: ProtoCodec + Clone + Debug;
-    type StructureSettings: ProtoCodec + Clone + Debug;
-    type SubChunkPos: ProtoCodec + Clone + Debug;
-    type SubChunkPosOffset: ProtoCodec + Clone + Debug;
-    type SyncedPlayerMovementSettings: ProtoCodec + Clone + Debug;
-    type WebSocketPacketData: ProtoCodec + Clone + Debug;
-}
-
-pub trait ProtoVersionEnums {
-    type AbilitiesIndex: ProtoCodec + Clone + Debug;
-    type ActorBlockSyncMessageID: ProtoCodec + Clone + Debug;
-    type ActorDamageCause: ProtoCodec + Clone + Debug;
-    type ActorDataIDs: ProtoCodec + Clone + Debug;
-    type ActorEvent: ProtoCodec + Clone + Debug;
-    type ActorFlags: ProtoCodec + Clone + Debug;
-    type ActorLinkType: ProtoCodec + Clone + Debug;
-    type ActorType: ProtoCodec + Clone + Debug;
-    type AgentActionType: ProtoCodec + Clone + Debug;
-    type AnimatedTextureType: ProtoCodec + Clone + Debug;
-    type AnimationExpression: ProtoCodec + Clone + Debug;
-    type AnimationMode: ProtoCodec + Clone + Debug;
-    type AttributeModifierOperation: ProtoCodec + Clone + Debug;
-    type AttributeOperands: ProtoCodec + Clone + Debug;
-    type BookEditAction: ProtoCodec + Clone + Debug;
-    type BossEventUpdateType: ProtoCodec + Clone + Debug;
-    type BuildPlatform: ProtoCodec + Clone + Debug;
-    type CameraShakeAction: ProtoCodec + Clone + Debug;
-    type CameraShakeType: ProtoCodec + Clone + Debug;
-    type ChatRestrictionLevel: ProtoCodec + Clone + Debug;
-    type CodeBuilderCodeStatus: ProtoCodec + Clone + Debug;
-    type CodeBuilderStorageCategory: ProtoCodec + Clone + Debug;
-    type CodeBuilderStorageOperation: ProtoCodec + Clone + Debug;
-    type CommandBlockMode: ProtoCodec + Clone + Debug;
-    type CommandOriginType: ProtoCodec + Clone + Debug;
-    type CommandOutputType: ProtoCodec + Clone + Debug;
-    type CommandParameterOption: ProtoCodec + Clone + Debug;
-    type CommandPermissionLevel: ProtoCodec + Clone + Debug;
-    type ComplexInventoryTransactionType: ProtoCodec + Clone + Debug;
-    type ConnectionFailReason: ProtoCodec + Clone + Debug;
-    type ContainerEnumName: ProtoCodec + Clone + Debug;
-    type ContainerID: ProtoCodec + Clone + Debug;
-    type ContainerType: ProtoCodec + Clone + Debug;
-    type CraftingDataEntryType: ProtoCodec + Clone + Debug;
-    type DataItemType: ProtoCodec + Clone + Debug;
-    type Difficulty: ProtoCodec + Clone + Debug;
-    type EasingType: ProtoCodec + Clone + Debug;
-    type EditorWorldType: ProtoCodec + Clone + Debug;
-    type EducationEditionOffer: ProtoCodec + Clone + Debug;
-    type EnchantType: ProtoCodec + Clone + Debug;
-    type GamePublishSetting: ProtoCodec + Clone + Debug;
-    type GameType: ProtoCodec + Clone + Debug;
-    type GeneratorType: ProtoCodec + Clone + Debug;
-    type HudElement: ProtoCodec + Clone + Debug;
-    type HudVisibility: ProtoCodec + Clone + Debug;
-    type IdentityDefinitionType: ProtoCodec + Clone + Debug;
-    type InputMode: ProtoCodec + Clone + Debug;
-    type InteractionType: ProtoCodec + Clone + Debug;
-    type InventoryLayout: ProtoCodec + Clone + Debug;
-    type InventoryLeftTabIndex: ProtoCodec + Clone + Debug;
-    type InventoryRightTabIndex: ProtoCodec + Clone + Debug;
-    type InventorySourceFlags: ProtoCodec + Clone + Debug;
-    type InventorySourceType: ProtoCodec + Clone + Debug;
-    type ItemDescriptorType: ProtoCodec + Clone + Debug;
-    type ItemReleaseInventoryTransactionType: ProtoCodec + Clone + Debug;
-    type ItemStackNetResult: ProtoCodec + Clone + Debug;
-    type ItemStackRequestActionType: ProtoCodec + Clone + Debug;
-    type ItemUseInventoryTransactionType: ProtoCodec + Clone + Debug;
-    type ItemUseMethod: ProtoCodec + Clone + Debug;
-    type ItemUseOnActorInventoryTransactionType: ProtoCodec + Clone + Debug;
-    type LabTableReactionType: ProtoCodec + Clone + Debug;
-    type LessonAction: ProtoCodec + Clone + Debug;
-    type LevelEvent: ProtoCodec + Clone + Debug;
-    type LevelSoundEventType: ProtoCodec + Clone + Debug;
-    type MinecraftPacketIds: ProtoCodec + Clone + Debug;
-    type Mirror: ProtoCodec + Clone + Debug;
-    type ModalFormCancelReason: ProtoCodec + Clone + Debug;
-    type MolangVersion: ProtoCodec + Clone + Debug;
-    type MultiplayerSettingsPacketType: ProtoCodec + Clone + Debug;
-    type NewInteractionModel: ProtoCodec + Clone + Debug;
-    type ObjectiveSortOrder: ProtoCodec + Clone + Debug;
-    type POIBlockInteractionType: ProtoCodec + Clone + Debug;
-    type PackType: ProtoCodec + Clone + Debug;
-    type PacketCompressionAlgorithm: ProtoCodec + Clone + Debug;
-    type PacketViolationSeverity: ProtoCodec + Clone + Debug;
-    type PacketViolationType: ProtoCodec + Clone + Debug;
-    type ParticleType: ProtoCodec + Clone + Debug;
-    type PhotoType: ProtoCodec + Clone + Debug;
-    type PlayStatus: ProtoCodec + Clone + Debug;
-    type PlayerActionType: ProtoCodec + Clone + Debug;
-    type PlayerListPacketType: ProtoCodec + Clone + Debug;
-    type PlayerPermissionLevel: ProtoCodec + Clone + Debug;
-    type PlayerPositionMode: ProtoCodec + Clone + Debug;
-    type PlayerRespawnState: ProtoCodec + Clone + Debug;
-    type PredictionType: ProtoCodec + Clone + Debug;
-    type ResourcePackResponse: ProtoCodec + Clone + Debug;
-    type Rotation: ProtoCodec + Clone + Debug;
-    type ScorePacketType: ProtoCodec + Clone + Debug;
-    type ScoreboardIdentityPacketType: ProtoCodec + Clone + Debug;
-    type ServerAuthMovementMode: ProtoCodec + Clone + Debug;
-    type ShowStoreOfferRedirectType: ProtoCodec + Clone + Debug;
-    type SimulationType: ProtoCodec + Clone + Debug;
-    type SoftEnumUpdateType: ProtoCodec + Clone + Debug;
-    type SpawnBiomeType: ProtoCodec + Clone + Debug;
-    type SpawnPositionType: ProtoCodec + Clone + Debug;
-    type StructureBlockType: ProtoCodec + Clone + Debug;
-    type StructureRedstoneSaveMode: ProtoCodec + Clone + Debug;
-    type StructureTemplateRequestOperation: ProtoCodec + Clone + Debug;
-    type StructureTemplateResponseType: ProtoCodec + Clone + Debug;
-    type TeleportationCause: ProtoCodec + Clone + Debug;
-    type TextPacketType: ProtoCodec + Clone + Debug;
-    type TextProcessingEventOrigin: ProtoCodec + Clone + Debug;
-    type UIProfile: ProtoCodec + Clone + Debug;
-}
-
-pub trait ProtoVersion: ProtoVersionPackets + ProtoVersionTypes + ProtoVersionEnums {
-    const PROTOCOL_VERSION: i32;
-}
-
-define_versions! {
-    (662, "r/21_u0") -> {
-        packets -> [
-            (+) AddedPacket: AddedPacketImpl*,
-            (~) ModifiedPacket: ModifiedPacketImpl*,
-            (-) RemovedPacket,
-        ] @ crate::versions::v662::packets
-        types -> [
-            (+) AddedType: AddedTypeImpl*,
-            (~) ModifiedType: ModifiedTypeImpl*,
-            (-) RemovedType,
-        ] @ crate::versions::v662::types
-        enums -> [
-            (+) AddedEnum: AddedEnumImpl*,
-            (~) ModifiedEnum: ModifiedEnumImpl*,
-            (-) RemovedEnum,
-        ] @ crate::versions::v662::enums
+define_versions![
+    (662, "r/20_u7"): {
+        packets: [
+            + ActorEventPacket: ActorEventPacket^,
+            + ActorPickRequestPacket: ActorPickRequestPacket,
+            + AddActorPacket: AddActorPacket^,
+            + AddBehaviourTreePacket: AddBehaviourTreePacket,
+            + AddItemActorPacket: AddItemActorPacket^,
+            + AddPaintingPacket: AddPaintingPacket^,
+            + AddPlayerPacket: AddPlayerPacket^,
+            + AddVolumeEntityPacket: AddVolumeEntityPacket^,
+            + AgentActionEventPacket: AgentActionEventPacket^,
+            + AgentAnimationPacket: AgentAnimationPacket^,
+            + AnimateEntityPacket: AnimateEntityPacket^,
+            + AnimatePacket: AnimatePacket^,
+            + AnvilDamagePacket: AnvilDamagePacket^,
+            + AutomationClientConnectPacket: AutomationClientConnectPacket^,
+            + AvailableActorIdentifiersPacket: AvailableActorIdentifiersPacket,
+            + AvailableCommandsPacket: AvailableCommandsPacket^,
+            + BiomeDefinitionListPacket: BiomeDefinitionListPacket,
+            + BlockActorDataPacket: BlockActorDataPacket^,
+            + BlockEventPacket: BlockEventPacket^,
+            + BlockPickRequestPacket: BlockPickRequestPacket^,
+            + BookEditPacket: BookEditPacket^,
+            + BossEventPacket: BossEventPacket^,
+            + CameraInstructionPacket: CameraInstructionPacket^,
+            + CameraPacket: CameraPacket^,
+            + CameraPresetsPacket: CameraPresetsPacket^,
+            + CameraShakePacket: CameraShakePacket^,
+            + ChangeDimensionPacket: ChangeDimensionPacket,
+            + ChangeMobPropertyPacket: ChangeMobPropertyPacket^,
+            + ChunkRadiusUpdatedPacket: ChunkRadiusUpdatedPacket,
+            + ClientBoundDebugRendererPacket: ClientBoundDebugRendererPacket,
+            + ClientBoundMapItemDataPacket: ClientBoundMapItemDataPacket^,
+            + ClientCacheBlobStatusPacket: ClientCacheBlobStatusPacket,
+            + ClientCacheMissResponsePacket: ClientCacheMissResponsePacket,
+            + ClientCacheStatusPacket: ClientCacheStatusPacket,
+            + ClientToServerHandshakePacket: ClientToServerHandshakePacket,
+            + CodeBuilderPacket: CodeBuilderPacket,
+            + CodeBuilderSourcePacket: CodeBuilderSourcePacket^,
+            + CommandBlockUpdatePacket: CommandBlockUpdatePacket^,
+            + CommandOutputPacket: CommandOutputPacket^,
+            + CommandRequestPacket: CommandRequestPacket^,
+            + CompletedUsingItemPacket: CompletedUsingItemPacket^,
+            + CompressedBiomeDefinitionListPacket: CompressedBiomeDefinitionListPacket,
+            + ContainerClosePacket: ContainerClosePacket^,
+            + ContainerOpenPacket: ContainerOpenPacket^,
+            + ContainerSetDataPacket: ContainerSetDataPacket^,
+            + CorrectPlayerMovePredictionPacket: CorrectPlayerMovePredictionPacket^,
+            + CraftingDataPacket: CraftingDataPacket^,
+            + CreatePhotoPacket: CreatePhotoPacket,
+            + CreativeContentPacket: CreativeContentPacket^,
+            + DeathInfoPacket: DeathInfoPacket,
+            + DebugInfoPacket: DebugInfoPacket^,
+            + DimensionDataPacket: DimensionDataPacket^,
+            + DisconnectPacket: DisconnectPacket^,
+            + EditorNetworkPacket: EditorNetworkPacket,
+            + EduUriResourcePacket: EduUriResourcePacket^,
+            + EducationSettingsPacket: EducationSettingsPacket^,
+            + EmoteListPacket: EmoteListPacket^,
+            + EmotePacket: EmotePacket^,
+            + FeatureRegistryPacket: FeatureRegistryPacket,
+            + FilterTextPacket: FilterTextPacket,
+            + GameRulesChangedPacket: GameRulesChangedPacket^,
+            + GameTestRequestPacket: GameTestRequestPacket^,
+            + GameTestResultsPacket: GameTestResultsPacket,
+            + GuiDataPickItemPacket: GuiDataPickItemPacket,
+            + HurtArmorPacket: HurtArmorPacket,
+            + InteractPacket: InteractPacket^,
+            + InventoryContentPacket: InventoryContentPacket^,
+            + InventorySlotPacket: InventorySlotPacket^,
+            + InventoryTransactionPacket: InventoryTransactionPacket^,
+            + ItemComponentPacket: ItemComponentPacket,
+            + ItemStackRequestPacket: ItemStackRequestPacket^,
+            + ItemStackResponsePacket: ItemStackResponsePacket^,
+            + LabTablePacket: LabTablePacket^,
+            + LecternUpdatePacket: LecternUpdatePacket^,
+            + LegacyTelemetryEventPacket: LegacyTelemetryEventPacket^,
+            + LessonProgressPacket: LessonProgressPacket^,
+            + LevelChunkPacket: LevelChunkPacket^,
+            + LevelEventGenericPacket: LevelEventGenericPacket^,
+            + LevelEventPacket: LevelEventPacket,
+            + LevelSoundEventPacket: LevelSoundEventPacket^,
+            + LevelSoundEventV1Packet: LevelSoundEventV1Packet^,
+            + LevelSoundEventV2Packet: LevelSoundEventV2Packet^,
+            + LoginPacket: LoginPacket,
+            + MapCreateLockedCopyPacket: MapCreateLockedCopyPacket^,
+            + MapInfoRequestPacket: MapInfoRequestPacket^,
+            + MobArmorEquipmentPacket: MobArmorEquipmentPacket^,
+            + MobEffectPacket: MobEffectPacket^,
+            + MobEquipmentPacket: MobEquipmentPacket^,
+            + ModalFormRequestPacket: ModalFormRequestPacket,
+            + ModalFormResponsePacket: ModalFormResponsePacket^,
+            + MotionPredictionHintsPacket: MotionPredictionHintsPacket^,
+            + MoveActorAbsolutePacket: MoveActorAbsolutePacket^,
+            + MoveActorDeltaPacket: MoveActorDeltaPacket^,
+            + MovePlayerPacket: MovePlayerPacket^,
+            + MultiplayerSettingsPacket: MultiplayerSettingsPacket^,
+            + NetworkChunkPublisherUpdatePacket: NetworkChunkPublisherUpdatePacket^,
+            + NetworkSettingsPacket: NetworkSettingsPacket^,
+            + NetworkStackLatencyPacket: NetworkStackLatencyPacket,
+            + NpcDialoguePacket: NpcDialoguePacket,
+            + NpcRequestPacket: NpcRequestPacket^,
+            + OnScreenTextureAnimationPacket: OnScreenTextureAnimationPacket,
+            + OpenSignPacket: OpenSignPacket^,
+            + PacketViolationWarningPacket: PacketViolationWarningPacket^,
+            + PassengerJumpPacket: PassengerJumpPacket,
+            + PhotoTransferPacket: PhotoTransferPacket^,
+            + PlaySoundPacket: PlaySoundPacket^,
+            + PlayStatusPacket: PlayStatusPacket^,
+            + PlayerActionPacket: PlayerActionPacket^,
+            + PlayerArmorDamagePacket: PlayerArmorDamagePacket,
+            + PlayerAuthInputPacket: PlayerAuthInputPacket^,
+            + PlayerEnchantOptionsPacket: PlayerEnchantOptionsPacket^,
+            + PlayerFogPacket: PlayerFogPacket,
+            + PlayerHotbarPacket: PlayerHotbarPacket^,
+            + PlayerInputPacket: PlayerInputPacket,
+            + PlayerListPacket: PlayerListPacket^,
+            + PlayerSkinPacket: PlayerSkinPacket^,
+            + PlayerStartItemCooldownPacket: PlayerStartItemCooldownPacket,
+            + PlayerToggleCrafterSlotRequestPacket: PlayerToggleCrafterSlotRequestPacket,
+            + PositionTrackingDBClientRequestPacket: PositionTrackingDBClientRequestPacket^,
+            + PositionTrackingDBServerBroadcastPacket: PositionTrackingDBServerBroadcastPacket^,
+            + PurchaseReceiptPacket: PurchaseReceiptPacket,
+            + RefreshEntitlementsPacket: RefreshEntitlementsPacket,
+            + RemoveActorPacket: RemoveActorPacket^,
+            + RemoveObjectivePacket: RemoveObjectivePacket,
+            + RemoveVolumeEntityPacket: RemoveVolumeEntityPacket^,
+            + RequestAbilityPacket: RequestAbilityPacket^,
+            + RequestChunkRadiusPacket: RequestChunkRadiusPacket,
+            + RequestNetworkSettingsPacket: RequestNetworkSettingsPacket,
+            + RequestPermissionsPacket: RequestPermissionsPacket^,
+            + ResourcePackChunkDataPacket: ResourcePackChunkDataPacket,
+            + ResourcePackChunkRequestPacket: ResourcePackChunkRequestPacket,
+            + ResourcePackClientResponsePacket: ResourcePackClientResponsePacket^,
+            + ResourcePackDataInfoPacket: ResourcePackDataInfoPacket^,
+            + ResourcePackStackPacket: ResourcePackStackPacket^,
+            + ResourcePacksInfoPacket: ResourcePacksInfoPacket,
+            + RespawnPacket: RespawnPacket^,
+            + ScriptMessagePacket: ScriptMessagePacket,
+            + ServerPlayerPostMovePositionPacket: ServerPlayerPostMovePositionPacket,
+            + ServerSettingsRequestPacket: ServerSettingsRequestPacket,
+            + ServerSettingsResponsePacket: ServerSettingsResponsePacket,
+            + ServerStatsPacket: ServerStatsPacket,
+            + ServerToClientHandshakePacket: ServerToClientHandshakePacket,
+            + SetActorDataPacket: SetActorDataPacket^,
+            + SetActorLinkPacket: SetActorLinkPacket^,
+            + SetActorMotionPacket: SetActorMotionPacket^,
+            + SetCommandsEnabledPacket: SetCommandsEnabledPacket,
+            + SetDefaultGameTypePacket: SetDefaultGameTypePacket^,
+            + SetDifficultyPacket: SetDifficultyPacket^,
+            + SetDisplayObjectivePacket: SetDisplayObjectivePacket^,
+            + SetHealthPacket: SetHealthPacket,
+            + SetHudPacket: SetHudPacket^,
+            + SetLastHurtByPacket: SetLastHurtByPacket^,
+            + SetLocalPlayerAsInitializedPacket: SetLocalPlayerAsInitializedPacket^,
+            + SetPlayerGameTypePacket: SetPlayerGameTypePacket^,
+            + SetPlayerInventoryOptionsPacket: SetPlayerInventoryOptionsPacket^,
+            + SetScorePacket: SetScorePacket^,
+            + SetScoreboardIdentityPacket: SetScoreboardIdentityPacket^,
+            + SetSpawnPositionPacket: SetSpawnPositionPacket^,
+            + SetTimePacket: SetTimePacket,
+            + SetTitlePacket: SetTitlePacket,
+            + SettingsCommandPacket: SettingsCommandPacket,
+            + ShowCreditsPacket: ShowCreditsPacket^,
+            + ShowProfilePacket: ShowProfilePacket,
+            + ShowStoreOfferPacket: ShowStoreOfferPacket^,
+            + SimpleEventPacket: SimpleEventPacket,
+            + SimulationTypePacket: SimulationTypePacket^,
+            + SpawnExperienceOrbPacket: SpawnExperienceOrbPacket,
+            + SpawnParticleEffectPacket: SpawnParticleEffectPacket^,
+            + StartGamePacket: StartGamePacket^,
+            + StopSoundPacket: StopSoundPacket,
+            + StructureBlockUpdatePacket: StructureBlockUpdatePacket^,
+            + StructureDataRequestPacket: StructureDataRequestPacket^,
+            + StructureDataResponsePacket: StructureDataResponsePacket^,
+            + SubChunkPacket: SubChunkPacket^,
+            + SubChunkRequestPacket: SubChunkRequestPacket^,
+            + SubClientLoginPacket: SubClientLoginPacket,
+            + SyncActorPropertyPacket: SyncActorPropertyPacket,
+            + TakeItemActorPacket: TakeItemActorPacket^,
+            + TextPacket: TextPacket^,
+            + TickSyncPacket: TickSyncPacket,
+            + TickingAreaLoadStatusPacket: TickingAreaLoadStatusPacket,
+            + ToastRequestPacket: ToastRequestPacket,
+            + TransferPlayerPacket: TransferPlayerPacket,
+            + TrimDataPacket: TrimDataPacket,
+            + UnlockedRecipesPacket: UnlockedRecipesPacket,
+            + UpdateAbilitiesPacket: UpdateAbilitiesPacket^,
+            + UpdateAdventureSettingsPacket: UpdateAdventureSettingsPacket^,
+            + UpdateAttributesPacket: UpdateAttributesPacket^,
+            + UpdateBlockPacket: UpdateBlockPacket^,
+            + UpdateBlockSyncedPacket: UpdateBlockSyncedPacket^,
+            + UpdateClientInputLocksPacket: UpdateClientInputLocksPacket,
+            + UpdateEquipPacket: UpdateEquipPacket^,
+            + UpdatePlayerGameTypePacket: UpdatePlayerGameTypePacket^,
+            + UpdateSoftEnumPacket: UpdateSoftEnumPacket^,
+            + UpdateSubChunkBlocksPacket: UpdateSubChunkBlocksPacket^,
+            + UpdateTradePacket: UpdateTradePacket^,
+        ] in crate::version::v662::packets,
+        types: [
+            + ActorLink: ActorLink^,
+            + ActorRuntimeID: ActorRuntimeID,
+            + ActorUniqueID: ActorUniqueID,
+            + AdventureSettings: AdventureSettings,
+            + BaseDescription: BaseDescription^,
+            + BaseGameVersion: BaseGameVersion,
+            + BlockPos: BlockPos,
+            + CameraInstruction: CameraInstruction^,
+            + CameraPreset: CameraPreset,
+            + CameraPresets: CameraPresets^,
+            + ChunkPos: ChunkPos,
+            + CommandOriginData: CommandOriginData^,
+            + ContainerMixDataEntry: ContainerMixDataEntry,
+            + CraftingDataEntry: CraftingDataEntry^,
+            + DataItem: DataItem^,
+            + DimensionDefinitionGroup: DimensionDefinitionGroup,
+            + EduSharedUriResource: EduSharedUriResource,
+            + EducationLevelSettings: EducationLevelSettings,
+            + EntityNetID: EntityNetID,
+            + Experiments: Experiments,
+            + GameRulesChangedPacketData: GameRulesChangedPacketData,
+            + InventoryAction: InventoryAction^,
+            + InventorySource: InventorySource^,
+            + InventoryTransaction: InventoryTransaction^,
+            + ItemData: ItemData,
+            + ItemEnchants: ItemEnchants^,
+            + ItemInstanceUserData: ItemInstanceUserData,
+            + ItemStackRequestSlotInfo: ItemStackRequestSlotInfo^,
+            + ItemStackResponseContainerInfo: ItemStackResponseContainerInfo^,
+            + ItemStackResponseInfo: ItemStackResponseInfo^,
+            + ItemStackResponseSlotInfo: ItemStackResponseSlotInfo,
+            + LevelSettings: LevelSettings^,
+            + MapDecoration: MapDecoration,
+            + MapItemTrackedActorUniqueID: MapItemTrackedActorUniqueID^,
+            + MaterialReducerDataEntry: MaterialReducerDataEntry,
+            + MolangVariableMap: MolangVariableMap,
+            + MoveActorAbsoluteData: MoveActorAbsoluteData^,
+            + MoveActorDeltaData: MoveActorDeltaData^,
+            + NetworkBlockPosition: NetworkBlockPosition,
+            + NetworkItemInstanceDescriptor: NetworkItemInstanceDescriptor,
+            + NetworkItemStackDescriptor: NetworkItemStackDescriptor,
+            + NetworkPermissions: NetworkPermissions,
+            + PackedItemUseLegacyInventoryTransaction: PackedItemUseLegacyInventoryTransaction^,
+            + PlayerBlockActionData: PlayerBlockActionData^,
+            + PlayerBlockActions: PlayerBlockActions^,
+            + PositionTrackingId: PositionTrackingId,
+            + PotionMixDataEntry: PotionMixDataEntry,
+            + PropertySyncData: PropertySyncData,
+            + RecipeIngredient: RecipeIngredient^,
+            + ScoreboardId: ScoreboardId,
+            + SerializedAbilitiesData: SerializedAbilitiesData^,
+            + SerializedSkin: SerializedSkin^,
+            + ShapedChemistryRecipe: ShapedChemistryRecipe^,
+            + ShapedRecipe: ShapedRecipe^,
+            + ShapelessChemistryRecipe: ShapelessChemistryRecipe^,
+            + ShapelessRecipe: ShapelessRecipe^,
+            + ShulkerBoxRecipe: ShulkerBoxRecipe^,
+            + SmithingTransformRecipe: SmithingTransformRecipe^,
+            + SmithingTrimRecipe: SmithingTrimRecipe^,
+            + SpawnSettings: SpawnSettings^,
+            + StructureEditorData: StructureEditorData^,
+            + StructureSettings: StructureSettings^,
+            + SubChunkPos: SubChunkPos,
+            + SubChunkPosOffset: SubChunkPosOffset,
+            + SyncedPlayerMovementSettings: SyncedPlayerMovementSettings^,
+            + WebSocketPacketData: WebSocketPacketData,
+        ] in crate::version::v662::types,
+        enums: [
+            + AbilitiesIndex: AbilitiesIndex,
+            + ActorBlockSyncMessageID: ActorBlockSyncMessageID,
+            + ActorDamageCause: ActorDamageCause,
+            + ActorDataIDs: ActorDataIDs,
+            + ActorEvent: ActorEvent,
+            + ActorFlags: ActorFlags,
+            + ActorLinkType: ActorLinkType,
+            + ActorType: ActorType,
+            + AgentActionType: AgentActionType,
+            + AnimatedTextureType: AnimatedTextureType,
+            + AnimationExpression: AnimationExpression,
+            + AnimationMode: AnimationMode,
+            + AttributeModifierOperation: AttributeModifierOperation,
+            + AttributeOperands: AttributeOperands,
+            + BookEditAction: BookEditAction,
+            + BossEventUpdateType: BossEventUpdateType^,
+            + BuildPlatform: BuildPlatform,
+            + CameraShakeAction: CameraShakeAction,
+            + CameraShakeType: CameraShakeType,
+            + ChatRestrictionLevel: ChatRestrictionLevel,
+            + CodeBuilderStorageCategory: CodeBuilderStorageCategory,
+            + CodeBuilderStorageOperation: CodeBuilderStorageOperation,
+            + CommandBlockMode: CommandBlockMode,
+            + CommandOriginType: CommandOriginType,
+            + CommandOutputType: CommandOutputType,
+            + CommandParameterOption: CommandParameterOption,
+            + CommandPermissionLevel: CommandPermissionLevel,
+            + ComplexInventoryTransactionType: ComplexInventoryTransactionType,
+            + ConnectionFailReason: ConnectionFailReason,
+            + ContainerEnumName: ContainerEnumName,
+            + ContainerID: ContainerID,
+            + ContainerType: ContainerType,
+            + CraftingDataEntryType: CraftingDataEntryType^,
+            + DataItemType: DataItemType^,
+            + Difficulty: Difficulty,
+            + EasingType: EasingType,
+            + EditorWorldType: EditorWorldType,
+            + EducationEditionOffer: EducationEditionOffer,
+            + EnchantType: EnchantType,
+            + GamePublishSetting: GamePublishSetting,
+            + GameType: GameType,
+            + GeneratorType: GeneratorType,
+            + HudElement: HudElement,
+            + HudVisibility: HudVisibility,
+            + IdentityDefinitionType: IdentityDefinitionType^,
+            + InputMode: InputMode,
+            + InteractionType: InteractionType,
+            + InventoryLayout: InventoryLayout,
+            + InventoryLeftTabIndex: InventoryLeftTabIndex,
+            + InventoryRightTabIndex: InventoryRightTabIndex,
+            + InventorySourceFlags: InventorySourceFlags,
+            + InventorySourceType: InventorySourceType^,
+            + ItemDescriptorType: ItemDescriptorType,
+            + ItemReleaseInventoryTransactionType: ItemReleaseInventoryTransactionType,
+            + ItemStackNetResult: ItemStackNetResult^,
+            + ItemStackRequestActionType: ItemStackRequestActionType^,
+            + ItemUseInventoryTransactionType: ItemUseInventoryTransactionType,
+            + ItemUseMethod: ItemUseMethod,
+            + ItemUseOnActorInventoryTransactionType: ItemUseOnActorInventoryTransactionType,
+            + LabTableReactionType: LabTableReactionType,
+            + LessonAction: LessonAction,
+            + LevelEvent: LevelEvent,
+            + LevelSoundEventType: LevelSoundEventType,
+            + MinecraftPacketIds: MinecraftPacketIds,
+            + Mirror: Mirror,
+            + ModalFormCancelReason: ModalFormCancelReason,
+            + MolangVersion: MolangVersion,
+            + MultiplayerSettingsPacketType: MultiplayerSettingsPacketType,
+            + NewInteractionModel: NewInteractionModel,
+            + ObjectiveSortOrder: ObjectiveSortOrder,
+            + POIBlockInteractionType: POIBlockInteractionType,
+            + PackType: PackType,
+            + PacketCompressionAlgorithm: PacketCompressionAlgorithm,
+            + PacketViolationSeverity: PacketViolationSeverity,
+            + PacketViolationType: PacketViolationType,
+            + ParticleType: ParticleType,
+            + PhotoType: PhotoType,
+            + PlayStatus: PlayStatus,
+            + PlayerActionType: PlayerActionType^,
+            + PlayerListPacketType: PlayerListPacketType^,
+            + PlayerPermissionLevel: PlayerPermissionLevel,
+            + PlayerPositionMode: PlayerPositionMode,
+            + PlayerRespawnState: PlayerRespawnState,
+            + PredictionType: PredictionType,
+            + ResourcePackResponse: ResourcePackResponse,
+            + Rotation: Rotation,
+            + ScorePacketType: ScorePacketType^,
+            + ScoreboardIdentityPacketType: ScoreboardIdentityPacketType^,
+            + ServerAuthMovementMode: ServerAuthMovementMode,
+            + ShowStoreOfferRedirectType: ShowStoreOfferRedirectType,
+            + SimulationType: SimulationType,
+            + SoftEnumUpdateType: SoftEnumUpdateType,
+            + SpawnBiomeType: SpawnBiomeType,
+            + SpawnPositionType: SpawnPositionType,
+            + StructureBlockType: StructureBlockType,
+            + StructureRedstoneSaveMode: StructureRedstoneSaveMode,
+            + StructureTemplateRequestOperation: StructureTemplateRequestOperation,
+            + StructureTemplateResponseType: StructureTemplateResponseType,
+            + TeleportationCause: TeleportationCause,
+            + TextPacketType: TextPacketType,
+            + TextProcessingEventOrigin: TextProcessingEventOrigin,
+            + UIProfile: UIProfile,
+        ] in crate::version::v662::enums,
     },
-}
+    (671, "r/20_u8"): {
+        packets: [
+            % ClientBoundDebugRendererPacket: ClientBoundDebugRendererPacket,
+            % CorrectPlayerMovePredictionPacket: CorrectPlayerMovePredictionPacket^,
+            % LegacyTelemetryEventPacket: LegacyTelemetryEventPacket^,
+            % ResourcePackStackPacket: ResourcePackStackPacket^,
+            % UpdatePlayerGameTypePacket: UpdatePlayerGameTypePacket^,
+            - FilterTextPacket,
+        ] in crate::version::v671::packets,
+        types: [
+            % LevelSettings: LevelSettings^,
+            % ShapedRecipe: ShapedRecipe^,
+        ] in crate::version::v671::types,
+        enums: [
+            % ActorFlags: ActorFlags,
+            % LevelSoundEventType: LevelSoundEventType,
+            % ParticleType: ParticleType,
+            % PredictionType: PredictionType,
+        ] in crate::version::v671::enums,
+    },
+    (685, "r/21_u0"): {
+        packets: [
+            + AwardAchievementPacket: AwardAchievementPacket,
+            % CodeBuilderSourcePacket: CodeBuilderSourcePacket^,
+            % ContainerClosePacket: ContainerClosePacket^,
+            % CraftingDataPacket: CraftingDataPacket^,
+            % LegacyTelemetryEventPacket: LegacyTelemetryEventPacket^,
+            % TextPacket: TextPacket^,
+            - TickSyncPacket,
+        ] in crate::version::v685::packets,
+        types: [
+            + RecipeUnlockingRequirement: RecipeUnlockingRequirement^,
+            % LevelSettings: LevelSettings^,
+            % ShapedRecipe: ShapedRecipe^,
+            % ShapelessRecipe: ShapelessRecipe^,
+        ] in crate::version::v685::types,
+        enums: [
+            + CodeBuilderCodeStatus: CodeBuilderCodeStatus,
+            % ActorDataIDs: ActorDataIDs,
+            % LevelEvent: LevelEvent,
+            % LevelSoundEventType: LevelSoundEventType,
+            % ParticleType: ParticleType,
+        ] in crate::version::v685::enums,
+    },
+    (686, "r/21_u1"): {
+        packets: [
+            + ClientBoundCloseFormPacket: ClientBoundCloseFormPacket,
+        ] in crate::version::v686::packets,
+    },
+    (712, "r/21_u2"): {
+        packets: [
+            + CurrentStructureFeaturePacket: CurrentStructureFeaturePacket,
+            + JigsawStructureDataPacket: JigsawStructureDataPacket,
+            + ServerBoundDiagnosticsPacket: ServerBoundDiagnosticsPacket,
+            + ServerBoundLoadingScreenPacket: ServerBoundLoadingScreenPacket,
+            % CameraInstructionPacket: CameraInstructionPacket^,
+            % ChangeDimensionPacket: ChangeDimensionPacket,
+            % DisconnectPacket: DisconnectPacket^,
+            % InventoryContentPacket: InventoryContentPacket^,
+            % InventorySlotPacket: InventorySlotPacket^,
+            % MobArmorEquipmentPacket: MobArmorEquipmentPacket^,
+            % PlayerArmorDamagePacket: PlayerArmorDamagePacket,
+            % ResourcePacksInfoPacket: ResourcePacksInfoPacket,
+            % SetTitlePacket: SetTitlePacket,
+            % StopSoundPacket: StopSoundPacket,
+        ] in crate::version::v712::packets,
+        types: [
+            + FullContainerName: FullContainerName,
+            % ActorLink: ActorLink^,
+            % CameraInstruction: CameraInstruction^,
+            % CameraPreset: CameraPreset,
+            % ItemStackRequestSlotInfo: ItemStackRequestSlotInfo^,
+            % ItemStackResponseContainerInfo: ItemStackResponseContainerInfo^,
+            % PackedItemUseLegacyInventoryTransaction: PackedItemUseLegacyInventoryTransaction^,
+        ] in crate::version::v712::types,
+        enums: [
+            % ContainerEnumName: ContainerEnumName,
+            % ItemStackRequestActionType: ItemStackRequestActionType^,
+            % LevelSoundEventType: LevelSoundEventType,
+            % PredictionType: PredictionType,
+        ] in crate::version::v712::enums,
+    }
+];

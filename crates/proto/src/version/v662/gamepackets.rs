@@ -1,5 +1,5 @@
-use crate::v662::V662;
 use crate::version::proto_version::ProtoVersionPackets;
+use crate::version::proto_version::V662;
 use bedrockrs_macros::gamepackets;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::sub_client::SubClientID;

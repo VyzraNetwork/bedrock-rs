@@ -1,5 +1,5 @@
-use crate::v712::V712;
 use crate::version::proto_version::ProtoVersionPackets;
+use crate::version::proto_version::V712;
 use bedrockrs_macros::gamepackets;
 use bedrockrs_proto_core::error::ProtoCodecError;
 use bedrockrs_proto_core::sub_client::SubClientID;
@@ -41,7 +41,7 @@ gamepackets! {
     ClientCacheMissResponse: <V712 as ProtoVersionPackets>::ClientCacheMissResponsePacket,
     ClientCacheStatus: <V712 as ProtoVersionPackets>::ClientCacheStatusPacket,
     ClientToServerHandshake: <V712 as ProtoVersionPackets>::ClientToServerHandshakePacket,
-    ClientBoundCloseForm: <V712 as ProtoVersionPackets>::ClientBoundCloseForm,
+    ClientBoundCloseForm: <V712 as ProtoVersionPackets>::ClientBoundCloseFormPacket,
     ClientboundDebugRenderer: <V712 as ProtoVersionPackets>::ClientBoundDebugRendererPacket,
     ClientboundMapItemData: <V712 as ProtoVersionPackets>::ClientBoundMapItemDataPacket,
     CodeBuilder: <V712 as ProtoVersionPackets>::CodeBuilderPacket,
