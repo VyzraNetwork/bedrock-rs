@@ -542,5 +542,21 @@ define_versions![
             % ActorFlags: ActorFlags,
             % BossEventUpdateType: BossEventUpdateType^,
         ] in crate::version::v776::enums,
+    },
+    (786, "r/21_u7", "1.21.70"): {
+        packets: [
+            + PlayerUpdateEntityOverridesPacket: PlayerUpdateEntityOverridesPacket^,
+            + PlayerVideoCapturePacket: PlayerVideoCapturePacket,
+            + UpdateClientOptionsPacket: UpdateClientOptionsPacket,
+            % LevelSoundEventPacket: LevelSoundEventPacket^,
+            % MovementPredictionSyncPacket: MovementPredictionSyncPacket^,
+            - LevelSoundEventV1Packet,
+            - LevelSoundEventV2Packet,
+        ] in crate::version::v786::packets,
+        enums: [
+            % ActorFlags: ActorFlags,
+            % HudElement: HudElement,
+            % HudVisibility: HudVisibility,
+        ] in crate::version::v786::enums,
     }
 ];

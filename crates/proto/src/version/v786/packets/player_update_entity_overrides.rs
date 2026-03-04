@@ -1,10 +1,10 @@
-use crate::v786::types::ActorUniqueID;
+use crate::version::proto_version::ProtoVersion;
 use bedrockrs_macros::{gamepacket, ProtoCodec};
 
 #[gamepacket(id = 325)]
 #[derive(ProtoCodec, Clone, Debug)]
-pub struct PlayerUpdateEntityOverridesPacket {
-    pub entity_unique_id: ActorUniqueID,
+pub struct PlayerUpdateEntityOverridesPacket<V: ProtoVersion> {
+    pub entity_unique_id: V::ActorUniqueID,
     #[endianness(var)]
     pub property_index: u32,
     pub update_type: UpdateType,
