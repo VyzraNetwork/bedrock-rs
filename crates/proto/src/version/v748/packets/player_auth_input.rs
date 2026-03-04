@@ -270,6 +270,7 @@ impl<V: ProtoVersion> ProtoCodec for PlayerAuthInputPacket<V> {
                 false => 0,
             }
             + ProtoCodecLE::get_size_prediction(&self.analog_move_vector)
+            + ProtoCodecLE::get_size_prediction(&self.camera_orientation)
     }
 }
 

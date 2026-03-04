@@ -440,7 +440,7 @@ define_versions![
             % StopSoundPacket: StopSoundPacket,
         ] in crate::version::v712::packets,
         types: [
-            + FullContainerName: FullContainerName,
+            + FullContainerName: FullContainerName^,
             % ActorLink: ActorLink^,
             % CameraInstruction: CameraInstruction^,
             % CameraPreset: CameraPreset,
@@ -494,5 +494,28 @@ define_versions![
             + AuthoritativeMovementMode: AuthoritativeMovementMode,
             + MovementEffectType: MovementEffectType,
         ] in crate::version::v748::enums,
+    },
+    (766, "r/21_u5", "1.21.50"): {
+        packets: [
+            + CameraAimAssistPresetsPacket: CameraAimAssistPresetsPacket^,
+            % CameraAimAssistPacket: CameraAimAssistPacket^,
+            % PlayerAuthInputPacket: PlayerAuthInputPacket^,
+            % ResourcePacksInfoPacket: ResourcePacksInfoPacket,
+        ] in crate::version::v766::packets,
+        types: [
+            + CameraAimAssistCategories: CameraAimAssistCategories^,
+            + CameraAimAssistCategory: CameraAimAssistCategory^,
+            + CameraAimAssistItemSettings: CameraAimAssistItemSettings,
+            + CameraAimAssistPreset: CameraAimAssistPreset,
+            + CameraAimAssistPresetDefinition: CameraAimAssistPresetDefinition^,
+            + CameraAimAssistPriority: CameraAimAssistPriority,
+            % CameraPreset: CameraPreset^,
+            % ItemStackResponseSlotInfo: ItemStackResponseSlotInfo,
+        ] in crate::version::v766::types,
+        enums: [
+            % LevelEvent: LevelEvent,
+            % LevelSoundEventType: LevelSoundEventType,
+            % ParticleType: ParticleType,
+        ] in crate::version::v766::enums,
     }
 ];
