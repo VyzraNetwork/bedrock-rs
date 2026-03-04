@@ -596,7 +596,7 @@ define_versions![
             % ActorDataIDs: ActorDataIDs,
             % ActorFlags: ActorFlags,
             % LevelSoundEventType: LevelSoundEventType,
-            % PlayerListPacketType: PlayerListPacketType,
+            % PlayerListPacketType: PlayerListPacketType^,
         ] in crate::version::v800::enums,
     }
 ];
