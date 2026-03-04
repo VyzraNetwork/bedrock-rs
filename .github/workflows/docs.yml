@@ -44,13 +44,13 @@ jobs:
       uses: actions/configure-pages@v5
 
     - name: Generate documentation
-      run: cargo doc --no-deps
+      run: cargo doc --no-deps --all-features
       
     - name: Add root index
       run: |
         cd target/doc
         touch index.html
-        echo "<meta http-equiv=\"refresh\" content=\"0; url=https://bedrock-crustaceans.github.io/bedrock-rs/bedrock-rs/index.html\">" > index.html
+        echo "<meta http-equiv=\"refresh\" content=\"0; url=https://bedrock-crustaceans.github.io/bedrock-rs/bedrockrs/index.html\">" > index.html
 
     - name: Upload docs artifact
       uses: actions/upload-pages-artifact@v4
