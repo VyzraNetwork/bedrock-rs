@@ -2,33 +2,36 @@
 name = "bedrockrs_level"
 version = "0.1.0"
 edition = "2021"
+build = "build.rs"
+
+[features]
+default = ["mojang-leveldb"]
+mojang-leveldb = ["dep:cmake"]
+rusty-leveldb = ["dep:rusty-leveldb"]
+
+[[bench]]
+name = "benchmark"
+harness = false
 
 [dependencies]
 bedrockrs_core = { path = "../core" }
 bedrockrs_shared = { path = "../shared" }
+nbtx = "1.0.0"
 
-nbtx = { git = "https://github.com/bedrock-crustaceans/nbtx" }
+rusty-leveldb = { version = "4.0.1", optional = true }
 
 thiserror = "2.0"
-byteorder = "1.x"
-uuid = { version = "1.x", features = ["v4"] }
-bytemuck = { version = "1.19.x", features = ["must_cast"] }
-len-trait = "0.6.x"
-concat-idents = "1.x.x"
-serde = "1.x.x"
-rusty-leveldb = "3.x.x"
-miniz_oxide = "0.x.x"
-vek = "0.17"
+serde = "1.0.228"
+vek = "0.17.2"
+byteorder = "1.5.0"
+bytemuck = "1.25.0"
 
 [dev-dependencies]
-rand = "0.10"
+tar = "0.4.44"
+flate2 = "1.1.9"
+tempfile = "3.26.0"
+criterion = "0.8.2"
 
-[profile.release]
-debug = true
+[build-dependencies]
+cmake = { version = "0.1.57", optional = true }
 
-[[test]]
-name = "api_test"
-required-features = ["default-impl"]
-
-[features]
-default-impl = []
