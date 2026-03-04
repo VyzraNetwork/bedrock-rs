@@ -517,5 +517,30 @@ define_versions![
             % LevelSoundEventType: LevelSoundEventType,
             % ParticleType: ParticleType,
         ] in crate::version::v766::enums,
+    },
+    (776, "r/21_u6", "1.21.60"): {
+        packets: [
+            + CameraAimAssistInstructionPacket: CameraAimAssistInstructionPacket^,
+            + MovementPredictionSyncPacket: MovementPredictionSyncPacket^,
+            % CameraAimAssistPresetsPacket: CameraAimAssistPresetsPacket^,
+            % CommandBlockUpdatePacket: CommandBlockUpdatePacket^,
+            % CreativeContentPacket: CreativeContentPacket^,
+            % ItemComponentPacket: ItemComponentPacket^,
+            % StartGamePacket: StartGamePacket^,
+        ] in crate::version::v776::packets,
+        types: [
+            % CameraAimAssistPresetDefinition: CameraAimAssistPresetDefinition^,
+            % CameraPreset: CameraPreset^,
+            % SerializedAbilitiesData: SerializedAbilitiesData^,
+            % StructureEditorData: StructureEditorData^,
+        ] in crate::version::v776::types,
+        enums: [
+            + CameraAimAssistOperation: CameraAimAssistOperation,
+            + ItemVersion: ItemVersion,
+            % AbilitiesIndex: AbilitiesIndex,
+            % ActorDataIDs: ActorDataIDs,
+            % ActorFlags: ActorFlags,
+            % BossEventUpdateType: BossEventUpdateType^,
+        ] in crate::version::v776::enums,
     }
 ];
