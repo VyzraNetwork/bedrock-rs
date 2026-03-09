@@ -638,5 +638,23 @@ define_versions![
             % LevelSoundEventType: LevelSoundEventType,
             % PredictionType: PredictionType,
         ] in crate::version::v827::enums,
+    },
+    (844, "r/21_u11", "1.21.111"): {
+        packets: [
+            + ServerBoundPackSettingChangePacket: ServerBoundPackSettingChangePacket,
+            % PlayerArmorDamagePacket: PlayerArmorDamagePacket,
+        ] in crate::version::v844::packets,
+        types: [
+            % BiomeClimateData: BiomeClimateData,
+            % BiomeDefinition: BiomeDefinition^,
+            % BiomeDefinitionChunkGenData: BiomeDefinitionChunkGenData^,
+            % GameRulesChangedPacketData: GameRulesChangedPacketData,
+            % LevelSettings: LevelSettings^,
+        ] in crate::version::v844::types,
+        enums: [
+            % ActorFlags: ActorFlags,
+            % LevelSoundEventType: LevelSoundEventType,
+            % ParticleType: ParticleType,
+        ] in crate::version::v844::enums,
     }
 ];

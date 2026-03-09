@@ -13,7 +13,7 @@ pub struct GameRulesChangedPacketData {
 #[repr(u32)]
 pub enum Type {
     Bool(bool) = 1,
-    Int(#[endianness(var)] u32) = 2,
+    Int(#[endianness(le)] i32) = 2,
     Float(#[endianness(le)] f32) = 3,
 }
 
