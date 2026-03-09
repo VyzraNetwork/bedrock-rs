@@ -1,7 +1,4 @@
 use bedrockrs_macros::{ProtoCodec, gamepacket};
-use bedrockrs_proto_core::error::ProtoCodecError;
-use bedrockrs_proto_core::{ProtoCodec, ProtoCodecVAR};
-use std::io::Cursor;
 
 #[gamepacket(id = 149)]
 #[derive(ProtoCodec, Clone, Debug)]
