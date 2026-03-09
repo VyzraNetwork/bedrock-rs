@@ -656,5 +656,23 @@ define_versions![
             % LevelSoundEventType: LevelSoundEventType,
             % ParticleType: ParticleType,
         ] in crate::version::v844::enums,
+    },
+    (859, "r/21_u12", "1.21.120"): {
+        packets: [
+            + GraphicsParameterOverridePacket: GraphicsParameterOverridePacket,
+            % AnimatePacket: AnimatePacket^,
+            % ShowStoreOfferPacket: ShowStoreOfferPacket^,
+        ] in crate::version::v859::packets,
+        types: [
+            + BiomeReplacementData: BiomeReplacementData,
+            % BiomeDefinitionChunkGenData: BiomeDefinitionChunkGenData^,
+            % CameraInstruction: CameraInstruction^,
+            % DebugShape: DebugShape^,
+        ] in crate::version::v859::types,
+        enums: [
+            + CameraSplineType: CameraSplineType,
+            % ActorEvent: ActorEvent,
+            % ActorFlags: ActorFlags,
+        ] in crate::version::v859::enums,
     }
 ];
