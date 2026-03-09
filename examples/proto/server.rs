@@ -1,14 +1,14 @@
 use bedrockrs::proto::connection::Connection;
 use bedrockrs::proto::listener::Listener;
 use bedrockrs_proto::compression::Compression;
+use bedrockrs_proto::v662::enums::{PacketCompressionAlgorithm, PlayStatus};
+use bedrockrs_proto::v662::packets::{NetworkSettingsPacket, PlayStatusPacket};
+use bedrockrs_proto::v662::types::{BaseGameVersion, Experiments};
+use bedrockrs_proto::v671::packets::ResourcePackStackPacket;
+use bedrockrs_proto::v766::packets::ResourcePacksInfoPacket;
 use bedrockrs_proto::v800;
 use bedrockrs_proto::v800::GamePackets;
 use bedrockrs_proto::v800::ProtoHelperV800;
-use bedrockrs_proto::v800::enums::{PacketCompressionAlgorithm, PlayStatus};
-use bedrockrs_proto::v800::packets::{
-    NetworkSettingsPacket, PlayStatusPacket, ResourcePackStackPacket, ResourcePacksInfoPacket,
-};
-use bedrockrs_proto::v800::types::{BaseGameVersion, Experiments};
 use tokio::time::Instant;
 use uuid::Uuid;
 
