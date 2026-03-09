@@ -623,5 +623,20 @@ define_versions![
         enums: [
             % LevelSoundEventType: LevelSoundEventType,
         ] in crate::version::v819::enums,
+    },
+    (827, "r/21_u10", "1.21.100"): {
+        packets: [
+            % CameraAimAssistPacket: CameraAimAssistPacket^,
+            % CorrectPlayerMovePredictionPacket: CorrectPlayerMovePredictionPacket^,
+            % StartGamePacket: StartGamePacket^,
+        ] in crate::version::v827::packets,
+        types: [
+            % BiomeDefinition: BiomeDefinition^,
+            % CameraInstruction: CameraInstruction^,
+        ] in crate::version::v827::types,
+        enums: [
+            % LevelSoundEventType: LevelSoundEventType,
+            % PredictionType: PredictionType,
+        ] in crate::version::v827::enums,
     }
 ];

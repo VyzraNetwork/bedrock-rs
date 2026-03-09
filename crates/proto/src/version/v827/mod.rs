@@ -1,4 +1,4 @@
-//! r/21_u9
+//! r/21_u10
 
 pub mod enums;
 pub mod info;
@@ -8,6 +8,6 @@ pub mod types;
 mod gamepackets;
 mod helper;
 
-pub use crate::version::proto_version::V818;
+pub use crate::version::proto_version::V827;
 pub use gamepackets::*;
 pub use helper::*;

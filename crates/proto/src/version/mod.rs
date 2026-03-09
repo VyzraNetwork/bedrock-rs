@@ -12,3 +12,4 @@ pub mod v786;
 pub mod v800;
 pub mod v818;
 pub mod v819;
+pub mod v827;
