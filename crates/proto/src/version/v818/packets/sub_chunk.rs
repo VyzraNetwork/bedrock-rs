@@ -45,7 +45,9 @@ pub struct SubChunkDataEntry<V: ProtoVersion> {
     pub serialized_sub_chunk: Option<String>, // If sub_chunk_request_result != SuccessAllAir, or cache_enabled == false
     pub height_map_data_type: HeightMapDataType,
     pub height_map_data: Option<[[i8; 16]; 16]>, // If height_map_data_type == HasData (vec sizes are i8)
-    pub blob_id: Option<u64>,                    // If cache_enabled == true
+    pub render_height_map_data_type: HeightMapDataType,
+    pub render_height_map_data: Option<[[i8; 16]; 16]>, // If height_map_data_type == HasData (vec sizes are i8)
+    pub blob_id: Option<u64>,                           // If cache_enabled == true
 }
 
 impl<V: ProtoVersion> ProtoCodec for SubChunkPacket<V> {
@@ -69,6 +71,15 @@ impl<V: ProtoVersion> ProtoCodec for SubChunkPacket<V> {
             if i.height_map_data_type == HeightMapDataType::HasData {
                 let height_map = i.height_map_data.as_ref().unwrap();
                 for x in height_map {
+                    for y in x {
+                        y.proto_serialize(stream)?;
+                    }
+                }
+            }
+            i.render_height_map_data_type.proto_serialize(stream)?;
+            if i.render_height_map_data_type == HeightMapDataType::HasData {
+                let render_height_map = i.render_height_map_data.as_ref().unwrap();
+                for x in render_height_map {
                     for y in x {
                         y.proto_serialize(stream)?;
                     }
@@ -100,8 +111,7 @@ impl<V: ProtoVersion> ProtoCodec for SubChunkPacket<V> {
                     false => None,
                 };
                 let height_map_data_type = HeightMapDataType::proto_deserialize(stream)?;
-                let sub_chunk_height_map = match height_map_data_type == HeightMapDataType::HasData
-                {
+                let height_map_data = match height_map_data_type == HeightMapDataType::HasData {
                     true => {
                         let mut height_map: [[i8; 16]; 16] = [[0; 16]; 16];
                         for row in &mut height_map {
@@ -114,6 +124,21 @@ impl<V: ProtoVersion> ProtoCodec for SubChunkPacket<V> {
                     }
                     false => None,
                 };
+                let render_height_map_data_type = HeightMapDataType::proto_deserialize(stream)?;
+                let render_height_map_data =
+                    match render_height_map_data_type == HeightMapDataType::HasData {
+                        true => {
+                            let mut render_height_map: [[i8; 16]; 16] = [[0; 16]; 16];
+                            for row in &mut render_height_map {
+                                for value in row {
+                                    *value = i8::proto_deserialize(stream)?;
+                                }
+                            }
+
+                            Some(render_height_map)
+                        }
+                        false => None,
+                    };
                 let blob_id = match cache_enabled {
                     true => Some(ProtoCodecLE::proto_deserialize(stream)?),
                     false => None,
@@ -124,7 +149,9 @@ impl<V: ProtoVersion> ProtoCodec for SubChunkPacket<V> {
                     sub_chunk_request_result,
                     serialized_sub_chunk,
                     height_map_data_type,
-                    height_map_data: sub_chunk_height_map,
+                    height_map_data,
+                    render_height_map_data_type,
+                    render_height_map_data,
                     blob_id,
                 })
             }
@@ -165,6 +192,16 @@ impl<V: ProtoVersion> ProtoCodec for SubChunkPacket<V> {
                             true => {
                                 let height_map = i.height_map_data.as_ref().unwrap();
                                 height_map.len() * height_map[0].len() * size_of::<i8>()
+                            }
+                            false => 0,
+                        }
+                        + i.render_height_map_data_type.get_size_prediction()
+                        + match i.render_height_map_data_type == HeightMapDataType::HasData {
+                            true => {
+                                let render_height_map = i.render_height_map_data.as_ref().unwrap();
+                                render_height_map.len()
+                                    * render_height_map[0].len()
+                                    * size_of::<i8>()
                             }
                             false => 0,
                         }
