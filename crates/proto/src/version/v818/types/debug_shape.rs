@@ -32,10 +32,10 @@ pub struct DebugShape<V: ProtoVersion> {
 #[enum_repr(i8)]
 #[repr(i8)]
 pub enum DebugShapeType {
-    Line,
-    Box,
-    Sphere,
-    Circle,
-    Text,
-    Arrow,
+    Line = 0,
+    Box = 1,
+    Sphere = 2,
+    Circle = 3,
+    Text = 4,
+    Arrow = 5,
 }
