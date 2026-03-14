@@ -1,5 +1,5 @@
-use bedrockrs::proto::connection::Connection;
-use bedrockrs::proto::listener::Listener;
+use bedrockrs_network::connection::Connection;
+use bedrockrs_network::listener::Listener;
 use bedrockrs_proto::compression::Compression;
 use bedrockrs_proto::v662::enums::{
     ChatRestrictionLevel, Difficulty, EditorWorldType, EducationEditionOffer, GamePublishSetting,
@@ -14,11 +14,9 @@ use bedrockrs_proto::v662::types::{
 use bedrockrs_proto::v818::packets::ResourcePacksInfoPacket;
 use bedrockrs_proto::v818::types::SyncedPlayerMovementSettings;
 use bedrockrs_proto::v898::packets::ResourcePackStackPacket;
-use bedrockrs_proto::v924;
-use bedrockrs_proto::v924::GamePackets;
-use bedrockrs_proto::v924::ProtoHelperV924;
 use bedrockrs_proto::v924::packets::{StartGamePacket, VoxelShapesPacket};
 use bedrockrs_proto::v924::types::{GameRuleLegacyData, LevelSettings};
+use bedrockrs_proto::{ProtoVersion, V924};
 use bedrockrs_shared::world::dimension::Dimension;
 use std::collections::HashMap;
 use tokio::time::Instant;
@@ -30,9 +28,9 @@ async fn main() {
         "127.0.0.1:19132".parse().unwrap(),
         "Bedrock in Rust".to_string(),
         "bedrockrs".to_string(),
-        v924::info::GAME_VERSION.to_string(),
-        v924::info::PROTOCOL_VERSION,
-        v924::info::RAK_VERSION,
+        V924::GAME_VERSION.to_string(),
+        V924::PROTOCOL_VERSION,
+        V924::RAKNET_VERSION,
         100,
         10,
         false,
@@ -55,13 +53,13 @@ async fn handle_login(mut conn: Connection) {
     let time_start = Instant::now();
 
     // RequestNetworkSettings
-    conn.recv::<ProtoHelperV924>().await.unwrap();
-    tracing::trace!("RequestNetworkSettings");
+    conn.recv::<V924>().await.unwrap();
+    println!("RequestNetworkSettings");
 
     let compression = Compression::None;
 
     // NetworkSettings
-    conn.send::<ProtoHelperV924>(&[GamePackets::NetworkSettings(NetworkSettingsPacket {
+    conn.send::<V924>(&[V924::NetworkSettingsPacket(NetworkSettingsPacket {
         compression_threshold: 1,
         compression_algorithm: PacketCompressionAlgorithm::None,
         client_throttle_enabled: false,
@@ -70,19 +68,19 @@ async fn handle_login(mut conn: Connection) {
     })])
     .await
     .unwrap();
-    tracing::trace!("NetworkSettings");
+    println!("NetworkSettings");
 
     conn.compression = Some(compression);
 
     // Login
-    conn.recv::<ProtoHelperV924>().await.unwrap();
-    tracing::trace!("Login");
+    conn.recv::<V924>().await.unwrap();
+    println!("Login");
 
-    conn.send::<ProtoHelperV924>(&[
-        GamePackets::PlayStatus(PlayStatusPacket {
+    conn.send::<V924>(&[
+        V924::PlayStatusPacket(PlayStatusPacket {
             status: PlayStatus::LoginSuccess,
         }),
-        GamePackets::ResourcePacksInfo(ResourcePacksInfoPacket {
+        V924::ResourcePacksInfoPacket(ResourcePacksInfoPacket {
             resource_pack_required: false,
             has_addon_packs: false,
             has_scripts: false,
@@ -91,7 +89,7 @@ async fn handle_login(mut conn: Connection) {
             resource_packs: vec![],
             world_template_version: "".to_string(),
         }),
-        GamePackets::ResourcePackStack(ResourcePackStackPacket {
+        V924::ResourcePackStackPacket(ResourcePackStackPacket {
             texture_pack_required: false,
             addon_list: vec![],
             base_game_version: BaseGameVersion(String::from("1.0")),
@@ -104,22 +102,22 @@ async fn handle_login(mut conn: Connection) {
     ])
     .await
     .unwrap();
-    tracing::trace!("PlayStatus (LoginSuccess)");
-    tracing::trace!("ResourcePacksInfo");
-    tracing::trace!("ResourcePackStack");
+    println!("PlayStatus (LoginSuccess)");
+    println!("ResourcePacksInfo");
+    println!("ResourcePackStack");
 
-    tracing::trace!("{:#?}", conn.recv::<ProtoHelperV924>().await.unwrap());
-    tracing::trace!("ClientCacheStatus");
-    tracing::trace!("{:#?}", conn.recv::<ProtoHelperV924>().await.unwrap());
-    tracing::trace!("ResourcePackClientResponse");
+    println!("{:#?}", conn.recv::<V924>().await.unwrap());
+    println!("ClientCacheStatus");
+    println!("{:#?}", conn.recv::<V924>().await.unwrap());
+    println!("ResourcePackClientResponse");
 
-    conn.send::<ProtoHelperV924>(&[GamePackets::VoxelShapes(VoxelShapesPacket {
+    conn.send::<V924>(&[V924::VoxelShapesPacket(VoxelShapesPacket {
         shapes: vec![],
         names: vec![],
     })])
     .await
     .unwrap();
-    tracing::trace!("VoxelShapes");
+    println!("VoxelShapes");
 
     let packet1 = StartGamePacket {
         target_actor_id: ActorUniqueID(609),
@@ -179,7 +177,7 @@ async fn handle_login(mut conn: Connection) {
             persona_disabled: false,
             custom_skins_disabled: false,
             emote_chat_muted: false,
-            base_game_version: BaseGameVersion(v924::info::GAME_VERSION.to_string()),
+            base_game_version: BaseGameVersion(V924::GAME_VERSION.to_string()),
             limited_world_width: 16,
             limited_world_depth: 16,
             nether_type: true,
@@ -204,7 +202,7 @@ async fn handle_login(mut conn: Connection) {
         block_properties: vec![],
         multiplayer_correlation_id: String::from("c5d3d2cc-27fd-4221-9de6-d22c4d423d53"),
         enable_item_stack_net_manager: false,
-        server_version: v924::info::GAME_VERSION.to_string(),
+        server_version: V924::GAME_VERSION.to_string(),
         player_property_data: nbtx::Value::Compound(HashMap::new()),
         server_block_type_registry_checksum: 0,
         world_template_id: Uuid::nil(),
@@ -220,25 +218,25 @@ async fn handle_login(mut conn: Connection) {
         owner_id: "".to_string(),
     };
 
-    conn.send::<ProtoHelperV924>(&[GamePackets::StartGame(packet1)])
+    conn.send::<V924>(&[V924::StartGamePacket(packet1)])
         .await
         .unwrap();
     println!("StartGame");
 
-    conn.send::<ProtoHelperV924>(&[GamePackets::PlayStatus(PlayStatusPacket {
+    conn.send::<V924>(&[V924::PlayStatusPacket(PlayStatusPacket {
         status: PlayStatus::PlayerSpawn,
     })])
     .await
     .unwrap();
     println!("PlayStatusPacket (PlayerSpawn)");
 
-    tracing::trace!("Finished request in {:?}", time_start.elapsed());
+    println!("Finished request in {:?}", time_start.elapsed());
 
     loop {
-        let res = conn.recv::<ProtoHelperV924>().await;
+        let res = conn.recv::<V924>().await;
 
         if let Ok(packet) = res {
-            tracing::trace!("Found packet: {:?}", packet);
+            println!("Found packet: {:?}", packet);
         } else {
             break;
         }

@@ -6,8 +6,8 @@ use rand::random;
 
 use crate::connection::Connection;
 use crate::error::{ListenerError, RakNetError, TransportLayerError};
-use crate::info::MINECRAFT_EDITION_MOTD;
 use crate::transport::TransportLayerListener;
+use bedrockrs_proto::info::MINECRAFT_EDITION_MOTD;
 
 #[allow(dead_code)]
 pub struct Listener {
@@ -27,7 +27,7 @@ impl Listener {
         name: String,
         sub_name: String,
         display_version: String,
-        protocol: i32,
+        protocol: u32,
         rak_version: u8,
         player_max: u32,
         player_count: u32,
