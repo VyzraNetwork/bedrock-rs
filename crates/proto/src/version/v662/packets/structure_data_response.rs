@@ -18,6 +18,7 @@ impl <V: ProtoVersion> ProtoCodec for StructureDataResponsePacket<V> {
         self.structure_name.serialize(stream)?;
         match &self.structure_nbt {
             Some(nbt) => {
+                bool::serialize(&true, stream)?;
                 nbtx::to_bytes_in::<nbtx::NetworkLittleEndian>(stream, &nbt)?;
             },
             None => bool::serialize(&false, stream)?
