@@ -10,7 +10,6 @@ use crate::transport::TransportLayerListener;
 use bedrockrs_proto::Unknown;
 use bedrockrs_proto::info::MINECRAFT_EDITION_MOTD;
 
-#[allow(dead_code)]
 pub struct Listener {
     listener: TransportLayerListener,
     name: String,
