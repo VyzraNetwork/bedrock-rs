@@ -234,7 +234,6 @@ define_versions![
             + InventoryTransaction: InventoryTransaction^,
             + ItemData: ItemData,
             + ItemEnchants: ItemEnchants^,
-            + ItemInstanceUserData: ItemInstanceUserData,
             + ItemStackRequestSlotInfo: ItemStackRequestSlotInfo^,
             + ItemStackResponseContainerInfo: ItemStackResponseContainerInfo^,
             + ItemStackResponseInfo: ItemStackResponseInfo^,
