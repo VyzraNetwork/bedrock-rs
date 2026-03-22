@@ -359,8 +359,6 @@ define_versions![
             + PredictionType: PredictionType,
             + ResourcePackResponse: ResourcePackResponse,
             + Rotation: Rotation,
-            + ScorePacketType: ScorePacketType^,
-            + ScoreboardIdentityPacketType: ScoreboardIdentityPacketType^,
             + ServerAuthMovementMode: ServerAuthMovementMode,
             + ShowStoreOfferRedirectType: ShowStoreOfferRedirectType,
             + SimulationType: SimulationType,
