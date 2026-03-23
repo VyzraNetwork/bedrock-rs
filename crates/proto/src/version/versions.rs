@@ -737,5 +737,32 @@ define_versions![
             % LevelSoundEventType: LevelSoundEventType,
             % TextPacketType: TextPacketType,
         ] in crate::version::v924::enums,
+    },
+    (944, "r/26_u1", "1.26.10"): {
+        packets: [
+            + ClientBoundAttributeLayerSyncPacket: ClientBoundAttributeLayerSyncPacket,
+            + ClientBoundDataDrivenUICloseScreenPacket: ClientBoundDataDrivenUICloseScreenPacket,
+            + LocatorBarPacket: LocatorBarPacket,
+            + PartyChangedPacket: PartyChangedPacket,
+            + ResourcePacksReadyForValidationPacket: ResourcePacksReadyForValidationPacket,
+            + ServerBoundDataDrivenClosedPacket: ServerBoundDataDrivenClosedPacket,
+            + SyncWorldClocksPacket: SyncWorldClocksPacket,
+            % ClientBoundDataDrivenUIShowScreenPacket: ClientBoundDataDrivenUIShowScreenPacket,
+            % GraphicsParameterOverridePacket: GraphicsParameterOverridePacket,
+            % StartGamePacket: StartGamePacket^,
+            % UpdateClientInputLocksPacket: UpdateClientInputLocksPacket,
+            % VoxelShapesPacket: VoxelShapesPacket,
+            - ClientBoundDataDrivenUICloseAllScreensPacket
+        ] in crate::version::v944::packets,
+        types: [
+            % CameraSplineInstruction: CameraSplineInstruction^,
+            % NetworkBlockPosition: NetworkBlockPosition,
+            % PackedItemUseLegacyInventoryTransaction: PackedItemUseLegacyInventoryTransaction^,
+        ] in crate::version::v944::types,
+        enums: [
+            % ContainerEnumName: ContainerEnumName,
+            % LevelSoundEventType: LevelSoundEventType,
+            % ParticleType: ParticleType,
+        ] in crate::version::v944::enums,
     }
 ];

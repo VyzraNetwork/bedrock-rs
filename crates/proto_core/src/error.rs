@@ -7,6 +7,7 @@ use std::string::FromUtf8Error;
 use base64::DecodeError as Base64DecodeError;
 use jsonwebtoken::errors::Error as JwtError;
 use serde_json::error::Error as JsonError;
+use strum::ParseError;
 use thiserror::Error;
 use uuid::Error as UuidError;
 
@@ -43,6 +44,8 @@ pub enum ProtoCodecError {
     CompressError(#[from] CompressionError),
     #[error("Encryption Error: {0}")]
     EncryptionError(#[from] EncryptionError),
+    #[error("Strum Parse Error: {0}")]
+    StrumParseError(#[from] ParseError),
     #[error("Expected Some in: {0}")]
     ExpectedSome(&'static str),
 }

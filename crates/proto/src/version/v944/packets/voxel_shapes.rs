@@ -6,6 +6,8 @@ use vek::Vec3;
 pub struct VoxelShapesPacket {
     pub shapes: Vec<VoxelShape>,
     pub names: Vec<VoxelShapeName>,
+    #[endianness(le)]
+    pub custom_shape_count: u16,
 }
 
 #[derive(ProtoCodec, Clone, Debug)]

@@ -17,6 +17,7 @@ pub mod v844;
 pub mod v859;
 pub mod v898;
 pub mod v924;
+pub mod v944;
 
 mod versions;
 pub use versions::*;
