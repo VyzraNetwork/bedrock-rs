@@ -88,7 +88,7 @@ impl AuthData {
             .jwks
             .find(&header.kid.ok_or(AuthError::Missing("kid"))?)
             .ok_or(AuthError::Missing("jwk"))?;
-        
+
         let key = jsonwebtoken::DecodingKey::from_jwk(jwk)?;
 
         let mut validation = jsonwebtoken::Validation::new(header.alg);
