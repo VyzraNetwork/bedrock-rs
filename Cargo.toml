@@ -68,7 +68,6 @@ bedrockrs_form = { path = "crates/form", optional = true }
 bedrockrs_proto = { path = "crates/proto", optional = true }
 bedrockrs_proto_core = { path = "crates/proto_core", optional = true }
 bedrockrs_network = { path = "crates/network", optional = true }
-bedrockrs_server = { path = "crates/server", optional = true }
 bedrockrs_level = { path = "crates/level", optional = true }
 
 [dev-dependencies]
@@ -88,9 +87,8 @@ proto = [
 ]
 network = ["dep:bedrockrs_network", "proto"]
 level = ["dep:bedrockrs_level"]
-full = ["addon", "level", "network", "proto", "server", "auth"]
+full = ["addon", "level", "network", "proto", "auth"]
 form = ["dep:bedrockrs_form"]
-server = ["dep:bedrockrs_server", "proto", "level", "form"]
 
 auth-async = ["bedrock_auth/async"]
 

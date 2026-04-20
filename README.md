@@ -38,12 +38,7 @@ To maintain modularity and scalability, **bedrock-rs** is divided into multiple 
 
 - [`bedrockrs::level`](crates/level)  
     - Data structures for managing Minecraft Bedrock levels.  
-    - Implementation of Bedrock’s level format using Rust’s LevelDB.  
-
-- [`bedrockrs::server`](/crates/server)  
-    - A lightweight foundation for Minecraft Bedrock server software.  
-    - Built-in support for multi-protocol handling.  
-    - Asynchronous architecture powered by Tokio.  
+    - Implementation of Bedrock’s level format using Rust’s LevelDB.
 
 ---
 
