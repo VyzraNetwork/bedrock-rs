@@ -120,7 +120,7 @@ proto-all = ["bedrockrs_proto/all"]
 [[example]]
 name = "proto_server"
 path = "examples/proto/server.rs"
-required-features = ["network"]
+required-features = ["network", "proto-v944", "proto-unknown"]
 
 [[example]]
 name = "proto_parsing"

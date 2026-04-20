@@ -16,7 +16,7 @@ strum = { workspace = true }
 strum_macros = { workspace = true }
 
 [features]
-default = ["v944"]
+default = ["v975"]
 
 unknown = []
 v662 = []
