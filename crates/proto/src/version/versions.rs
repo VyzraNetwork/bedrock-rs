@@ -763,5 +763,33 @@ define_versions![
             % LevelSoundEventType: LevelSoundEventType,
             % ParticleType: ParticleType,
         ] in crate::version::v944::enums,
+    },
+    (975, "r/26_u2", "1.26.20"): {
+        packets: [
+            + ServerPresenceInfoPacket: ServerPresenceInfoPacket,
+            + ServerStoreInfoPacket: ServerStoreInfoPacket,
+            % ActorEventPacket: ActorEventPacket^,
+            % GraphicsParameterOverridePacket: GraphicsParameterOverridePacket,
+            % InventorySlotPacket: InventorySlotPacket^,
+            % LevelSoundEventPacket: LevelSoundEventPacket^,
+            % LocatorBarPacket: LocatorBarPacket,
+            % MovementPredictionSyncPacket: MovementPredictionSyncPacket^,
+            % PartyChangedPacket: PartyChangedPacket,
+            % PlaySoundPacket: PlaySoundPacket^,
+            % ServerBoundDiagnosticsPacket: ServerBoundDiagnosticsPacket,
+            % UpdateClientOptionsPacket: UpdateClientOptionsPacket,
+        ] in crate::version::v975::packets,
+        types: [
+            + BiomeNoiseGradientSurfaceData: BiomeNoiseGradientSurfaceData,
+            + BiomeSurfaceBuilderData: BiomeSurfaceBuilderData^,
+            % BiomeDefinitionChunkGenData: BiomeDefinitionChunkGenData^,
+            % DebugShape: DebugShape^,
+            % DimensionDefinitionGroup: DimensionDefinitionGroup,
+        ] in crate::version::v975::types,
+        enums: [
+            % ActorEvent: ActorEvent,
+            % ActorFlags: ActorFlags,
+            % LevelSoundEventType: LevelSoundEventType,
+        ] in crate::version::v975::enums,
     }
 ];

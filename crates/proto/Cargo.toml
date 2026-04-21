@@ -17,7 +17,7 @@ strum = { workspace = true }
 strum_macros = { workspace = true }
 
 [features]
-default = ["v944"]
+default = ["v975"]
 
 unknown = []
 v662 = []
@@ -39,6 +39,7 @@ v859 = []
 v898 = []
 v924 = []
 v944 = []
+v975 = []
 all = [
     "unknown",
     "v662",
@@ -59,5 +60,6 @@ all = [
     "v859",
     "v898",
     "v924",
-    "v944"
+    "v944",
+    "v975"
 ]

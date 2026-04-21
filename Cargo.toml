@@ -11,51 +11,35 @@ thiserror = "2.0"
 vek = "0.17"
 tracing = "0.1.44"
 tracing-subscriber = "0.3.22"
-
 byteorder = "1.5.0"
 varint-rs = "2.2"
 bytemuck = "1.25.0"
-bitflags = "2.6.0"
-
 tokio = { version = "1.50", features = ["macros", "rt-multi-thread", "sync", "time", "tracing"] }
-shipyard = { version = "0.11" }
-
-rayon = "1.10"
-
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 serde_repr = "0.1.20"
 paste = "1.0"
 semver = { version = "1.0", features = ["serde"] }
 json_comments = "0.2"
-
 image = "0.25"
 tar = "0.4.44"
 tempfile = "3.26.0"
 walkdir = "2.5"
-
 flate2 = "1.0"
 snap = "1.1"
-
-x509-cert = "0.2"
-
 criterion = { version = "0.8.2", features = ["html_reports"] }
-
 seq-macro = "0.3"
 proc-macro2 = "1.0"
 syn = { version = "2.0", features = ["derive", "parsing", "printing", "proc-macro"] }
 quote = { version = "1.0" }
-
 jsonwebtoken = "10.3"
 base64 = "0.22"
 nbtx = "3.0.1"
 xuid = "1.0"
 uuid = { version = "1.11.0", features = ["v4", "serde"] }
 rand = "0.10"
-
 strum = "0.28.0"
 strum_macros = "0.28.0"
-
 reqwest = "0.13.2"
 
 [patch.crates-io]
@@ -71,12 +55,10 @@ bedrockrs_form = { path = "crates/form", optional = true }
 bedrockrs_proto = { path = "crates/proto", optional = true }
 bedrockrs_proto_core = { path = "crates/proto_core", optional = true }
 bedrockrs_network = { path = "crates/network", optional = true }
-bedrockrs_server = { path = "crates/server", optional = true }
 bedrockrs_level = { path = "crates/level", optional = true }
 
 [dev-dependencies]
 tokio = { workspace = true }
-nbtx = { workspace = true }
 uuid = { workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
@@ -91,9 +73,8 @@ proto = [
 ]
 network = ["dep:bedrockrs_network", "proto"]
 level = ["dep:bedrockrs_level"]
-full = ["addon", "level", "network", "proto", "server", "auth"]
+full = ["addon", "level", "network", "proto", "auth"]
 form = ["dep:bedrockrs_form"]
-server = ["dep:bedrockrs_server", "proto", "level", "form"]
 
 auth-async = ["bedrock_auth/async"]
 
@@ -117,12 +98,13 @@ proto-v859 = ["bedrockrs_proto/v859"]
 proto-v898 = ["bedrockrs_proto/v898"]
 proto-v924 = ["bedrockrs_proto/v924"]
 proto-v944 = ["bedrockrs_proto/v944"]
+proto-v975 = ["bedrockrs_proto/v975"]
 proto-all = ["bedrockrs_proto/all"]
 
 [[example]]
 name = "proto_server"
 path = "examples/proto/server.rs"
-required-features = ["network"]
+required-features = ["network", "proto-v944", "proto-unknown"]
 
 [[example]]
 name = "proto_parsing"
