@@ -7,11 +7,11 @@ use uuid::Uuid;
 
 #[derive(Clone, Debug)]
 pub struct ShapedRecipe<V: ProtoVersion> {
-    pub recipe_unique_id: String,
+    pub recipe_unique_id: Vec<u8>,
     pub ingredient_grid: Vec<Vec<V::RecipeIngredient>>,
     pub production_list: Vec<V::NetworkItemInstanceDescriptor>,
     pub recipe_id: Uuid,
-    pub recipe_tag: String,
+    pub recipe_tag: Vec<u8>,
     pub priority: i32,
     pub assume_symmetry: bool,
     pub network_id: u32,
@@ -21,10 +21,10 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
     fn serialize<W: Write>(&self, stream: &mut W) -> Result<(), ProtoCodecError> {
         self.recipe_unique_id.serialize(stream)?;
 
-        let x_len: u32 = self.ingredient_grid.len().try_into()?;
-        let y_len: u32 = self.ingredient_grid[0].len().try_into()?;
-        <u32 as ProtoCodecVAR>::serialize(&x_len, stream)?;
-        <u32 as ProtoCodecVAR>::serialize(&y_len, stream)?;
+        let x_len: i32 = self.ingredient_grid.len().try_into()?;
+        let y_len: i32 = self.ingredient_grid[0].len().try_into()?;
+        <i32 as ProtoCodecVAR>::serialize(&x_len, stream)?;
+        <i32 as ProtoCodecVAR>::serialize(&y_len, stream)?;
         for y in &self.ingredient_grid {
             for recipe in y {
                 recipe.serialize(stream)?;
@@ -46,11 +46,11 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
     }
 
     fn deserialize<R: Read>(stream: &mut R) -> Result<Self, ProtoCodecError> {
-        let recipe_unique_id = String::deserialize(stream)?;
+        let recipe_unique_id = Vec::<u8>::deserialize(stream)?;
 
         let ingredient_grid = {
-            let x_len = <u32 as ProtoCodecVAR>::deserialize(stream)?;
-            let y_len = <u32 as ProtoCodecVAR>::deserialize(stream)?;
+            let x_len = <i32 as ProtoCodecVAR>::deserialize(stream)?;
+            let y_len = <i32 as ProtoCodecVAR>::deserialize(stream)?;
             let mut x_vec = Vec::with_capacity(x_len.try_into()?);
             for _ in 0..x_len {
                 let mut y_vec = Vec::with_capacity(y_len.try_into()?);
@@ -72,7 +72,7 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
         };
 
         let recipe_id = Uuid::deserialize(stream)?;
-        let recipe_tag = String::deserialize(stream)?;
+        let recipe_tag = Vec::<u8>::deserialize(stream)?;
         let priority = <i32 as ProtoCodecVAR>::deserialize(stream)?;
         let assume_symmetry = bool::deserialize(stream)?;
         let network_id = <u32 as ProtoCodecVAR>::deserialize(stream)?;

@@ -58,6 +58,9 @@ strum_macros = "0.28.0"
 
 reqwest = "0.13.2"
 
+[patch.crates-io]
+nbtx = { git = "https://github.com/VyzraNetwork/nbtx" }
+
 [dependencies]
 bedrock_auth = { path = "crates/auth", optional = true }
 bedrockrs_core = { path = "crates/core" }

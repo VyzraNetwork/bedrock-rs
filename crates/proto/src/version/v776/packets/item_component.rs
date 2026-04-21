@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use crate::version::versions::ProtoVersion;
 use bedrockrs_macros::{packet, ProtoCodec};
 
@@ -15,5 +16,5 @@ pub struct ItemsEntry<V: ProtoVersion> {
     pub is_component_based: bool,
     pub version: V::ItemVersion,
     #[nbt]
-    pub component_data: nbtx::Value,
+    pub component_data: HashMap<String, nbtx::Value>,
 }

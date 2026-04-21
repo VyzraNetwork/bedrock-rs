@@ -8,7 +8,7 @@ pub struct NetworkItemInstanceDescriptor {
     stack_size: Option<u16>,
     aux_value: Option<u32>,
     block_runtime_id: Option<i32>,
-    user_data_buffer: Option<String>,
+    user_data_buffer: Option<Vec<u8>>,
 }
 
 impl ProtoCodec for NetworkItemInstanceDescriptor {
@@ -37,7 +37,7 @@ impl ProtoCodec for NetworkItemInstanceDescriptor {
                 let stack_size = ProtoCodecLE::deserialize(stream)?;
                 let aux_value = ProtoCodecVAR::deserialize(stream)?;
                 let block_runtime_id = ProtoCodecVAR::deserialize(stream)?;
-                let user_data_buffer = ProtoCodec::deserialize(stream)?;
+                let user_data_buffer = Vec::<u8>::deserialize(stream)?;
 
                 (
                     Some(stack_size),
@@ -65,7 +65,7 @@ impl ProtoCodec for NetworkItemInstanceDescriptor {
                     ProtoCodecLE::size_hint(self.stack_size.as_ref().unwrap())
                         + ProtoCodecVAR::size_hint(self.aux_value.as_ref().unwrap())
                         + ProtoCodecVAR::size_hint(self.block_runtime_id.as_ref().unwrap())
-                        + ProtoCodec::size_hint(self.user_data_buffer.as_ref().unwrap())
+                        + Vec::<u8>::size_hint(self.user_data_buffer.as_ref().unwrap())
                 }
             }
     }

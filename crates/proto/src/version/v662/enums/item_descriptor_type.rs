@@ -11,7 +11,7 @@ pub enum ItemDescriptorType {
     Default(DefaultDescriptor) = 1,
     Molang(MolangDescriptor) = 2,
     ItemTag(ItemTagDescriptor) = 3,
-    Deferred(DeferredDescriptor) = 4,
+    StringIdMeta(DeferredDescriptor) = 4,
     ComplexAlias(ComplexAliasDescriptor) = 5,
 }
 

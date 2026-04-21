@@ -4,7 +4,7 @@ use uuid::Uuid;
 
 #[derive(ProtoCodec, Clone, Debug)]
 pub struct ShapedChemistryRecipe<V: ProtoVersion> {
-    pub recipe_id: String,
+    pub recipe_id: Vec<u8>,
     #[endianness(var)]
     pub width: i32,
     #[endianness(var)]
@@ -13,7 +13,7 @@ pub struct ShapedChemistryRecipe<V: ProtoVersion> {
 
     pub result_items: Vec<V::NetworkItemInstanceDescriptor>,
     pub id: Uuid,
-    pub tag: String,
+    pub tag: Vec<u8>,
     #[endianness(var)]
     pub priority: i32,
 }

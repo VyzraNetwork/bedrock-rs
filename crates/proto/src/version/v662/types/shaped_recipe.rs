@@ -7,11 +7,11 @@ use uuid::Uuid;
 
 #[derive(Clone, Debug)]
 pub struct ShapedRecipe<V: ProtoVersion> {
-    pub recipe_unique_id: String,
+    pub recipe_unique_id: Vec<u8>,
     pub ingredient_grid: Vec<Vec<V::RecipeIngredient>>,
     pub production_list: Vec<V::NetworkItemInstanceDescriptor>,
     pub recipe_id: Uuid,
-    pub recipe_tag: String,
+    pub recipe_tag: Vec<u8>,
     pub priority: i32,
     pub network_id: u32,
 }
@@ -44,7 +44,7 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
     }
 
     fn deserialize<R: Read>(stream: &mut R) -> Result<Self, ProtoCodecError> {
-        let recipe_unique_id = String::deserialize(stream)?;
+        let recipe_unique_id = Vec::<u8>::deserialize(stream)?;
 
         let ingredient_grid = {
             let x_len = <u32 as ProtoCodecVAR>::deserialize(stream)?;
@@ -70,7 +70,7 @@ impl<V: ProtoVersion> ProtoCodec for ShapedRecipe<V> {
         };
 
         let recipe_id = Uuid::deserialize(stream)?;
-        let recipe_tag = String::deserialize(stream)?;
+        let recipe_tag = Vec::<u8>::deserialize(stream)?;
         let priority = <i32 as ProtoCodecVAR>::deserialize(stream)?;
         let network_id = <u32 as ProtoCodecVAR>::deserialize(stream)?;
 
